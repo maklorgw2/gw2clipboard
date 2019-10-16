@@ -119,7 +119,7 @@ namespace GW2Clipboard
             hostForm.autoSaveTimer.Enabled = false;
 
             hostForm.Text = " ";
-            hostForm.FormBorderStyle = FormBorderStyle.SizableToolWindow;
+            hostForm.FormBorderStyle = FormBorderStyle.FixedToolWindow;
 
             hostForm.Top = Settings.DrawerClosedTop;
             hostForm.Left = Settings.DrawerClosedLeft;

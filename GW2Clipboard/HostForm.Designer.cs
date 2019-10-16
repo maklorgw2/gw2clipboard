@@ -65,6 +65,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "HostForm";
+            this.ShowInTaskbar = false;
             this.TopMost = true;
             this.ResumeLayout(false);
 
