@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "allowSyntheticDefaultImports": true,
+    "module": "commonjs",
+    "lib": [
+      "es6",
+      "dom"
+    ],
+    "target": "es5",
+    "esModuleInterop": true,
+    "jsx": "react",
+    "baseUrl": "./src",
+    "paths": {
+      "@components/*": [
+        "components/*"
+      ],
+      "@models/*": [
+        "models/*"
+      ],
+      "@libs/*": [
+        "libs/*"
+      ],
+      "@views/*": [
+        "views/*"
+      ]
+    }
+  },
+  "include": [
+    "./src/**/*"
+  ]
+}
