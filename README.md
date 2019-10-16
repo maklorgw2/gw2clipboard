@@ -13,6 +13,7 @@ This can be used to store Build templates and general text you may wish to use d
 **The application is currently in beta, please help find any issues!**
 
 For current releases please follow the following link:
+https://github.com/maklorgw2/gw2clipboard/releases
 ****
 ## Overview
 The application uses sets of information (called categories) that are filtered by the MumbleLink information.
