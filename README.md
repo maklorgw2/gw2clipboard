@@ -91,7 +91,7 @@ First you will need to install the dependencies:
  ````
 
 
- To build the dev bundle (and watches for changes) 
+ To build the dev bundle (and watch for changes) 
  ````
  npm run build
  ````
