@@ -4,6 +4,21 @@ import { HostManager } from '@libs/HostManager';
 import { IRenderData, UNIT_MULTIPLIER, UNIT_THRESHOLD } from '@components/CategoryTree';
 import { GameModeType, GameModeName } from '@models/ITag';
 
+
+const getMapDetails = (mapId:number) => {
+	const maps = HostManager.loadMaps().filter((m) => m.id == mapId);
+	if (maps[0]) return {
+		mapName: maps[0].t,
+		gameMode: maps[0].m,
+		gameModeName:  GameModeName[maps[0].m]
+	}
+	return {
+		mapName: `Unknown #${mapId}`,
+		gameMode: GameModeType.PvE,
+		gameModeName:  GameModeName[GameModeType.PvE]
+	}
+}
+
 export const useMumbleData = (pollingInterval: number) => {
 	const [ pollUpdate, setPollUpdate ] = useState<number>();
 	const currentMumbleData = useRef<IRenderData>(null);
@@ -16,18 +31,10 @@ export const useMumbleData = (pollingInterval: number) => {
 			...data,
 			gw2HasFocus: data.currentWindowTitle == 'Guild Wars 2',
 			mapIsActive: true,
-			onlyPositionChanged: false
+			onlyPositionChanged: false,
+			assumeContextIsStale: false,
+			...getMapDetails(data.context.mapId)
 		};
-		const maps = HostManager.loadMaps().filter((m) => m.id == currentMumbleData.current.context.mapId);
-		if (maps.length == 1) {
-			currentMumbleData.current.mapName = maps[0].t;
-			currentMumbleData.current.gameMode = maps[0].m;
-		} else {
-			currentMumbleData.current.mapName = `Unknown #${currentMumbleData.current.context.mapId}`;
-			currentMumbleData.current.gameMode = GameModeType.PvE; // Make all unknown maps PvE
-		}
-		currentMumbleData.current.gameModeName = GameModeName[currentMumbleData.current.gameMode];
-		currentMumbleData.current.assumeContextIsStale = false;
 	}, []);
 
 	// Poll mumble data every <POLL_MS> ms
@@ -38,7 +45,8 @@ export const useMumbleData = (pollingInterval: number) => {
 		currentMumbleData.current = {
 			...data,
 			gw2HasFocus: data.currentWindowTitle == 'Guild Wars 2',
-			mapIsActive: data.uiTick != lastTick
+			mapIsActive: data.uiTick != lastTick,
+			...getMapDetails(data.context.mapId)
 		};
 
 		currentMumbleData.current.assumeContextIsStale =
@@ -80,26 +88,6 @@ export const useMumbleData = (pollingInterval: number) => {
 
 		// if data has materially changed, refresh component with the new data
 		if (update) {
-			// Lookup mapdata if needed
-			if (
-				lastUpdateMumbleData.current == null ||
-				lastUpdateMumbleData.current.context.mapId != currentMumbleData.current.context.mapId
-			) {
-				const maps = HostManager.loadMaps().filter((m) => m.id == currentMumbleData.current.context.mapId);
-				if (maps.length == 1) {
-					currentMumbleData.current.mapName = maps[0].t;
-					currentMumbleData.current.gameMode = maps[0].m;
-				} else {
-					currentMumbleData.current.mapName = `Unknown #${currentMumbleData.current.context.mapId}`;
-					currentMumbleData.current.gameMode = GameModeType.PvE; // Make all unknown maps PvE
-				}
-				currentMumbleData.current.gameModeName = GameModeName[currentMumbleData.current.gameMode];
-			} else {
-				currentMumbleData.current.gameMode = lastUpdateMumbleData.current.gameMode;
-				currentMumbleData.current.gameModeName = lastUpdateMumbleData.current.gameModeName;
-				currentMumbleData.current.mapName = lastUpdateMumbleData.current.mapName;
-			}
-
 			lastUpdateMumbleData.current = { ...currentMumbleData.current };
 			setPollUpdate(Date.now());
 		}

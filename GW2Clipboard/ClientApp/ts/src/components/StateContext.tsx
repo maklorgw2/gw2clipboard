@@ -3,6 +3,7 @@ import { HotKey, CategoryType, ICategory } from '@models/IConfig';
 import { useHistory } from 'react-router-dom';
 import { History } from 'history';
 import { HostManager } from '@libs/HostManager';
+import { GameModeType, ProfessionType } from '@models/ITag';
 
 /*=========================================================
 A note about the current implementation of state management
@@ -42,6 +43,9 @@ export interface IState {
 	hotKeyHandler: (hotKey: HotKey) => void;
 	selectedCategory: ISelectedCategory;
 	filteredCategories: ICategory[];
+	cachedGameMode: GameModeType;
+	cachedProfession: ProfessionType;
+	cachedMapId: number;
 }
 
 export interface IStore {
@@ -69,8 +73,8 @@ const Store: IStore = {
 			case HotKey.OpenBuild:
 				if (HostManager.isDrawerOpen()) {
 					if (state.area == Area.Build) {
-						history.replace(`/`);
 						HostManager.closeDrawer();
+						history.replace(`/`);
 						break;
 					}
 				}
@@ -80,8 +84,8 @@ const Store: IStore = {
 			case HotKey.OpenText:
 				if (HostManager.isDrawerOpen()) {
 					if (state.area == Area.Text) {
-						history.replace(`/`);
 						HostManager.closeDrawer();
+						history.replace(`/`);
 						break;
 					}
 				}
@@ -90,8 +94,8 @@ const Store: IStore = {
 				break;
 			case HotKey.CloseDrawer:
 				if (HostManager.isDrawerOpen()) {
-					history.replace(`/`);
 					HostManager.closeDrawer();
+					history.replace(`/`);
 				} else {
 					switch (state.area) {
 						case Area.Text:

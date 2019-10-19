@@ -45,6 +45,10 @@ export const HostManager = {
 	saveCategories: () => {
 		Host.saveCategories(JSON.stringify(HostManager.config.categoryData, null, 2));
 	},
+	saveSettings: (settings:ISettings) => {
+		HostManager.config.settings = settings;
+		Host.saveSettings(JSON.stringify(HostManager.config.settings, null, 2))
+	},
 	getMumbleData: () => Host.getMumbleData(),
 	setClipBoardData: (text: string) => Host.setClipBoardData(text),
 	iconBarSize: () => Host.iconBarSize,

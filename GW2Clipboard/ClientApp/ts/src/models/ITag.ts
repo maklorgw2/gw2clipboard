@@ -54,10 +54,10 @@ export enum GameModeType {
 export const GameModeName: string[] = [
 	'WvW',
 	'PvP',
-	'PvE',
-	'Dungeons',
-	'Fractals',
-	'Raids',
+	'PvE: Other',
+	'PVE: Dungeons',
+	'PVE: Fractals',
+	'PVE: Raids',
 ];
 
 export interface ITag {

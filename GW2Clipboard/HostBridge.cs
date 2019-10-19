@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace GW2Clipboard
@@ -17,12 +18,19 @@ namespace GW2Clipboard
 
         HostForm hostForm;
         string categoriesJson;
+        IntPtr Gw2WindowHandle = IntPtr.Zero;
 
         public Settings Settings { get; set; }
         public MapManager MapManager { get; set; }
         public bool IsDrawerOpen { get; set; }
         public bool IsInSystemTray { get; set; }
         public MumbleLinkFile MumbleLinkFile { get; private set; }
+
+        #region Interop
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool SetForegroundWindow(IntPtr hWnd);
+        #endregion
 
         public HostBridge(HostForm hostForm)
         {
@@ -39,6 +47,7 @@ namespace GW2Clipboard
         {
             MumbleLinkFile.Dispose();
         }
+      
 
         #region Settings and Categories
         public Settings LoadSettings()
@@ -61,10 +70,10 @@ namespace GW2Clipboard
 
         public void SaveSettings(string newSettings = null)
         {
-
             if (!string.IsNullOrEmpty(newSettings))
             {
                 Settings = JsonConvert.DeserializeObject<Settings>(newSettings);
+                hostForm.setOpacity();
             }
             Settings.Save(SettingsFileName);
         }
@@ -93,19 +102,40 @@ namespace GW2Clipboard
 
         public bool IsDebugMode => Debugger.IsAttached;
 
+        public void FocusToPreviousWindow()
+        {
+            // Restore focus
+            if (Gw2WindowHandle != IntPtr.Zero)
+            {
+                if (SetForegroundWindow(Gw2WindowHandle)) return;
+            }
+
+            // Missing or Invalid handle, look for it
+            var processes = Process.GetProcesses();
+            foreach (var process in processes)
+            {
+                if (process.MainWindowTitle.IndexOf("Guild Wars 2", StringComparison.InvariantCulture) > -1)
+                {
+                    Gw2WindowHandle = process.MainWindowHandle;
+                    SetForegroundWindow(Gw2WindowHandle);
+                    break;
+                }
+            }
+        }
+
         public void OpenDrawer()
         {
             hostForm.Hide();
             hostForm.autoSaveTimer.Enabled = false;
 
-            hostForm.Text = "GW2 Clipboard";
-            hostForm.FormBorderStyle = FormBorderStyle.SizableToolWindow;
+            hostForm.Text = " GW2 Clipboard";
+            hostForm.FormBorderStyle = FormBorderStyle.Sizable;
 
             hostForm.Top = Settings.DrawerOpenTop;
             hostForm.Left = Settings.DrawerOpenLeft;
             hostForm.Height = Settings.DrawerOpenHeight;
             hostForm.Width = Settings.DrawerOpenWidth;
-
+            
             // Must be set before timer is enabled
             IsDrawerOpen = true; 
 
@@ -120,7 +150,7 @@ namespace GW2Clipboard
 
             hostForm.Text = " ";
             hostForm.FormBorderStyle = FormBorderStyle.FixedToolWindow;
-
+            
             hostForm.Top = Settings.DrawerClosedTop;
             hostForm.Left = Settings.DrawerClosedLeft;
             hostForm.Height = Settings.DrawerClosedHeight;
@@ -131,6 +161,14 @@ namespace GW2Clipboard
 
             hostForm.Show();
             hostForm.autoSaveTimer.Enabled = true;
+
+            FocusToPreviousWindow();
+        }
+
+
+        public void Minimize()
+        {
+            //hostForm.
         }
 
         public void Exit()

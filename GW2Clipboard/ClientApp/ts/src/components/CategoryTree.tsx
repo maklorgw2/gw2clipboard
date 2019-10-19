@@ -5,8 +5,17 @@ import { IMumbleData } from '@models/IMumbleData';
 import { useStore, ISelectedCategory, IStore, SelectionMethod } from './StateContext';
 import { useMumbleData } from '@libs/useMumbleData';
 import { Category } from './Category';
-import { TagType, ITag, ICharacterTag, IMapTag, IMapLocationTag, IProfessionTag, GameModeType } from '@models/ITag';
-import { HotKey, ICategory } from '@models/IConfig';
+import {
+	TagType,
+	ITag,
+	ICharacterTag,
+	IMapTag,
+	IMapLocationTag,
+	IProfessionTag,
+	GameModeType,
+	IGameModeTag,
+} from '@models/ITag';
+import { HotKey, ICategory, CategoryType } from '@models/IConfig';
 import { EditCategory } from './EditCategory';
 
 export interface IRenderData extends IMumbleData {
@@ -136,16 +145,6 @@ export const moveSelected = (store: IStore, hotKey: HotKey) => {
 	if (update) {
 		const data = state.filteredCategories[selected.index];
 
-		// // Make sure group and child indexes are valid (guard for bad data)
-		// if (selected.groupIndex != null && data.groups[selected.groupIndex] == undefined) {
-		// 	selected.groupIndex = null;
-		// 	selected.childIndex = null;
-		// }
-		// if (selected.childIndex != null && data.groups[selected.groupIndex].text[selected.childIndex] == undefined) {
-		// 	selected.childIndex = null;
-		// }
-		// alert(`NEW i:${selected.index} gi:${selected.groupIndex}ci:${selected.childIndex}`);
-
 		if (selected.groupIndex != null && selected.childIndex != null) {
 			HostManager.setClipBoardData(data.groups[selected.groupIndex].text[selected.childIndex]);
 		}
@@ -173,6 +172,7 @@ export const filterOnTag = (tags: ITag[], renderData: IRenderData) => {
 					valid = renderData.identity.commander;
 					break;
 				case TagType.GameMode:
+					valid = (tag as IGameModeTag).gameMode == renderData.gameMode;
 					break;
 				case TagType.Map:
 					valid = (tag as IMapTag).mapId == renderData.context.mapId;
@@ -240,10 +240,25 @@ export const CategoryTree = () => {
 			const state = store.getState();
 
 			let selectedCategoryIndex = null;
-			const filteredCategories = (filterOptions.filterMode == FilterMode.All
-				? typeCategories.filter((category) => filterOnTag(category.tags, mumbleData))
-				: typeCategories).sort((a, b) => ('' + a.name).localeCompare(b.name));
-			// console.log(`filteredCategories ${filteredCategories.length}`);
+
+			// Filter
+			let filteredCategories: ICategory[] = typeCategories;
+
+			if (filterOptions.filterMode == FilterMode.All)
+				filteredCategories = typeCategories.filter((category) => filterOnTag(category.tags, mumbleData));
+
+			if (filterOptions.filterMode == FilterMode.Character) {
+				const currentProfession = mumbleData.identity.profession || 99;
+				filteredCategories = typeCategories.filter((category) => {
+					return (
+						category.tags.filter(
+							(t: IProfessionTag) => t.tagType == TagType.Profession && t.profession == currentProfession
+						).length > 0
+					);
+				});
+			}
+			// Sort
+			filteredCategories = filteredCategories.sort((a, b) => ('' + a.name).localeCompare(b.name));
 
 			if (state.selectedCategory.data != null) {
 				for (var i = 0; i < filteredCategories.length; i++) {
@@ -259,6 +274,9 @@ export const CategoryTree = () => {
 					selectedCategoryIndex = 0;
 					const data = filteredCategories[0];
 					store.updateState({
+						cachedGameMode: mumbleData.gameMode,
+						cachedProfession: mumbleData.identity.profession,
+						cachedMapId: mumbleData.context.mapId,
 						filteredCategories: filteredCategories,
 						selectedCategory: {
 							data: data,
@@ -282,6 +300,9 @@ export const CategoryTree = () => {
 					);
 				}
 				store.updateState({
+					cachedGameMode: mumbleData.gameMode,
+					cachedProfession: mumbleData.identity.profession,
+					cachedMapId: mumbleData.context.mapId,
 					filteredCategories: filteredCategories,
 					selectedCategory: {
 						data: data,
@@ -297,7 +318,7 @@ export const CategoryTree = () => {
 		[ mumbleData ]
 	);
 
-	// Handle selection scrolling
+	// Handle selection by hotkey scrolling
 	useEffect(
 		() => {
 			if (state.selectedCategory.method == SelectionMethod.Key) {
@@ -330,6 +351,9 @@ export const CategoryTree = () => {
 
 	return (
 		<Fragment>
+			{/* <div>
+				{mumbleData.uiTick} {mumbleData.gameModeName} [{mumbleData.gameMode}]
+			</div> */}
 			{viewMode == ViewMode.View && (
 				<Fragment>
 					<div className="layout-header">
@@ -337,8 +361,18 @@ export const CategoryTree = () => {
 							className={`leftgroup ${filterOptions.filterMode == FilterMode.All ? ' selected' : ''}`}
 							onClick={() => setFilterOptions({ filterMode: FilterMode.All })}
 						>
-							Filtered
+							All Filters
 						</button>
+						{categoryType == String(CategoryType.Build) && (
+							<button
+								className={`middlegroup ${filterOptions.filterMode == FilterMode.Character
+									? ' selected'
+									: ''}`}
+								onClick={() => setFilterOptions({ filterMode: FilterMode.Character })}
+							>
+								Profession
+							</button>
+						)}
 						<button
 							className={`rightgroup ${filterOptions.filterMode == FilterMode.None ? ' selected' : ''}`}
 							onClick={() => setFilterOptions({ filterMode: FilterMode.None })}
