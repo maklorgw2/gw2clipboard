@@ -197,7 +197,7 @@ enum ViewMode {
 
 enum FilterMode {
 	All,
-	Character,
+	Profession,
 	None
 }
 
@@ -247,7 +247,7 @@ export const CategoryTree = () => {
 			if (filterOptions.filterMode == FilterMode.All)
 				filteredCategories = typeCategories.filter((category) => filterOnTag(category.tags, mumbleData));
 
-			if (filterOptions.filterMode == FilterMode.Character) {
+			if (filterOptions.filterMode == FilterMode.Profession) {
 				const currentProfession = mumbleData.identity.profession || 99;
 				filteredCategories = typeCategories.filter((category) => {
 					return (
@@ -288,6 +288,9 @@ export const CategoryTree = () => {
 					});
 				} else {
 					store.updateState({
+						cachedGameMode: mumbleData.gameMode,
+						cachedProfession: mumbleData.identity.profession,
+						cachedMapId: mumbleData.context.mapId,
 						filteredCategories: filteredCategories,
 						selectedCategory: {} as any
 					});
@@ -365,10 +368,10 @@ export const CategoryTree = () => {
 						</button>
 						{categoryType == String(CategoryType.Build) && (
 							<button
-								className={`middlegroup ${filterOptions.filterMode == FilterMode.Character
+								className={`middlegroup ${filterOptions.filterMode == FilterMode.Profession
 									? ' selected'
 									: ''}`}
-								onClick={() => setFilterOptions({ filterMode: FilterMode.Character })}
+								onClick={() => setFilterOptions({ filterMode: FilterMode.Profession })}
 							>
 								Profession
 							</button>
