@@ -28,34 +28,36 @@ export const IconBar = () => {
 			<button
 				title="Builds (Alt-B)"
 				style={getIconStyle(Area.Build, state.area)}
-				onClick={() => history.replace(`/CategoryType/${CategoryType.Build}`)}
+				onClick={() => store.processHotKey(HotKey.OpenBuild)}
 			/>
 			<button
 				title="Text (Alt-T)"
 				style={getIconStyle(Area.Text, state.area)}
-				onClick={() => history.replace(`/CategoryType/${CategoryType.Text}`)}
+				onClick={() => store.processHotKey(HotKey.OpenText)}
 			/>
 			<button
 				title="Configure"
 				style={getIconStyle(Area.Config, state.area)}
 				onClick={() => history.replace(`/Config/`)}
 			/>
-			<button title="Toggle drawer (Alt-Backspace)" onClick={()=>{
-				// history.replace(`/`);
-				// HostManager.closeDrawer();
-				store.processHotKey(HotKey.CloseDrawer)
-			}} style={{
-						marginTop: '-2px',
-						marginLeft:'2px',
-						height: '37px',
-						width: '40px',
-						display: 'block',
-						border: 'none',
-						color: '#fff8d0',
-						fontSize: '25px',
-						backgroundColor: '#000',
-						transform: HostManager.isDrawerOpen() ? null : 'rotateY(180deg)'
-					}}>
+			<button
+				title="Toggle drawer (Alt-Backspace)"
+				onClick={() => {
+					store.processHotKey(HotKey.CloseDrawer);
+				}}
+				style={{
+					marginTop: '-2px',
+					marginLeft: '2px',
+					height: '37px',
+					width: '40px',
+					display: 'block',
+					border: 'none',
+					color: '#fff8d0',
+					fontSize: '25px',
+					backgroundColor: '#000',
+					transform: HostManager.isDrawerOpen() ? null : 'rotateY(180deg)'
+				}}
+			>
 				&#x27a4;
 			</button>
 			{HostManager.isDrawerOpen() &&

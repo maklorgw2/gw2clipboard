@@ -1,5 +1,5 @@
 import React from 'react';
-import { ICategory } from '@models/IConfig';
+import { ICategory, CategoryType } from '@models/IConfig';
 import { useStore, SelectionMethod } from './StateContext';
 import { HostManager } from '@libs/HostManager';
 
@@ -10,7 +10,7 @@ export const CategoryGroup = (props: {
 	selectedChildIndex: number | null;
 }) => {
 	const { store } = useStore();
-
+	const isBuild = props.category.categoryType == CategoryType.Build;
 	return (
 		<div className="category-container">
 			{props.category.groups.map((group, groupIndex) => {
@@ -41,7 +41,7 @@ export const CategoryGroup = (props: {
 									event.stopPropagation();
 								}}
 							>
-								{child}
+								{isBuild ? group.name : child}
 							</div>
 						))}
 					</div>

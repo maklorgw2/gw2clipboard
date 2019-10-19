@@ -1,16 +1,24 @@
-import { IConfig, CategoryType, ISettings, ICategory, IMap } from '@models/IConfig';
+import { IConfig, CategoryType, IMap } from '@models/IConfig';
 import { CreateTag, IProfessionTag, TagType, IMapTag, ICommanderTag, GameModeType } from '@models/ITag';
-import { IHost } from "@models/IHost";
+import { IHost } from '@models/IHost';
 
 export function getMockConfig(): IConfig {
 	return {
 		settings: {
-			uISize: 1,
-			hostFormHeight: 600,
-			hostFormWidth: 200,
-			hostFormLeft: 800,
-			hostFormTop: 200,
-			hotKeys: []
+			UISize: 1,
+			// these settings are not used in mock-mode
+			Opacity: 90,
+			MinimizeOnStart: false,
+			MinimizeOnDrawerClosed: false,
+			DrawerOpenTop: 100,
+			DrawerOpenLeft: 100,
+			DrawerOpenHeight: 100,
+			DrawerOpenWidth: 100,
+			DrawerClosedTop: 100,
+			DrawerClosedLeft: 100,
+			DrawerClosedHeight: 100,
+			DrawerClosedWidth: 100,
+			HotKeys: []
 		},
 		categoryData: [
 			{
@@ -308,32 +316,20 @@ export function getMockConfig(): IConfig {
 			{
 				id: '15',
 				categoryType: CategoryType.Text,
-				name: "TD Lane Spam",
+				name: 'TD Lane Spam',
 				groups: [
-				  {
-					"text": [
-					  "Welcome to Rata Lane",
-					  "Here you Charge a Golem"
-					]
-				  },
-				  {
-					"text": [
-					  "Welcome to Ogre Lane",
-					  "Here you break eggs"
-					]
-				  },
-				  {
-					"text": [
-					  "Welcome to Scar Lane",
-					  "Here you kill mobs"
-					]
-				  },
-				  {
-					"text": [
-					  "Welcome to Nuhoch Lane",
-					  "Here you smash mushrooms"
-					]
-				  }
+					{
+						text: [ 'Welcome to Rata Lane', 'Here you Charge a Golem' ]
+					},
+					{
+						text: [ 'Welcome to Ogre Lane', 'Here you break eggs' ]
+					},
+					{
+						text: [ 'Welcome to Scar Lane', 'Here you kill mobs' ]
+					},
+					{
+						text: [ 'Welcome to Nuhoch Lane', 'Here you smash mushrooms' ]
+					}
 				],
 				tags: [
 					CreateTag<IMapTag>({
@@ -341,43 +337,43 @@ export function getMockConfig(): IConfig {
 						mapId: 1045
 					})
 				]
-			  }
+			}
 		]
 	};
 }
 
 let mockConfig: IConfig = getMockConfig();
-let mockMaps:IMap[] = [
+let mockMaps: IMap[] = [
 	{
 		id: 1,
-		t: "PvE Map",
+		t: 'PvE Map',
 		m: GameModeType.PvE
-	  },
-	  {
+	},
+	{
 		id: 2,
-		t: "PvP Map",
+		t: 'PvP Map',
 		m: GameModeType.PvP
-	  },
-	  {
+	},
+	{
 		id: 3,
-		t: "Raid Map",
+		t: 'Raid Map',
 		m: GameModeType.Raids
-	  },
-	  {
+	},
+	{
 		id: 4,
-		t: "Fractal Map",
+		t: 'Fractal Map',
 		m: GameModeType.Fractals
-	  },
-	  {
+	},
+	{
 		id: 5,
-		t: "WvW Map",
+		t: 'WvW Map',
 		m: GameModeType.WvW
-	  },
-	  {
+	},
+	{
 		id: 6,
-		t: "Dungeon Map",
+		t: 'Dungeon Map',
 		m: GameModeType.Dungeons
-	  },
+	}
 ];
 
 export const MockHost: IHost = {
@@ -388,6 +384,7 @@ export const MockHost: IHost = {
 	IsInSystemTray: () => false,
 	openDrawer: () => void 0,
 	closeDrawer: () => void 0,
+	minimize: () => void 0,
 	exit: () => void 0,
 	refresh: () => void 0,
 	setClipBoardData: (text: string) => void 0,
@@ -405,9 +402,9 @@ export const MockHost: IHost = {
 		});
 	},
 	loadSettings: () => JSON.stringify(mockConfig.settings, null, 2),
-	saveSettings: (settingJSON:string) => void 0,
+	saveSettings: (settingJSON: string) => void 0,
 	loadCategories: () => JSON.stringify(mockConfig.categoryData, null, 2),
-	saveCategories: (categoryJSON:string) =>  {
+	saveCategories: (categoryJSON: string) => {
 		console.log(categoryJSON);
 		mockConfig.categoryData = JSON.parse(categoryJSON);
 	},

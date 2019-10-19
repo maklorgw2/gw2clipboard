@@ -12,7 +12,7 @@ namespace GW2Clipboard
         public const int DrawerOpenWidthDefault = 400;
 
         public const int DrawerClosedHeightDefault = 205;
-        public const int DrawerClosedWidthDefault = 56;
+        public const int DrawerClosedWidthDefault = 50;
 
         public enum HotKeyEnum : int
         {
@@ -23,7 +23,8 @@ namespace GW2Clipboard
             Down = 104,
             Left  = 105,
             Right = 106,
-            Select = 107
+            Select = 107,
+            Minimize = 108
         }
 
         public enum UISizeEnum : int
@@ -35,7 +36,10 @@ namespace GW2Clipboard
         }
 
         public UISizeEnum UISize { get; set; }
-        
+        public int Opacity { get; set; } = 100;
+        public bool MinimizeOnStart { get; set; } = false;
+        public bool MinimizeOnDrawerClosed { get; set; } = false;
+
         public int DrawerOpenTop { get; set; }
         public int DrawerOpenLeft { get; set; }
         public int DrawerOpenHeight { get; set; } = DrawerOpenHeightDefault;
@@ -45,7 +49,6 @@ namespace GW2Clipboard
         public int DrawerClosedLeft { get; set; }
         public int DrawerClosedHeight { get; set; } = DrawerClosedHeightDefault;
         public int DrawerClosedWidth { get; set; } = DrawerClosedWidthDefault;
-
 
         public Dictionary<int, int[]> HotKeys { get; set; } = new Dictionary<int, int[]>();
 
@@ -61,6 +64,7 @@ namespace GW2Clipboard
             HotKeys.Add((int)HotKeyEnum.Left, new int[] { (int)Keys.Left, (int)KeyModifiers.Alt });
             HotKeys.Add((int)HotKeyEnum.Right, new int[] { (int)Keys.Right, (int)KeyModifiers.Alt });
             HotKeys.Add((int)HotKeyEnum.Select, new int[] { (int)Keys.Enter, (int)KeyModifiers.Alt });
+            HotKeys.Add((int)HotKeyEnum.Minimize, new int[] { (int)Keys.M, (int)KeyModifiers.Alt });
         }
 
         public void SetLocation(int screenHeight, int screenWidth)

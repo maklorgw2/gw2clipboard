@@ -11,6 +11,7 @@ import {
 	ITag
 } from '@models/ITag';
 import { HostManager } from '@libs/HostManager';
+import { useStore } from './StateContext';
 
 // get the first of the tag type (there *should* only be one)
 export const getTag = <T extends ITag>(category: ICategory, tagType: TagType) =>
@@ -29,6 +30,7 @@ export const EditTags = (props: {
 	tempCategory: ICategory;
 	setTempCategory: (tempCategory: ICategory) => void;
 }) => {
+	const { state } = useStore();
 	const gameModes = createEnumPairs(GameModeName);
 	const professions = createEnumPairs(ProfessionName);
 
@@ -40,7 +42,7 @@ export const EditTags = (props: {
 	const onTagChecked = (tag: ITag, checked: boolean) => {
 		if (!checked) props.tempCategory.tags = props.tempCategory.tags.filter((t) => t.tagType != tag.tagType);
 		else props.tempCategory.tags.push(tag);
-		props.setTempCategory({...props.tempCategory});
+		props.setTempCategory({ ...props.tempCategory });
 	};
 
 	//console.log(professionTag, mapTag, commanderTag, gameModeTag);
@@ -52,18 +54,22 @@ export const EditTags = (props: {
 						type="checkbox"
 						value={TagType.GameMode}
 						checked={gameModeTag != null}
-						onChange={(event) => onTagChecked({ tagType: TagType.GameMode }, event.target.checked)}
+						onChange={(event) =>
+							onTagChecked(
+								{ tagType: TagType.GameMode, gameMode: state.cachedGameMode } as IGameModeTag,
+								event.target.checked
+							)}
 					/>{' '}
 					Game-mode
 				</label>
 				{gameModeTag != null && (
 					<div className="tagoption-container">
 						<select
-                        onChange={(event) => {
-                            gameModeTag.gameMode = Number(event.target.value);
-                            props.setTempCategory({...props.tempCategory});
-                        }}
-                        >
+							onChange={(event) => {
+								gameModeTag.gameMode = Number(event.target.value);
+								props.setTempCategory({ ...props.tempCategory });
+							}}
+						>
 							<option>-- select --</option>
 							{gameModes.map((o) => (
 								<option value={o.index} selected={o.index == gameModeTag.gameMode}>
@@ -80,7 +86,11 @@ export const EditTags = (props: {
 						type="checkbox"
 						value={TagType.Profession}
 						checked={professionTag != null}
-						onChange={(event) => onTagChecked({ tagType: TagType.Profession }, event.target.checked)}
+						onChange={(event) =>
+							onTagChecked(
+								{ tagType: TagType.Profession, profession: state.cachedProfession } as IProfessionTag,
+								event.target.checked
+							)}
 					/>{' '}
 					Profession
 				</label>
@@ -89,7 +99,7 @@ export const EditTags = (props: {
 						<select
 							onChange={(event) => {
 								professionTag.profession = Number(event.target.value);
-								props.setTempCategory({...props.tempCategory});
+								props.setTempCategory({ ...props.tempCategory });
 							}}
 						>
 							<option>-- select --</option>
@@ -108,18 +118,22 @@ export const EditTags = (props: {
 						type="checkbox"
 						value={TagType.Map}
 						checked={mapTag != null}
-						onChange={(event) => onTagChecked({ tagType: TagType.Map }, event.target.checked)}
+						onChange={(event) =>
+							onTagChecked(
+								{ tagType: TagType.Map, mapId: state.cachedMapId } as IMapTag,
+								event.target.checked
+							)}
 					/>{' '}
 					Map
 				</label>
 				{mapTag != null && (
 					<div className="tagoption-container">
 						<select
-                        onChange={(event) => {
-                            mapTag.mapId = Number(event.target.value);
-                            props.setTempCategory({...props.tempCategory});
-                        }}
-                        >
+							onChange={(event) => {
+								mapTag.mapId = Number(event.target.value);
+								props.setTempCategory({ ...props.tempCategory });
+							}}
+						>
 							<option>-- select --</option>
 							{HostManager.maps.map((m) => (
 								<option value={m.id} selected={m.id == mapTag.mapId}>

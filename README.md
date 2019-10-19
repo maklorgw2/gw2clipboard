@@ -51,10 +51,10 @@ Escape: Close drawer
 Each map has been allocated one of the following game-modes:
 * WvW
 * PvP
-* PvE
-* Dungeons
-* Fractals
-* Raids
+* PVE: Dungeons
+* PVE: Fractals
+* PVE: Raids
+* PVE: Other
 
 Any unknown new maps are allocated as PvE.
 
@@ -67,6 +67,7 @@ There are three main configuration files:
 ## Requirements for running application
 * Windows 10
 * .NET Framework 4.61
+* Guild Wars 2 running in Windowed Mode if used as an overlay
 
 ****
 ## Building the code
@@ -74,6 +75,7 @@ There are three main configuration files:
 * Visual Studio 2019
 * Optional: Bundling and Minifier plug-in 
 * Optional: Visual Studio Code
+* NodeJS 10.x or higher
 
 ### The Host application
 The Host application is a Windows Forms application written in C#. 
@@ -89,7 +91,7 @@ First you will need to install the dependencies:
  ````
 
 
- To build the dev bundle (and watches for changes) 
+ To build the dev bundle (and watch for changes) 
  ````
  npm run build
  ````

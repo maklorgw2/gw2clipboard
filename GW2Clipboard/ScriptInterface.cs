@@ -47,6 +47,8 @@ namespace GW2Clipboard
 
         public void Exit() => hostBridge.Exit();
 
+        public void Minimize() => hostBridge.Minimize();
+
         public void Refresh() => hostBridge.Refresh();
 
         public string LoadMaps() => hostBridge.MapManager.ToJson();

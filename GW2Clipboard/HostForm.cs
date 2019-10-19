@@ -2,18 +2,15 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace GW2Clipboard
 {
-    public partial class HostForm : Form
+    public partial class HostForm : FormBase
     {
         Dictionary<int, HotKey> hotKeys = new Dictionary<int, HotKey>();
         public HostBridge hostBridge;
-
         string appFileName;
-        bool isRefreshing = false;
 
         #region HostForm
         public HostForm()
@@ -23,6 +20,47 @@ namespace GW2Clipboard
             this.Load += HostForm_Load;
             this.FormClosing += HostForm_FormClosing;
 
+            // Custom chrome start
+            this.Activated += HostForm_Activated;
+            this.Deactivate += HostForm_Deactivate;
+
+            foreach (var control in new[] { MinimizeLabel, CloseLabel })
+            {
+                control.MouseEnter += (s, e) => SetLabelColors((Control)s, MouseState.Hover);
+                control.MouseLeave += (s, e) => SetLabelColors((Control)s, MouseState.Normal);
+                control.MouseDown += (s, e) => SetLabelColors((Control)s, MouseState.Down);
+            }
+
+            TopLeftCornerPanel.MouseDown += (s, e) => DecorationMouseDown(e, HitTestValues.HTTOPLEFT);
+            TopRightCornerPanel.MouseDown += (s, e) => DecorationMouseDown(e, HitTestValues.HTTOPRIGHT);
+            BottomLeftCornerPanel.MouseDown += (s, e) => DecorationMouseDown(e, HitTestValues.HTBOTTOMLEFT);
+            BottomRightCornerPanel.MouseDown += (s, e) => DecorationMouseDown(e, HitTestValues.HTBOTTOMRIGHT);
+
+            TopBorderPanel.MouseDown += (s, e) => DecorationMouseDown(e, HitTestValues.HTTOP);
+            LeftBorderPanel.MouseDown += (s, e) => DecorationMouseDown(e, HitTestValues.HTLEFT);
+            RightBorderPanel.MouseDown += (s, e) => DecorationMouseDown(e, HitTestValues.HTRIGHT);
+            BottomBorderPanel.MouseDown += (s, e) => DecorationMouseDown(e, HitTestValues.HTBOTTOM);
+
+            // Allow this window to be 
+            MinimumSize = new Size(30, 30);
+            UpdateBounds();
+            
+            TitleLabel.MouseDown += TitleLabel_MouseDown;
+            TitleLabel.MouseUp += (s, e) => { if (e.Button == MouseButtons.Right && TitleLabel.ClientRectangle.Contains(e.Location)) ShowSystemMenu(MouseButtons); };
+            TitleLabel.Text = Text;
+            TextChanged += (s, e) => TitleLabel.Text = Text;
+
+            var marlett = new Font("Marlett", 8.5f);
+
+            MinimizeLabel.Font = marlett;
+            CloseLabel.Font = marlett;
+
+            MinimizeLabel.MouseClick += (s, e) => { if (e.Button == MouseButtons.Left) WindowState = FormWindowState.Minimized; };
+            previousWindowState = MinMaxState;
+            SizeChanged += HostForm_SizeChanged;
+            CloseLabel.MouseClick += (s, e) => Close(e);
+            // Custom chrome end
+
             // Use IE11 WebBrowser control renderer
             using (var key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION", true))
             {
@@ -31,16 +69,26 @@ namespace GW2Clipboard
             }
         }
 
+        public void setOpacity()
+        {
+            var newOpacity = hostBridge.Settings.Opacity / 100.0;
+            if (newOpacity < 0) newOpacity = 0.1;
+            if (newOpacity > 1) newOpacity = 1;
+            Opacity = newOpacity;
+
+            hostBridge.Settings.Opacity = Convert.ToInt32(newOpacity * 100);
+        }
+
+
         private void HostForm_Load(object sender, EventArgs e)
         {
             this.Hide();
 
-            this.FormBorderStyle = FormBorderStyle.SizableToolWindow;
-            this.Text = "GW2Pasta";
-
-            this.notifyIcon.Icon = SystemIcons.Application;
+            this.Text = "GW2Clipboard";
+            this.notifyIcon.Icon = this.Icon;
 
             hostBridge = new HostBridge(this);
+            setOpacity();
 
             // Configure launch page (app.html for a release and app-debug.html when debugger is attached)
             string currentDirectory = Directory.GetCurrentDirectory();
@@ -50,7 +98,6 @@ namespace GW2Clipboard
                 appFileName = String.Format("file:///{0}/ClientApp/app-debug.html", currentDirectory.Replace("\\", "/"));
             } else appFileName = String.Format("file:///{0}/ClientApp/app.html", currentDirectory.Replace("\\", "/"));
 
-            hostBridge = new HostBridge(this);
             hostBridge.CloseDrawer();
 
             // Registry HotKeys
@@ -78,23 +125,188 @@ namespace GW2Clipboard
         }
         #endregion
 
+        #region Custom window chrome
+        private FormWindowState previousWindowState;
+        private DateTime systemClickTime = DateTime.MinValue;
+        private DateTime systemMenuCloseTime = DateTime.MinValue;
+        private DateTime titleClickTime = DateTime.MinValue;
+        private Point titleClickPosition = Point.Empty;
+
+        public Color ActiveTextColor { get; set; } = Color.FromArgb(238, 230, 204);
+        public Color InactiveTextColor { get; set; } = Color.FromArgb(238, 230, 204);
+        public Color ActiveBorderColor { get; set; } = Color.FromArgb(50, 50, 50);
+        public Color InactiveBorderColor { get; set; } = Color.FromArgb(20, 20, 20);
+        public Color HoverTextColor { get; set; } = Color.FromArgb(120, 120, 120);
+        public Color DownTextColor { get; set; } = Color.FromArgb(255, 248, 208);
+        public Color HoverBackColor { get; set; } = Color.FromArgb(0, 0, 0);
+        public Color DownBackColor { get; set; } = Color.Black;
+        public Color NormalBackColor { get; set; } = Color.Black;
+
+        public enum MouseState
+        {
+            Normal,
+            Hover,
+            Down
+        }
+
+        protected void SetLabelColors(Control control, MouseState state)
+        {
+            if (!ContainsFocus) return;
+
+            var textColor = ActiveTextColor;
+            var backColor = NormalBackColor;
+
+            switch (state)
+            {
+                case MouseState.Hover:
+                    textColor = HoverTextColor;
+                    backColor = HoverBackColor;
+                    break;
+                case MouseState.Down:
+                    textColor = DownTextColor;
+                    backColor = DownBackColor;
+                    break;
+            }
+
+            control.ForeColor = textColor;
+            control.BackColor = backColor;
+        }
+
+        protected void SetBorderColor(Color color)
+        {
+            TopLeftCornerPanel.BackColor = color;
+            TopBorderPanel.BackColor = color;
+            TopRightCornerPanel.BackColor = color;
+            LeftBorderPanel.BackColor = color;
+            RightBorderPanel.BackColor = color;
+            BottomLeftCornerPanel.BackColor = color;
+            BottomBorderPanel.BackColor = color;
+            BottomRightCornerPanel.BackColor = color;
+        }
+
+        protected void SetTextColor(Color color)
+        {
+            TitleLabel.ForeColor = color;
+            MinimizeLabel.ForeColor = color;
+            CloseLabel.ForeColor = color;
+        }
+
+        private FormWindowState ToggleMaximize()
+        {
+            return WindowState = WindowState == FormWindowState.Maximized ? FormWindowState.Normal : FormWindowState.Maximized;
+        }
+
+        void SystemLabel_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right) ShowSystemMenu(MouseButtons);
+        }
+     
+        void SystemLabel_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                var clickTime = (DateTime.Now - systemClickTime).TotalMilliseconds;
+                if (clickTime < SystemInformation.DoubleClickTime)
+                    Close();
+                else
+                {
+                    systemClickTime = DateTime.Now;
+                    if ((systemClickTime - systemMenuCloseTime).TotalMilliseconds > 200)
+                    {
+                        ShowSystemMenu(MouseButtons, PointToScreen(new Point(8, 32)));
+                        systemMenuCloseTime = DateTime.Now;
+                    }
+                }
+            }
+        }
+
+        void Close(MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left) Close();
+        }
+
+        void DecorationMouseDown(MouseEventArgs e, HitTestValues h)
+        {
+            if (e.Button == MouseButtons.Left) DecorationMouseDown(h);
+        }
+
+        void TitleLabel_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+
+                var clickTime = (DateTime.Now - titleClickTime).TotalMilliseconds;
+                if (clickTime < SystemInformation.DoubleClickTime && e.Location == titleClickPosition)
+                {
+                    if (MaximizeBox == true) ToggleMaximize();
+                }
+                else
+                {
+                    titleClickTime = DateTime.Now;
+                    titleClickPosition = e.Location;
+                    DecorationMouseDown(HitTestValues.HTCAPTION);
+                }
+            }
+        }
+
+        private void HostForm_Deactivate(object sender, EventArgs e)
+        {
+            SetBorderColor(InactiveBorderColor);
+            SetTextColor(InactiveTextColor);
+        }
+
+        private void HostForm_Activated(object sender, EventArgs e)
+        {
+            SetBorderColor(ActiveBorderColor);
+            SetTextColor(ActiveTextColor);
+        }
+
+        private void HostForm_SizeChanged(object sender, EventArgs e)
+        {
+            var maximized = MinMaxState == FormWindowState.Maximized;
+
+            var panels = new[] { TopLeftCornerPanel, TopRightCornerPanel, BottomLeftCornerPanel, BottomRightCornerPanel,
+                TopBorderPanel, LeftBorderPanel, RightBorderPanel, BottomBorderPanel };
+
+            foreach (var panel in panels)
+            {
+                panel.Visible = !maximized;
+            }
+
+            if (previousWindowState != MinMaxState)
+            {
+                if (maximized)
+                {
+                    CloseLabel.Left += RightBorderPanel.Width;
+                    CloseLabel.Top = 0;
+                    MinimizeLabel.Left += RightBorderPanel.Width;
+                    MinimizeLabel.Top = 0;
+                    TitleLabel.Left -= LeftBorderPanel.Width;
+                    TitleLabel.Width += LeftBorderPanel.Width + RightBorderPanel.Width;
+                    TitleLabel.Top = 0;
+                }
+                else if (previousWindowState == FormWindowState.Maximized)
+                {
+                    CloseLabel.Left -= RightBorderPanel.Width;
+                    CloseLabel.Top = TopBorderPanel.Height;
+                    MinimizeLabel.Left -= RightBorderPanel.Width;
+                    MinimizeLabel.Top = TopBorderPanel.Height;
+                    TitleLabel.Left += LeftBorderPanel.Width;
+                    TitleLabel.Width -= LeftBorderPanel.Width + RightBorderPanel.Width;
+                    TitleLabel.Top = TopBorderPanel.Height;
+                }
+
+                previousWindowState = MinMaxState;
+            }
+        }
+        #endregion
+
 
         #region WebBrowserControl methods
-        [DllImport("wininet.dll", SetLastError = true)]
-        private static extern bool InternetSetOption(IntPtr hInternet, int dwOption, IntPtr lpBuffer, int lpdwBufferLength);
-
-        private const int INTERNET_OPTION_END_BROWSER_SESSION = 42;
-
         public void RefreshBrowser()
         {
-            //InternetSetOption(IntPtr.Zero, INTERNET_OPTION_END_BROWSER_SESSION, IntPtr.Zero, 0);
-            //WebBrowserHelper.ClearCache();
             this.browser.Navigate(appFileName);
             this.browser.Refresh(WebBrowserRefreshOption.Completely);
-            //this.browser.Navigate($"{appFileName}/?cacheBust=${DateTime.Now.Ticks}");this.browser.Navigate($"{appFileName}/?cacheBust=${DateTime.Now.Ticks}");
-            //this.browser.Refresh(WebBrowserRefreshOption.Completely);
-            //isRefreshing = true;
-            //this.browser.Navigate("about:blank");
         }
 
         private void HotKeyDetected(object sender, HotKeyEventArgs e)
@@ -104,11 +316,6 @@ namespace GW2Clipboard
 
         void DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            if (isRefreshing)
-            {
-                isRefreshing = false;
-                this.browser.Navigate(appFileName);
-            }
         }
         #endregion
 
@@ -139,6 +346,20 @@ namespace GW2Clipboard
                 hostBridge.Settings.DrawerClosedLeft = this.Left;
                 hostBridge.Settings.DrawerClosedHeight = this.Height;
                 hostBridge.Settings.DrawerClosedWidth = this.Width;
+            }
+        }
+
+        private void HostForm_Resize(object sender, EventArgs e)
+        {
+            //if (this.WindowState == FormWindowState.Minimized)
+            //{
+            //    Hide();
+            //    notifyIcon.Visible = true;
+            //}
+            if (this.MinMaxState == FormWindowState.Minimized)
+            {
+                Hide();
+                notifyIcon.Visible = true;
             }
         }
     }

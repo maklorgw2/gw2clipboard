@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { ICategory, CategoryType } from '@models/IConfig';
-import { createGuid, useStore } from './StateContext';
+import { createGuid } from './StateContext';
 import { EditTags } from './EditTags';
 import { EditTextGroup } from './EditTextGroup';
 import { EditBuildGroup } from './EditBuildGroup';
@@ -11,7 +11,6 @@ export const EditCategory = (props: {
 	category?: ICategory;
 	onComplete: (saved: boolean) => void;
 }) => {
-	const { store, state } = useStore();
 	const [ tempCategory, setTempCategory ] = useState<ICategory>(() => {
 		return props.category
 			? JSON.parse(JSON.stringify(props.category)) // deep clone
@@ -90,7 +89,7 @@ export const EditCategory = (props: {
 				<fieldset>
 					<legend>General</legend>
 					<div style={{ display: 'flex', padding: '5px' }} className="category-group">
-						<div style={{ display: 'inline-block', width: '105px', verticalAlign: 'middle' }}>
+						<div style={{ display: 'inline-block', width: '105px', verticalAlign: 'middle', paddingTop:'5px' }}>
 							Category Name:
 						</div>
 						<input

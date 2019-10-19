@@ -2,6 +2,7 @@
   {
     "id": 1000,
     "type": "Instance",
+    "exclude": true,
     "name": "The Waypoint Conundrum",
     "title": "The Waypoint Conundrum",
     "floor": 1,
@@ -12,6 +13,7 @@
   {
     "id": 1001,
     "type": "Instance",
+    "exclude": true,
     "name": "Summit Invitations",
     "title": "Summit Invitations",
     "floor": 1,
@@ -22,6 +24,7 @@
   {
     "id": 1002,
     "type": "Instance",
+    "exclude": true,
     "name": "Mission Accomplished",
     "title": "Mission Accomplished",
     "floor": 1,
@@ -32,6 +35,7 @@
   {
     "id": 1003,
     "type": "Instance",
+    "exclude": true,
     "name": "Rallying Call",
     "title": "Rallying Call",
     "floor": 2,
@@ -42,6 +46,7 @@
   {
     "id": 1004,
     "type": "Instance",
+    "exclude": true,
     "name": "Plan of Attack",
     "title": "Plan of Attack",
     "floor": 1,
@@ -52,6 +57,7 @@
   {
     "id": 1005,
     "type": "Instance",
+    "exclude": true,
     "name": "Party Politics",
     "title": "Party Politics",
     "floor": 1,
@@ -62,6 +68,7 @@
   {
     "id": 1006,
     "type": "Instance",
+    "exclude": true,
     "name": "Foefire Cleansing",
     "title": "Foefire Cleansing",
     "floor": 1,
@@ -72,6 +79,7 @@
   {
     "id": 1007,
     "type": "Instance",
+    "exclude": true,
     "name": "Recalibrating the Waypoints",
     "title": "Recalibrating the Waypoints",
     "floor": 1,
@@ -82,6 +90,7 @@
   {
     "id": 1008,
     "type": "Instance",
+    "exclude": true,
     "name": "The Ghosts of Fort Salma",
     "title": "The Ghosts of Fort Salma",
     "floor": 1,
@@ -92,6 +101,7 @@
   {
     "id": 1009,
     "type": "Instance",
+    "exclude": true,
     "name": "Taimi's Device",
     "title": "Taimi's Device",
     "floor": 1,
@@ -102,6 +112,7 @@
   {
     "id": 1010,
     "type": "Instance",
+    "exclude": true,
     "name": "The World Summit",
     "title": "The World Summit",
     "floor": 1,
@@ -132,6 +143,7 @@
   {
     "id": 1016,
     "type": "Instance",
+    "exclude": true,
     "name": "Hidden Arcana",
     "title": "Hidden Arcana",
     "floor": 1,
@@ -142,6 +154,7 @@
   {
     "id": 1017,
     "type": "Instance",
+    "exclude": true,
     "name": "Reunion with the Pact",
     "title": "Reunion with the Pact",
     "floor": 1,
@@ -152,6 +165,7 @@
   {
     "id": 1018,
     "type": "Instance",
+    "exclude": true,
     "name": "Caithe's Reconnaissance Squad",
     "title": "Caithe's Reconnaissance Squad",
     "floor": 1,
@@ -162,6 +176,7 @@
   {
     "id": 1019,
     "type": "Instance",
+    "exclude": true,
     "name": "Fort Trinity",
     "title": "Fort Trinity",
     "floor": 1,
@@ -172,6 +187,7 @@
   {
     "id": 1021,
     "type": "Instance",
+    "exclude": true,
     "name": "Into the Labyrinth",
     "title": "Into the Labyrinth",
     "floor": 1,
@@ -180,6 +196,7 @@
   {
     "id": 1022,
     "type": "Instance",
+    "exclude": true,
     "name": "Return to Camp Resolve",
     "title": "Return to Camp Resolve",
     "floor": 1,
@@ -190,6 +207,7 @@
   {
     "id": 1023,
     "type": "Instance",
+    "exclude": true,
     "name": "Tracking the Aspect Masters",
     "title": "Tracking the Aspect Masters",
     "floor": 1,
@@ -198,6 +216,7 @@
   {
     "id": 1024,
     "type": "Instance",
+    "exclude": true,
     "name": "No Refuge",
     "title": "No Refuge",
     "floor": 1,
@@ -208,6 +227,7 @@
   {
     "id": 1025,
     "type": "Instance",
+    "exclude": true,
     "name": "The Newly Awakened",
     "title": "The Newly Awakened",
     "floor": 1,
@@ -218,6 +238,7 @@
   {
     "id": 1026,
     "type": "Instance",
+    "exclude": true,
     "name": "Meeting the Asura",
     "title": "Meeting the Asura",
     "floor": 1,
@@ -228,6 +249,7 @@
   {
     "id": 1027,
     "type": "Instance",
+    "exclude": true,
     "name": "Pact Assaulted",
     "title": "Pact Assaulted",
     "floor": 1,
@@ -238,6 +260,7 @@
   {
     "id": 1028,
     "type": "Instance",
+    "exclude": true,
     "name": "The Mystery Cave",
     "title": "The Mystery Cave",
     "floor": 1,
@@ -248,6 +271,7 @@
   {
     "id": 1029,
     "type": "Instance",
+    "exclude": true,
     "name": "Arcana Obscura",
     "title": "Arcana Obscura",
     "floor": 1,
@@ -258,6 +282,7 @@
   {
     "id": 1032,
     "type": "Instance",
+    "exclude": true,
     "name": "Prized Possessions",
     "title": "Prized Possessions",
     "floor": 1,
@@ -268,6 +293,7 @@
   {
     "id": 1033,
     "type": "Instance",
+    "exclude": true,
     "name": "Buried Insight",
     "title": "Buried Insight",
     "floor": 0,
@@ -278,6 +304,7 @@
   {
     "id": 1037,
     "type": "Instance",
+    "exclude": true,
     "name": "The Jungle Provides",
     "title": "The Jungle Provides",
     "floor": 1,
@@ -288,6 +315,7 @@
   {
     "id": 1040,
     "type": "Instance",
+    "exclude": true,
     "name": "Hearts and Minds",
     "title": "Hearts and Minds",
     "floor": -18,
@@ -338,6 +366,7 @@
   {
     "id": 1046,
     "type": "Instance",
+    "exclude": true,
     "name": "Roots of Terror",
     "title": "Roots of Terror",
     "floor": 1,
@@ -348,6 +377,7 @@
   {
     "id": 1048,
     "type": "Instance",
+    "exclude": true,
     "name": "City of Hope",
     "title": "City of Hope",
     "floor": 1,
@@ -358,6 +388,7 @@
   {
     "id": 1050,
     "type": "Instance",
+    "exclude": true,
     "name": "Torn from the Sky",
     "title": "Torn from the Sky",
     "floor": 1,
@@ -368,6 +399,7 @@
   {
     "id": 1051,
     "type": "Instance",
+    "exclude": true,
     "name": "Prisoners of the Dragon",
     "title": "Prisoners of the Dragon",
     "floor": 1,
@@ -388,6 +420,7 @@
   {
     "id": 1054,
     "type": "Instance",
+    "exclude": true,
     "name": "Bitter Harvest",
     "title": "Bitter Harvest",
     "floor": 1,
@@ -398,6 +431,7 @@
   {
     "id": 1057,
     "type": "Instance",
+    "exclude": true,
     "name": "Strange Observations",
     "title": "Strange Observations",
     "floor": 1,
@@ -408,6 +442,7 @@
   {
     "id": 1058,
     "type": "Tutorial",
+    "exclude": true,
     "name": "Prologue: Rally to Maguuma",
     "title": "Prologue: Rally to Maguuma",
     "floor": 1,
@@ -428,6 +463,7 @@
   {
     "id": 1063,
     "type": "Instance",
+    "exclude": true,
     "name": "Southsun Crab Toss",
     "title": "Southsun Crab Toss",
     "floor": 1,
@@ -438,6 +474,7 @@
   {
     "id": 1064,
     "type": "Instance",
+    "exclude": true,
     "name": "Claiming the Lost Precipice",
     "title": "Claiming the Lost Precipice",
     "floor": 48,
@@ -448,6 +485,7 @@
   {
     "id": 1065,
     "type": "Instance",
+    "exclude": true,
     "name": "Angvar's Trove",
     "title": "Angvar's Trove",
     "floor": 1,
@@ -458,6 +496,7 @@
   {
     "id": 1067,
     "type": "Instance",
+    "exclude": true,
     "name": "Angvar's Trove",
     "title": "Angvar's Trove",
     "floor": 1,
@@ -468,6 +507,7 @@
   {
     "id": 1068,
     "type": "Instance",
+    "exclude": true,
     "name": "Gilded Hollow",
     "title": "Gilded Hollow",
     "floor": 0,
@@ -478,6 +518,7 @@
   {
     "id": 1069,
     "type": "Instance",
+    "exclude": true,
     "name": "Lost Precipice",
     "title": "Lost Precipice",
     "floor": 1,
@@ -488,6 +529,7 @@
   {
     "id": 1070,
     "type": "Instance",
+    "exclude": true,
     "name": "Claiming the Lost Precipice",
     "title": "Claiming the Lost Precipice",
     "floor": 48,
@@ -498,6 +540,7 @@
   {
     "id": 1071,
     "type": "Instance",
+    "exclude": true,
     "name": "Lost Precipice",
     "title": "Lost Precipice",
     "floor": 1,
@@ -508,6 +551,7 @@
   {
     "id": 1072,
     "type": "Instance",
+    "exclude": true,
     "name": "Southsun Crab Toss",
     "title": "Southsun Crab Toss",
     "floor": 1,
@@ -518,6 +562,7 @@
   {
     "id": 1073,
     "type": "Instance",
+    "exclude": true,
     "name": "Guild Initiative Office",
     "title": "Guild Initiative Office",
     "floor": 1,
@@ -528,6 +573,7 @@
   {
     "id": 1074,
     "type": "Instance",
+    "exclude": true,
     "name": "Blightwater Shatterstrike",
     "title": "Blightwater Shatterstrike",
     "floor": 1,
@@ -538,6 +584,7 @@
   {
     "id": 1075,
     "type": "Instance",
+    "exclude": true,
     "name": "Proxemics Lab",
     "title": "Proxemics Lab",
     "floor": 1,
@@ -548,6 +595,7 @@
   {
     "id": 1076,
     "type": "Instance",
+    "exclude": true,
     "name": "Lost Precipice",
     "title": "Lost Precipice",
     "floor": 1,
@@ -558,6 +606,7 @@
   {
     "id": 1078,
     "type": "Instance",
+    "exclude": true,
     "name": "Claiming the Gilded Hollow",
     "title": "Claiming the Gilded Hollow",
     "floor": 47,
@@ -568,6 +617,7 @@
   {
     "id": 1079,
     "type": "Instance",
+    "exclude": true,
     "name": "Deep Trouble",
     "title": "Deep Trouble",
     "floor": 1,
@@ -578,6 +628,7 @@
   {
     "id": 1080,
     "type": "Instance",
+    "exclude": true,
     "name": "Branded for Termination",
     "title": "Branded for Termination",
     "floor": 1,
@@ -588,6 +639,7 @@
   {
     "id": 1081,
     "type": "Instance",
+    "exclude": true,
     "name": "Langmar Estate",
     "title": "Langmar Estate",
     "floor": 1,
@@ -598,6 +650,7 @@
   {
     "id": 1082,
     "type": "Instance",
+    "exclude": true,
     "name": "Langmar Estate",
     "title": "Langmar Estate",
     "floor": 1,
@@ -608,6 +661,7 @@
   {
     "id": 1083,
     "type": "Instance",
+    "exclude": true,
     "name": "Deep Trouble",
     "title": "Deep Trouble",
     "floor": 1,
@@ -618,6 +672,7 @@
   {
     "id": 1084,
     "type": "Instance",
+    "exclude": true,
     "name": "Southsun Crab Toss",
     "title": "Southsun Crab Toss",
     "floor": 1,
@@ -628,6 +683,7 @@
   {
     "id": 1086,
     "type": "Instance",
+    "exclude": true,
     "name": "Save Our Supplies",
     "title": "Save Our Supplies",
     "floor": 1,
@@ -638,6 +694,7 @@
   {
     "id": 1087,
     "type": "Instance",
+    "exclude": true,
     "name": "Proxemics Lab",
     "title": "Proxemics Lab",
     "floor": 1,
@@ -648,6 +705,7 @@
   {
     "id": 1088,
     "type": "Instance",
+    "exclude": true,
     "name": "Claiming the Gilded Hollow",
     "title": "Claiming the Gilded Hollow",
     "floor": 47,
@@ -658,6 +716,7 @@
   {
     "id": 1089,
     "type": "Instance",
+    "exclude": true,
     "name": "Angvar's Trove",
     "title": "Angvar's Trove",
     "floor": 1,
@@ -668,6 +727,7 @@
   {
     "id": 1090,
     "type": "Instance",
+    "exclude": true,
     "name": "Langmar Estate",
     "title": "Langmar Estate",
     "floor": 1,
@@ -678,6 +738,7 @@
   {
     "id": 1091,
     "type": "Instance",
+    "exclude": true,
     "name": "Save Our Supplies",
     "title": "Save Our Supplies",
     "floor": 1,
@@ -688,6 +749,7 @@
   {
     "id": 1092,
     "type": "Instance",
+    "exclude": true,
     "name": "Scratch Sentry Defense",
     "title": "Scratch Sentry Defense",
     "floor": 1,
@@ -698,6 +760,7 @@
   {
     "id": 1093,
     "type": "Instance",
+    "exclude": true,
     "name": "Angvar's Trove",
     "title": "Angvar's Trove",
     "floor": 1,
@@ -708,6 +771,7 @@
   {
     "id": 1094,
     "type": "Instance",
+    "exclude": true,
     "name": "Save Our Supplies",
     "title": "Save Our Supplies",
     "floor": 1,
@@ -728,6 +792,7 @@
   {
     "id": 1097,
     "type": "Instance",
+    "exclude": true,
     "name": "Proxemics Lab",
     "title": "Proxemics Lab",
     "floor": 1,
@@ -738,6 +803,7 @@
   {
     "id": 1098,
     "type": "Instance",
+    "exclude": true,
     "name": "Claiming the Gilded Hollow",
     "title": "Claiming the Gilded Hollow",
     "floor": 47,
@@ -758,6 +824,7 @@
   {
     "id": 110,
     "type": "Instance",
+    "exclude": true,
     "name": "The Perils of Friendship",
     "title": "The Perils of Friendship",
     "floor": 1,
@@ -768,6 +835,7 @@
   {
     "id": 1100,
     "type": "Instance",
+    "exclude": true,
     "name": "Scratch Sentry Defense",
     "title": "Scratch Sentry Defense",
     "floor": 1,
@@ -778,6 +846,7 @@
   {
     "id": 1101,
     "type": "Instance",
+    "exclude": true,
     "name": "Gilded Hollow",
     "title": "Gilded Hollow",
     "floor": 0,
@@ -788,6 +857,7 @@
   {
     "id": 1104,
     "type": "Instance",
+    "exclude": true,
     "name": "Lost Precipice",
     "title": "Lost Precipice",
     "floor": 1,
@@ -798,6 +868,7 @@
   {
     "id": 1105,
     "type": "Instance",
+    "exclude": true,
     "name": "Langmar Estate",
     "title": "Langmar Estate",
     "floor": 1,
@@ -808,6 +879,7 @@
   {
     "id": 1106,
     "type": "Instance",
+    "exclude": true,
     "name": "Deep Trouble",
     "title": "Deep Trouble",
     "floor": 1,
@@ -818,6 +890,7 @@
   {
     "id": 1107,
     "type": "Instance",
+    "exclude": true,
     "name": "Gilded Hollow",
     "title": "Gilded Hollow",
     "floor": 0,
@@ -828,6 +901,7 @@
   {
     "id": 1108,
     "type": "Instance",
+    "exclude": true,
     "name": "Gilded Hollow",
     "title": "Gilded Hollow",
     "floor": 0,
@@ -838,6 +912,7 @@
   {
     "id": 1109,
     "type": "Instance",
+    "exclude": true,
     "name": "Angvar's Trove",
     "title": "Angvar's Trove",
     "floor": 1,
@@ -848,6 +923,7 @@
   {
     "id": 111,
     "type": "Instance",
+    "exclude": true,
     "name": "Victory or Death",
     "title": "Victory or Death",
     "floor": 10,
@@ -858,6 +934,7 @@
   {
     "id": 1110,
     "type": "Instance",
+    "exclude": true,
     "name": "Scrap Rifle Field Test",
     "title": "Scrap Rifle Field Test",
     "floor": 0,
@@ -868,6 +945,7 @@
   {
     "id": 1111,
     "type": "Instance",
+    "exclude": true,
     "name": "Scratch Sentry Defense",
     "title": "Scratch Sentry Defense",
     "floor": 1,
@@ -878,6 +956,7 @@
   {
     "id": 1112,
     "type": "Instance",
+    "exclude": true,
     "name": "Branded for Termination",
     "title": "Branded for Termination",
     "floor": 1,
@@ -888,6 +967,7 @@
   {
     "id": 1113,
     "type": "Instance",
+    "exclude": true,
     "name": "Scratch Sentry Defense",
     "title": "Scratch Sentry Defense",
     "floor": 1,
@@ -898,6 +978,7 @@
   {
     "id": 1115,
     "type": "Instance",
+    "exclude": true,
     "name": "Haywire Punch-o-Matic Battle",
     "title": "Haywire Punch-o-Matic Battle",
     "floor": 0,
@@ -908,6 +989,7 @@
   {
     "id": 1116,
     "type": "Instance",
+    "exclude": true,
     "name": "Deep Trouble",
     "title": "Deep Trouble",
     "floor": 1,
@@ -918,6 +1000,7 @@
   {
     "id": 1117,
     "type": "Instance",
+    "exclude": true,
     "name": "Claiming the Lost Precipice",
     "title": "Claiming the Lost Precipice",
     "floor": 48,
@@ -928,6 +1011,7 @@
   {
     "id": 1118,
     "type": "Instance",
+    "exclude": true,
     "name": "Save Our Supplies",
     "title": "Save Our Supplies",
     "floor": 1,
@@ -948,6 +1032,7 @@
   {
     "id": 1121,
     "type": "Instance",
+    "exclude": true,
     "name": "Gilded Hollow",
     "title": "Gilded Hollow",
     "floor": 0,
@@ -958,6 +1043,7 @@
   {
     "id": 1122,
     "type": "Instance",
+    "exclude": true,
     "name": "Claiming the Gilded Hollow",
     "title": "Claiming the Gilded Hollow",
     "floor": 47,
@@ -968,6 +1054,7 @@
   {
     "id": 1123,
     "type": "Instance",
+    "exclude": true,
     "name": "Blightwater Shatterstrike",
     "title": "Blightwater Shatterstrike",
     "floor": 1,
@@ -978,6 +1065,7 @@
   {
     "id": 1124,
     "type": "Instance",
+    "exclude": true,
     "name": "Lost Precipice",
     "title": "Lost Precipice",
     "floor": 1,
@@ -988,6 +1076,7 @@
   {
     "id": 1126,
     "type": "Instance",
+    "exclude": true,
     "name": "Southsun Crab Toss",
     "title": "Southsun Crab Toss",
     "floor": 1,
@@ -998,6 +1087,7 @@
   {
     "id": 1128,
     "type": "Instance",
+    "exclude": true,
     "name": "Scratch Sentry Defense",
     "title": "Scratch Sentry Defense",
     "floor": 1,
@@ -1008,6 +1098,7 @@
   {
     "id": 1129,
     "type": "Instance",
+    "exclude": true,
     "name": "Langmar Estate",
     "title": "Langmar Estate",
     "floor": 1,
@@ -1018,6 +1109,7 @@
   {
     "id": 113,
     "type": "Instance",
+    "exclude": true,
     "name": "Desperate Medicine",
     "title": "Desperate Medicine",
     "floor": 1,
@@ -1028,6 +1120,7 @@
   {
     "id": 1130,
     "type": "Instance",
+    "exclude": true,
     "name": "Deep Trouble",
     "title": "Deep Trouble",
     "floor": 1,
@@ -1038,6 +1131,7 @@
   {
     "id": 1131,
     "type": "Instance",
+    "exclude": true,
     "name": "Blightwater Shatterstrike",
     "title": "Blightwater Shatterstrike",
     "floor": 1,
@@ -1048,6 +1142,7 @@
   {
     "id": 1132,
     "type": "Instance",
+    "exclude": true,
     "name": "Claiming the Lost Precipice",
     "title": "Claiming the Lost Precipice",
     "floor": 48,
@@ -1058,6 +1153,7 @@
   {
     "id": 1133,
     "type": "Instance",
+    "exclude": true,
     "name": "Branded for Termination",
     "title": "Branded for Termination",
     "floor": 1,
@@ -1068,6 +1164,7 @@
   {
     "id": 1134,
     "type": "Instance",
+    "exclude": true,
     "name": "Blightwater Shatterstrike",
     "title": "Blightwater Shatterstrike",
     "floor": 1,
@@ -1078,6 +1175,7 @@
   {
     "id": 1135,
     "type": "Instance",
+    "exclude": true,
     "name": "Branded for Termination",
     "title": "Branded for Termination",
     "floor": 1,
@@ -1087,6 +1185,7 @@
   },
   {
     "id": 1136,
+    "exclude": true,
     "type": "Instance",
     "name": "Proxemics Lab",
     "title": "Proxemics Lab",
@@ -1097,6 +1196,7 @@
   },
   {
     "id": 1137,
+    "exclude": true,
     "type": "Instance",
     "name": "Proxemics Lab",
     "title": "Proxemics Lab",
@@ -1107,6 +1207,7 @@
   },
   {
     "id": 1138,
+    "exclude": true,
     "type": "Instance",
     "name": "Save Our Supplies",
     "title": "Save Our Supplies",
@@ -1117,6 +1218,7 @@
   },
   {
     "id": 1139,
+    "exclude": true,
     "type": "Instance",
     "name": "Southsun Crab Toss",
     "title": "Southsun Crab Toss",
@@ -1127,6 +1229,7 @@
   },
   {
     "id": 1140,
+    "exclude": true,
     "type": "Instance",
     "name": "Claiming the Lost Precipice",
     "title": "Claiming the Lost Precipice",
@@ -1138,6 +1241,7 @@
   {
     "id": 1142,
     "type": "Instance",
+    "exclude": true,
     "name": "Blightwater Shatterstrike",
     "title": "Blightwater Shatterstrike",
     "floor": 1,
@@ -1148,6 +1252,7 @@
   {
     "id": 1146,
     "type": "Instance",
+    "exclude": true,
     "name": "Branded for Termination",
     "title": "Branded for Termination",
     "floor": 1,
@@ -1178,6 +1283,7 @@
   {
     "id": 1153,
     "type": "Instance",
+    "exclude": true,
     "name": "Tiger Den",
     "title": "Tiger Den",
     "floor": 1,
@@ -1226,6 +1332,7 @@
   {
     "id": 1159,
     "type": "Instance",
+    "exclude": true,
     "name": "Research in Rata Novus",
     "title": "Research in Rata Novus",
     "floor": 1,
@@ -1236,6 +1343,7 @@
   {
     "id": 1161,
     "type": "Instance",
+    "exclude": true,
     "name": "Eir's Homestead",
     "title": "Eir's Homestead",
     "floor": 1,
@@ -1276,6 +1384,7 @@
   {
     "id": 1166,
     "type": "Instance",
+    "exclude": true,
     "name": "In Pursuit of Caudecus",
     "title": "In Pursuit of Caudecus",
     "floor": 2,
@@ -1286,6 +1395,7 @@
   {
     "id": 1167,
     "type": "Instance",
+    "exclude": true,
     "name": "A Shadow's Deeds",
     "title": "A Shadow's Deeds",
     "floor": 0,
@@ -1296,6 +1406,7 @@
   {
     "id": 1169,
     "type": "Instance",
+    "exclude": true,
     "name": "Rata Novus",
     "title": "Rata Novus",
     "floor": 1,
@@ -1306,6 +1417,7 @@
   {
     "id": 1170,
     "type": "Instance",
+    "exclude": true,
     "name": "Taimi's Game",
     "title": "Taimi's Game",
     "floor": 1,
@@ -1326,6 +1438,7 @@
   {
     "id": 1172,
     "type": "Instance",
+    "exclude": true,
     "name": "Dragon Vigil",
     "title": "Dragon Vigil",
     "floor": 1,
@@ -1336,6 +1449,7 @@
   {
     "id": 1173,
     "type": "Instance",
+    "exclude": true,
     "name": "Taimi's Game",
     "title": "Taimi's Game",
     "floor": -24,
@@ -1356,6 +1470,7 @@
   {
     "id": 1176,
     "type": "Instance",
+    "exclude": true,
     "name": "Taimi's Game",
     "title": "Taimi's Game",
     "floor": 1,
@@ -1386,6 +1501,7 @@
   {
     "id": 1180,
     "type": "Instance",
+    "exclude": true,
     "name": "The Bitter Cold",
     "title": "The Bitter Cold",
     "floor": 1,
@@ -1396,6 +1512,7 @@
   {
     "id": 1181,
     "type": "Instance",
+    "exclude": true,
     "name": "Frozen Out",
     "title": "Frozen Out",
     "floor": 1,
@@ -1406,6 +1523,7 @@
   {
     "id": 1182,
     "type": "Instance",
+    "exclude": true,
     "name": "Precocious Aurene",
     "title": "Precocious Aurene",
     "floor": 0,
@@ -1436,6 +1554,7 @@
   {
     "id": 1189,
     "type": "Instance",
+    "exclude": true,
     "name": "Regrouping with the Queen",
     "title": "Regrouping with the Queen",
     "floor": 2,
@@ -1446,6 +1565,7 @@
   {
     "id": 1190,
     "type": "Instance",
+    "exclude": true,
     "name": "A Meeting of Ministers",
     "title": "A Meeting of Ministers",
     "floor": 2,
@@ -1456,6 +1576,7 @@
   {
     "id": 1191,
     "type": "Instance",
+    "exclude": true,
     "name": "Beetlestone Manor",
     "title": "Beetlestone Manor",
     "floor": 4,
@@ -1466,6 +1587,7 @@
   {
     "id": 1192,
     "type": "Instance",
+    "exclude": true,
     "name": "The Second Vision",
     "title": "The Second Vision",
     "floor": 2,
@@ -1476,6 +1598,7 @@
   {
     "id": 1193,
     "type": "Instance",
+    "exclude": true,
     "name": "The First Vision",
     "title": "The First Vision",
     "floor": 1,
@@ -1486,6 +1609,7 @@
   {
     "id": 1194,
     "type": "Instance",
+    "exclude": true,
     "name": "The Sword Regrown",
     "title": "The Sword Regrown",
     "floor": 1,
@@ -1506,6 +1630,7 @@
   {
     "id": 1196,
     "type": "Instance",
+    "exclude": true,
     "name": "Heart of the Volcano",
     "title": "Heart of the Volcano",
     "floor": -28,
@@ -1516,6 +1641,7 @@
   {
     "id": 1198,
     "type": "Instance",
+    "exclude": true,
     "name": "Taimi's Pet Project",
     "title": "Taimi's Pet Project",
     "floor": 1,
@@ -1526,6 +1652,7 @@
   {
     "id": 120,
     "type": "Instance",
+    "exclude": true,
     "name": "The Commander",
     "title": "The Commander",
     "floor": 1,
@@ -1556,6 +1683,7 @@
   {
     "id": 1202,
     "type": "Instance",
+    "exclude": true,
     "name": "White Mantle Hideout",
     "title": "White Mantle Hideout",
     "floor": -34,
@@ -1576,6 +1704,7 @@
   {
     "id": 1204,
     "type": "Instance",
+    "exclude": true,
     "name": "Palace Temple",
     "title": "Palace Temple",
     "floor": 2,
@@ -1606,6 +1735,7 @@
   {
     "id": 1207,
     "type": "Instance",
+    "exclude": true,
     "name": "The Last Chance",
     "title": "The Last Chance",
     "floor": 1,
@@ -1616,6 +1746,7 @@
   {
     "id": 1208,
     "type": "Instance",
+    "exclude": true,
     "name": "Shining Blade Headquarters",
     "title": "Shining Blade Headquarters",
     "floor": -33,
@@ -1626,6 +1757,7 @@
   {
     "id": 1209,
     "type": "Instance",
+    "exclude": true,
     "name": "The Sacrifice",
     "title": "The Sacrifice",
     "floor": 1,
@@ -1656,6 +1788,7 @@
   {
     "id": 1212,
     "type": "Instance",
+    "exclude": true,
     "name": "Office of the Chief Councilor",
     "title": "Office of the Chief Councilor",
     "floor": 1,
@@ -1666,6 +1799,7 @@
   {
     "id": 1214,
     "type": "Instance",
+    "exclude": true,
     "name": "Windswept Haven",
     "title": "Windswept Haven",
     "floor": 1,
@@ -1676,6 +1810,7 @@
   {
     "id": 1215,
     "type": "Public",
+    "exclude": true,
     "name": "Windswept Haven",
     "title": "Windswept Haven",
     "floor": 1,
@@ -1686,6 +1821,7 @@
   {
     "id": 1217,
     "type": "Instance",
+    "exclude": true,
     "name": "Sparking the Flame",
     "title": "Sparking the Flame",
     "floor": 1,
@@ -1696,6 +1832,7 @@
   {
     "id": 1219,
     "type": "Instance",
+    "exclude": true,
     "name": "Enemy of My Enemy: The Beastmarshal",
     "title": "Enemy of My Enemy: The Beastmarshal",
     "floor": 1,
@@ -1704,6 +1841,7 @@
   {
     "id": 1220,
     "type": "Instance",
+    "exclude": true,
     "name": "Sparking the Flame (Prologue)",
     "title": "Sparking the Flame (Prologue)",
     "floor": 1,
@@ -1714,6 +1852,7 @@
   {
     "id": 1221,
     "type": "Instance",
+    "exclude": true,
     "name": "The Way Forward",
     "title": "The Way Forward",
     "floor": -30,
@@ -1724,6 +1863,7 @@
   {
     "id": 1222,
     "type": "Instance",
+    "exclude": true,
     "name": "Claiming Windswept Haven",
     "title": "Claiming Windswept Haven",
     "floor": 49,
@@ -1734,6 +1874,7 @@
   {
     "id": 1223,
     "type": "Instance",
+    "exclude": true,
     "name": "Small Victory (Epilogue)",
     "title": "Small Victory (Epilogue)",
     "floor": 1,
@@ -1754,6 +1895,7 @@
   {
     "id": 1227,
     "type": "Instance",
+    "exclude": true,
     "name": "Hallowed Ground: Tomb of Primeval Kings",
     "title": "Hallowed Ground: Tomb of Primeval Kings",
     "floor": 1,
@@ -1774,6 +1916,7 @@
   {
     "id": 1230,
     "type": "Instance",
+    "exclude": true,
     "name": "Facing the Truth: The Sanctum",
     "title": "Facing the Truth: The Sanctum",
     "floor": -35,
@@ -1784,6 +1927,7 @@
   {
     "id": 1231,
     "type": "Instance",
+    "exclude": true,
     "name": "Claiming Windswept Haven",
     "title": "Claiming Windswept Haven",
     "floor": 49,
@@ -1794,6 +1938,7 @@
   {
     "id": 1232,
     "type": "Instance",
+    "exclude": true,
     "name": "Windswept Haven",
     "title": "Windswept Haven",
     "floor": 1,
@@ -1804,6 +1949,7 @@
   {
     "id": 1234,
     "type": "Instance",
+    "exclude": true,
     "name": "To Kill a God",
     "title": "To Kill a God",
     "floor": 1,
@@ -1814,6 +1960,7 @@
   {
     "id": 1236,
     "type": "Instance",
+    "exclude": true,
     "name": "Claiming Windswept Haven",
     "title": "Claiming Windswept Haven",
     "floor": 49,
@@ -1824,6 +1971,7 @@
   {
     "id": 1240,
     "type": "Instance",
+    "exclude": true,
     "name": "Blazing a Trail",
     "title": "Blazing a Trail",
     "floor": 1,
@@ -1834,6 +1982,7 @@
   {
     "id": 1241,
     "type": "Instance",
+    "exclude": true,
     "name": "Night of Fires",
     "title": "Night of Fires",
     "floor": 1,
@@ -1844,6 +1993,7 @@
   {
     "id": 1242,
     "type": "Instance",
+    "exclude": true,
     "name": "Zalambur's Office",
     "title": "Zalambur's Office",
     "floor": 1,
@@ -1854,6 +2004,7 @@
   {
     "id": 1243,
     "type": "Instance",
+    "exclude": true,
     "name": "Windswept Haven",
     "title": "Windswept Haven",
     "floor": 1,
@@ -1864,6 +2015,7 @@
   {
     "id": 1244,
     "type": "Instance",
+    "exclude": true,
     "name": "Claiming Windswept Haven",
     "title": "Claiming Windswept Haven",
     "floor": 49,
@@ -1874,6 +2026,7 @@
   {
     "id": 1245,
     "type": "Instance",
+    "exclude": true,
     "name": "The Departing",
     "title": "The Departing",
     "floor": 1,
@@ -1884,6 +2037,7 @@
   {
     "id": 1246,
     "type": "Instance",
+    "exclude": true,
     "name": "Captain Kiel's Office",
     "title": "Captain Kiel's Office",
     "floor": 1,
@@ -1894,6 +2048,7 @@
   {
     "id": 1247,
     "type": "Instance",
+    "exclude": true,
     "name": "Enemy of My Enemy",
     "title": "Enemy of My Enemy",
     "floor": 1,
@@ -1912,6 +2067,7 @@
   {
     "id": 1250,
     "type": "Instance",
+    "exclude": true,
     "name": "Windswept Haven",
     "title": "Windswept Haven",
     "floor": 1,
@@ -1922,6 +2078,7 @@
   {
     "id": 1252,
     "type": "Instance",
+    "exclude": true,
     "name": "Crystalline Memories",
     "title": "Crystalline Memories",
     "floor": 1,
@@ -1932,6 +2089,7 @@
   {
     "id": 1253,
     "type": "Instance",
+    "exclude": true,
     "name": "Beast of War",
     "title": "Beast of War",
     "floor": 1,
@@ -1942,6 +2100,7 @@
   {
     "id": 1255,
     "type": "Instance",
+    "exclude": true,
     "name": "Enemy of My Enemy: The Troopmarshal",
     "title": "Enemy of My Enemy: The Troopmarshal",
     "floor": 1,
@@ -1950,6 +2109,7 @@
   {
     "id": 1256,
     "type": "Instance",
+    "exclude": true,
     "name": "The Dark Library",
     "title": "The Dark Library",
     "floor": -36,
@@ -1960,6 +2120,7 @@
   {
     "id": 1257,
     "type": "Instance",
+    "exclude": true,
     "name": "Spearmarshal's Lament",
     "title": "Spearmarshal's Lament",
     "floor": 1,
@@ -1970,6 +2131,7 @@
   {
     "id": 1260,
     "type": "Instance",
+    "exclude": true,
     "name": "Eye of the Brandstorm",
     "title": "Eye of the Brandstorm",
     "floor": 1,
@@ -2000,6 +2162,7 @@
   {
     "id": 1265,
     "type": "Instance",
+    "exclude": true,
     "name": "The Hero of Istan",
     "title": "The Hero of Istan",
     "floor": 1,
@@ -2010,6 +2173,7 @@
   {
     "id": 1266,
     "type": "Instance",
+    "exclude": true,
     "name": "Cave of the Sunspear Champion",
     "title": "Cave of the Sunspear Champion",
     "floor": 1,
@@ -2030,6 +2194,7 @@
   {
     "id": 1268,
     "type": "Instance",
+    "exclude": true,
     "name": "Fahranur, the First City",
     "title": "Fahranur, the First City",
     "floor": 1,
@@ -2040,6 +2205,7 @@
   {
     "id": 1270,
     "type": "Instance",
+    "exclude": true,
     "name": "Toypocalypse",
     "title": "Toypocalypse",
     "floor": 17,
@@ -2060,6 +2226,7 @@
   {
     "id": 1274,
     "type": "Instance",
+    "exclude": true,
     "name": "The Charge",
     "title": "The Charge",
     "floor": 50,
@@ -2080,6 +2247,7 @@
   {
     "id": 1276,
     "type": "Instance",
+    "exclude": true,
     "name": "The Test Subject",
     "title": "The Test Subject",
     "floor": 1,
@@ -2090,6 +2258,7 @@
   {
     "id": 1277,
     "type": "Instance",
+    "exclude": true,
     "name": "The Charge",
     "title": "The Charge",
     "floor": 50,
@@ -2100,6 +2269,7 @@
   {
     "id": 1278,
     "type": "Instance",
+    "exclude": true,
     "name": "???",
     "title": "???",
     "floor": 1,
@@ -2110,6 +2280,7 @@
   {
     "id": 1279,
     "type": "Instance",
+    "exclude": true,
     "name": "ERROR: SIGNAL LOST",
     "title": "ERROR: SIGNAL LOST",
     "floor": -37,
@@ -2120,6 +2291,7 @@
   {
     "id": 1281,
     "type": "Instance",
+    "exclude": true,
     "name": "A Kindness Repaid",
     "title": "A Kindness Repaid",
     "floor": 1,
@@ -2130,6 +2302,7 @@
   {
     "id": 1282,
     "type": "Instance",
+    "exclude": true,
     "name": "Tracking the Scientist",
     "title": "Tracking the Scientist",
     "floor": 1,
@@ -2140,6 +2313,7 @@
   {
     "id": 1283,
     "type": "Instance",
+    "exclude": true,
     "name": "???",
     "title": "???",
     "floor": 1,
@@ -2150,6 +2324,7 @@
   {
     "id": 1285,
     "type": "Instance",
+    "exclude": true,
     "name": "???",
     "title": "???",
     "floor": 1,
@@ -2170,6 +2345,7 @@
   {
     "id": 1289,
     "type": "Instance",
+    "exclude": true,
     "name": "Seized",
     "title": "Seized",
     "floor": 1,
@@ -2190,6 +2366,7 @@
   {
     "id": 1291,
     "type": "Instance",
+    "exclude": true,
     "name": "Forearmed Is Forewarned",
     "title": "Forearmed Is Forewarned",
     "floor": 53,
@@ -2200,6 +2377,7 @@
   {
     "id": 1292,
     "type": "Instance",
+    "exclude": true,
     "name": "Be My Guest",
     "title": "Be My Guest",
     "floor": 1,
@@ -2220,6 +2398,7 @@
   {
     "id": 1295,
     "type": "Instance",
+    "exclude": true,
     "name": "Legacy",
     "title": "Legacy",
     "floor": 1,
@@ -2230,6 +2409,7 @@
   {
     "id": 1296,
     "type": "Instance",
+    "exclude": true,
     "name": "Storm Tracking",
     "title": "Storm Tracking",
     "floor": 51,
@@ -2240,6 +2420,7 @@
   {
     "id": 1297,
     "type": "Instance",
+    "exclude": true,
     "name": "A Shattered Nation",
     "title": "A Shattered Nation",
     "floor": 1,
@@ -2250,6 +2431,7 @@
   {
     "id": 1299,
     "type": "Instance",
+    "exclude": true,
     "name": "Storm Tracking",
     "title": "Storm Tracking",
     "floor": 1,
@@ -2260,6 +2442,7 @@
   {
     "id": 1300,
     "type": "Instance",
+    "exclude": true,
     "name": "From the Ashes—The Deadeye",
     "title": "From the Ashes—The Deadeye",
     "floor": 1,
@@ -2280,6 +2463,7 @@
   {
     "id": 1302,
     "type": "Instance",
+    "exclude": true,
     "name": "Storm Tracking",
     "title": "Storm Tracking",
     "floor": 1,
@@ -2300,6 +2484,7 @@
   {
     "id": 1304,
     "type": "Public",
+    "exclude": true,
     "name": "Mad King's Raceway",
     "title": "Mad King's Raceway",
     "floor": -34,
@@ -2320,6 +2505,7 @@
   {
     "id": 1306,
     "type": "Instance",
+    "exclude": true,
     "name": "Secret Lair of the Snowmen",
     "title": "Secret Lair of the Snowmen",
     "floor": -39,
@@ -2328,6 +2514,7 @@
   {
     "id": 1308,
     "type": "Instance",
+    "exclude": true,
     "name": "Scion & Champion",
     "title": "Scion & Champion",
     "floor": -56,
@@ -2358,6 +2545,7 @@
   {
     "id": 1313,
     "type": "Instance",
+    "exclude": true,
     "name": "The Crystal Dragon",
     "title": "The Crystal Dragon",
     "floor": -53,
@@ -2368,6 +2556,7 @@
   {
     "id": 1314,
     "type": "Instance",
+    "exclude": true,
     "name": "The Crystal Blooms",
     "title": "The Crystal Blooms",
     "floor": -53,
@@ -2388,6 +2577,7 @@
   {
     "id": 1316,
     "type": "Public",
+    "exclude": true,
     "name": "Mists Rift",
     "title": "Mists Rift",
     "floor": -35,
@@ -2418,6 +2608,7 @@
   {
     "id": 1319,
     "type": "Instance",
+    "exclude": true,
     "name": "Descent",
     "title": "Descent",
     "floor": -57,
@@ -2428,6 +2619,7 @@
   {
     "id": 1320,
     "type": "Instance",
+    "exclude": true,
     "name": "The End",
     "title": "The End",
     "floor": -53,
@@ -2438,6 +2630,7 @@
   {
     "id": 1321,
     "type": "Instance",
+    "exclude": true,
     "name": "Dragonflight",
     "title": "Dragonflight",
     "floor": -52,
@@ -2448,6 +2641,7 @@
   {
     "id": 1322,
     "type": "Instance",
+    "exclude": true,
     "name": "Epilogue",
     "title": "Epilogue",
     "floor": 54,
@@ -2468,6 +2662,7 @@
   {
     "id": 1326,
     "type": "Public",
+    "exclude": true,
     "name": "Dragon Bash Arena",
     "title": "Dragon Bash Arena",
     "floor": 1,
@@ -2478,6 +2673,7 @@
   {
     "id": 1327,
     "type": "Instance",
+    "exclude": true,
     "name": "Dragon Arena Survival",
     "title": "Dragon Arena Survival",
     "floor": 1,
@@ -2498,6 +2694,7 @@
   {
     "id": 1329,
     "type": "Instance",
+    "exclude": true,
     "name": "Coming Home",
     "title": "Coming Home",
     "floor": 1,
@@ -2519,7 +2716,7 @@
     "id": 1331,
     "type": "Public",
     "name": "Strike Mission: Shiverpeaks Pass (Public)",
-    "title": "Strike Mission: Shiverpeaks Pass (Public)",
+    "title": "Strike: Shiverpeaks Pass (Public)",
     "floor": 1,
     "regionId": 2,
     "continentId": 1,
@@ -2529,7 +2726,7 @@
     "id": 1332,
     "type": "Instance",
     "name": "Strike Mission: Shiverpeaks Pass (Squad)",
-    "title": "Strike Mission: Shiverpeaks Pass (Squad)",
+    "title": "Strike: Shiverpeaks Pass (Squad)",
     "floor": 1,
     "regionId": 2,
     "continentId": 1,
@@ -2538,6 +2735,7 @@
   {
     "id": 1334,
     "type": "Instance",
+    "exclude": true,
     "name": "Deeper and Deeper",
     "title": "Deeper and Deeper",
     "floor": 1,
@@ -2548,6 +2746,7 @@
   {
     "id": 1336,
     "type": "Instance",
+    "exclude": true,
     "name": "A Race to Arms",
     "title": "A Race to Arms",
     "floor": 1,
@@ -2558,6 +2757,7 @@
   {
     "id": 1338,
     "type": "Instance",
+    "exclude": true,
     "name": "Bad Blood",
     "title": "Bad Blood",
     "floor": 1,
@@ -2568,6 +2768,7 @@
   {
     "id": 138,
     "type": "Tutorial",
+    "exclude": true,
     "name": "Defense of Shaemoor",
     "title": "Defense of Shaemoor",
     "floor": 1,
@@ -2588,6 +2789,7 @@
   {
     "id": 140,
     "type": "Instance",
+    "exclude": true,
     "name": "The Apothecary",
     "title": "The Apothecary",
     "floor": 1,
@@ -2598,6 +2800,7 @@
   {
     "id": 142,
     "type": "Instance",
+    "exclude": true,
     "name": "Going Undercover",
     "title": "Going Undercover",
     "floor": 1,
@@ -2608,6 +2811,7 @@
   {
     "id": 143,
     "type": "Instance",
+    "exclude": true,
     "name": "Going Undercover",
     "title": "Going Undercover",
     "floor": 1,
@@ -2618,6 +2822,7 @@
   {
     "id": 144,
     "type": "Instance",
+    "exclude": true,
     "name": "The Greater Good",
     "title": "The Greater Good",
     "floor": 1,
@@ -2628,6 +2833,7 @@
   {
     "id": 145,
     "type": "Instance",
+    "exclude": true,
     "name": "The Rescue",
     "title": "The Rescue",
     "floor": 1,
@@ -2638,6 +2844,7 @@
   {
     "id": 147,
     "type": "Instance",
+    "exclude": true,
     "name": "Breaking the Blade",
     "title": "Breaking the Blade",
     "floor": 1,
@@ -2648,6 +2855,7 @@
   {
     "id": 148,
     "type": "Instance",
+    "exclude": true,
     "name": "The Fall of Falcon Company",
     "title": "The Fall of Falcon Company",
     "floor": 1,
@@ -2658,6 +2866,7 @@
   {
     "id": 149,
     "type": "Instance",
+    "exclude": true,
     "name": "The Fall of Falcon Company",
     "title": "The Fall of Falcon Company",
     "floor": 1,
@@ -2678,6 +2887,7 @@
   {
     "id": 152,
     "type": "Instance",
+    "exclude": true,
     "name": "Confronting Captain Tervelan",
     "title": "Confronting Captain Tervelan",
     "floor": 1,
@@ -2688,6 +2898,7 @@
   {
     "id": 153,
     "type": "Instance",
+    "exclude": true,
     "name": "Seek Logan's Aid",
     "title": "Seek Logan's Aid",
     "floor": 1,
@@ -2698,6 +2909,7 @@
   {
     "id": 154,
     "type": "Instance",
+    "exclude": true,
     "name": "Seek Logan's Aid",
     "title": "Seek Logan's Aid",
     "floor": 1,
@@ -2708,6 +2920,7 @@
   {
     "id": 157,
     "type": "Instance",
+    "exclude": true,
     "name": "Accusation",
     "title": "Accusation",
     "floor": 1,
@@ -2718,6 +2931,7 @@
   {
     "id": 159,
     "type": "Instance",
+    "exclude": true,
     "name": "Accusation",
     "title": "Accusation",
     "floor": 1,
@@ -2728,6 +2942,7 @@
   {
     "id": 161,
     "type": "Instance",
+    "exclude": true,
     "name": "Liberation",
     "title": "Liberation",
     "floor": 1,
@@ -2738,6 +2953,7 @@
   {
     "id": 162,
     "type": "Instance",
+    "exclude": true,
     "name": "Voices From the Past",
     "title": "Voices From the Past",
     "floor": 1,
@@ -2748,6 +2964,7 @@
   {
     "id": 163,
     "type": "Instance",
+    "exclude": true,
     "name": "Voices From the Past",
     "title": "Voices From the Past",
     "floor": 1,
@@ -2768,6 +2985,7 @@
   {
     "id": 171,
     "type": "Instance",
+    "exclude": true,
     "name": "Rending the Mantle",
     "title": "Rending the Mantle",
     "floor": 1,
@@ -2778,6 +2996,7 @@
   {
     "id": 172,
     "type": "Instance",
+    "exclude": true,
     "name": "Rending the Mantle",
     "title": "Rending the Mantle",
     "floor": 1,
@@ -2788,6 +3007,7 @@
   {
     "id": 178,
     "type": "Instance",
+    "exclude": true,
     "name": "The Floating Grizwhirl",
     "title": "The Floating Grizwhirl",
     "floor": 1,
@@ -2798,6 +3018,7 @@
   {
     "id": 179,
     "type": "Instance",
+    "exclude": true,
     "name": "The Floating Grizwhirl",
     "title": "The Floating Grizwhirl",
     "floor": 1,
@@ -2808,6 +3029,7 @@
   {
     "id": 18,
     "type": "Public",
+    "exclude": true,
     "name": "Divinity's Reach",
     "title": "Divinity's Reach",
     "floor": 1,
@@ -2818,6 +3040,7 @@
   {
     "id": 180,
     "type": "Instance",
+    "exclude": true,
     "name": "The Floating Grizwhirl",
     "title": "The Floating Grizwhirl",
     "floor": 1,
@@ -2828,6 +3051,7 @@
   {
     "id": 182,
     "type": "Instance",
+    "exclude": true,
     "name": "Clown College",
     "title": "Clown College",
     "floor": 1,
@@ -2838,6 +3062,7 @@
   {
     "id": 184,
     "type": "Instance",
+    "exclude": true,
     "name": "The Artist's Workshop",
     "title": "The Artist's Workshop",
     "floor": 1,
@@ -2848,6 +3073,7 @@
   {
     "id": 185,
     "type": "Instance",
+    "exclude": true,
     "name": "Into the Woods",
     "title": "Into the Woods",
     "floor": 1,
@@ -2858,6 +3084,7 @@
   {
     "id": 186,
     "type": "Instance",
+    "exclude": true,
     "name": "The Ringmaster",
     "title": "The Ringmaster",
     "floor": 1,
@@ -2878,6 +3105,7 @@
   {
     "id": 190,
     "type": "Instance",
+    "exclude": true,
     "name": "The Orders of Tyria",
     "title": "The Orders of Tyria",
     "floor": 1,
@@ -2888,6 +3116,7 @@
   {
     "id": 191,
     "type": "Instance",
+    "exclude": true,
     "name": "The Orders of Tyria",
     "title": "The Orders of Tyria",
     "floor": 1,
@@ -2898,6 +3127,7 @@
   {
     "id": 192,
     "type": "Instance",
+    "exclude": true,
     "name": "Brute Force",
     "title": "Brute Force",
     "floor": 1,
@@ -2908,6 +3138,7 @@
   {
     "id": 193,
     "type": "Instance",
+    "exclude": true,
     "name": "Mortus Virge",
     "title": "Mortus Virge",
     "floor": 1,
@@ -2918,6 +3149,7 @@
   {
     "id": 195,
     "type": "Instance",
+    "exclude": true,
     "name": "Triskell Quay",
     "title": "Triskell Quay",
     "floor": 1,
@@ -2928,6 +3160,7 @@
   {
     "id": 196,
     "type": "Instance",
+    "exclude": true,
     "name": "Track the Seraph",
     "title": "Track the Seraph",
     "floor": 1,
@@ -2938,6 +3171,7 @@
   {
     "id": 198,
     "type": "Instance",
+    "exclude": true,
     "name": "Speaker of the Dead",
     "title": "Speaker of the Dead",
     "floor": 1,
@@ -2948,6 +3182,7 @@
   {
     "id": 199,
     "type": "Instance",
+    "exclude": true,
     "name": "The Sad Tale of the \"Ravenous\"",
     "title": "The Sad Tale of the \"Ravenous\"",
     "floor": 1,
@@ -2968,6 +3203,7 @@
   {
     "id": 201,
     "type": "Instance",
+    "exclude": true,
     "name": "Kellach's Attack",
     "title": "Kellach's Attack",
     "floor": 1,
@@ -2978,6 +3214,7 @@
   {
     "id": 202,
     "type": "Instance",
+    "exclude": true,
     "name": "The Queen's Justice",
     "title": "The Queen's Justice",
     "floor": 1,
@@ -2988,6 +3225,7 @@
   {
     "id": 203,
     "type": "Instance",
+    "exclude": true,
     "name": "The Trap",
     "title": "The Trap",
     "floor": 1,
@@ -3008,6 +3246,7 @@
   {
     "id": 211,
     "type": "Instance",
+    "exclude": true,
     "name": "Best Laid Plans",
     "title": "Best Laid Plans",
     "floor": 1,
@@ -3018,6 +3257,7 @@
   {
     "id": 212,
     "type": "Instance",
+    "exclude": true,
     "name": "Welcome Home",
     "title": "Welcome Home",
     "floor": 1,
@@ -3028,6 +3268,7 @@
   {
     "id": 215,
     "type": "Instance",
+    "exclude": true,
     "name": "The Tribune's Call",
     "title": "The Tribune's Call",
     "floor": 1,
@@ -3038,6 +3279,7 @@
   {
     "id": 216,
     "type": "Instance",
+    "exclude": true,
     "name": "The Tribune's Call",
     "title": "The Tribune's Call",
     "floor": 1,
@@ -3048,6 +3290,7 @@
   {
     "id": 217,
     "type": "Instance",
+    "exclude": true,
     "name": "The Tribune's Call",
     "title": "The Tribune's Call",
     "floor": 1,
@@ -3078,6 +3321,7 @@
   {
     "id": 222,
     "type": "Instance",
+    "exclude": true,
     "name": "A Spy for a Spy",
     "title": "A Spy for a Spy",
     "floor": 1,
@@ -3088,6 +3332,7 @@
   {
     "id": 224,
     "type": "Instance",
+    "exclude": true,
     "name": "Scrapyard Dogs",
     "title": "Scrapyard Dogs",
     "floor": 1,
@@ -3098,6 +3343,7 @@
   {
     "id": 225,
     "type": "Instance",
+    "exclude": true,
     "name": "A Spy for a Spy",
     "title": "A Spy for a Spy",
     "floor": 1,
@@ -3108,6 +3354,7 @@
   {
     "id": 226,
     "type": "Instance",
+    "exclude": true,
     "name": "On the Mend",
     "title": "On the Mend",
     "floor": 1,
@@ -3128,6 +3375,7 @@
   {
     "id": 232,
     "type": "Instance",
+    "exclude": true,
     "name": "Spilled Blood",
     "title": "Spilled Blood",
     "floor": 1,
@@ -3138,6 +3386,7 @@
   {
     "id": 234,
     "type": "Instance",
+    "exclude": true,
     "name": "Ghostbore Musket",
     "title": "Ghostbore Musket",
     "floor": 1,
@@ -3148,6 +3397,7 @@
   {
     "id": 237,
     "type": "Instance",
+    "exclude": true,
     "name": "Iron Grip of the Legion",
     "title": "Iron Grip of the Legion",
     "floor": 1,
@@ -3158,6 +3408,7 @@
   {
     "id": 238,
     "type": "Instance",
+    "exclude": true,
     "name": "The Flame Advances",
     "title": "The Flame Advances",
     "floor": 1,
@@ -3168,6 +3419,7 @@
   {
     "id": 239,
     "type": "Instance",
+    "exclude": true,
     "name": "The Flame Advances",
     "title": "The Flame Advances",
     "floor": 1,
@@ -3188,6 +3440,7 @@
   {
     "id": 242,
     "type": "Instance",
+    "exclude": true,
     "name": "Test Your Metal",
     "title": "Test Your Metal",
     "floor": 1,
@@ -3198,6 +3451,7 @@
   {
     "id": 244,
     "type": "Instance",
+    "exclude": true,
     "name": "Quick and Quiet",
     "title": "Quick and Quiet",
     "floor": 1,
@@ -3208,6 +3462,7 @@
   {
     "id": 248,
     "type": "Instance",
+    "exclude": true,
     "name": "Salma District (Home)",
     "title": "Salma District (Home)",
     "floor": 1,
@@ -3218,6 +3473,7 @@
   {
     "id": 249,
     "type": "Instance",
+    "exclude": true,
     "name": "An Unusual Inheritance",
     "title": "An Unusual Inheritance",
     "floor": 1,
@@ -3238,6 +3494,7 @@
   {
     "id": 250,
     "type": "Instance",
+    "exclude": true,
     "name": "Windrock Maze",
     "title": "Windrock Maze",
     "floor": 1,
@@ -3248,6 +3505,7 @@
   {
     "id": 251,
     "type": "Instance",
+    "exclude": true,
     "name": "Mired Deep",
     "title": "Mired Deep",
     "floor": 1,
@@ -3258,6 +3516,7 @@
   {
     "id": 252,
     "type": "Instance",
+    "exclude": true,
     "name": "Mired Deep",
     "title": "Mired Deep",
     "floor": 1,
@@ -3268,6 +3527,7 @@
   {
     "id": 254,
     "type": "Instance",
+    "exclude": true,
     "name": "Deadly Force",
     "title": "Deadly Force",
     "floor": 1,
@@ -3278,6 +3538,7 @@
   {
     "id": 255,
     "type": "Instance",
+    "exclude": true,
     "name": "Ghostbore Artillery",
     "title": "Ghostbore Artillery",
     "floor": 1,
@@ -3288,6 +3549,7 @@
   {
     "id": 256,
     "type": "Instance",
+    "exclude": true,
     "name": "No Negotiations",
     "title": "No Negotiations",
     "floor": 1,
@@ -3298,6 +3560,7 @@
   {
     "id": 257,
     "type": "Instance",
+    "exclude": true,
     "name": "Salvaging Scrap",
     "title": "Salvaging Scrap",
     "floor": 1,
@@ -3308,6 +3571,7 @@
   {
     "id": 258,
     "type": "Instance",
+    "exclude": true,
     "name": "Salvaging Scrap",
     "title": "Salvaging Scrap",
     "floor": 1,
@@ -3318,6 +3582,7 @@
   {
     "id": 259,
     "type": "Instance",
+    "exclude": true,
     "name": "In the Ruins",
     "title": "In the Ruins",
     "floor": 1,
@@ -3338,6 +3603,7 @@
   {
     "id": 260,
     "type": "Instance",
+    "exclude": true,
     "name": "In the Ruins",
     "title": "In the Ruins",
     "floor": 1,
@@ -3348,6 +3614,7 @@
   {
     "id": 262,
     "type": "Instance",
+    "exclude": true,
     "name": "Chain of Command",
     "title": "Chain of Command",
     "floor": 1,
@@ -3358,6 +3625,7 @@
   {
     "id": 263,
     "type": "Instance",
+    "exclude": true,
     "name": "Chain of Command",
     "title": "Chain of Command",
     "floor": 1,
@@ -3368,6 +3636,7 @@
   {
     "id": 264,
     "type": "Instance",
+    "exclude": true,
     "name": "Time for a Promotion",
     "title": "Time for a Promotion",
     "floor": 1,
@@ -3378,6 +3647,7 @@
   {
     "id": 267,
     "type": "Instance",
+    "exclude": true,
     "name": "The End of the Line",
     "title": "The End of the Line",
     "floor": 1,
@@ -3388,6 +3658,7 @@
   {
     "id": 269,
     "type": "Instance",
+    "exclude": true,
     "name": "Magic Users",
     "title": "Magic Users",
     "floor": 1,
@@ -3408,6 +3679,7 @@
   {
     "id": 271,
     "type": "Instance",
+    "exclude": true,
     "name": "Rage Suppression",
     "title": "Rage Suppression",
     "floor": 1,
@@ -3418,6 +3690,7 @@
   {
     "id": 272,
     "type": "Instance",
+    "exclude": true,
     "name": "Rage Suppression",
     "title": "Rage Suppression",
     "floor": 1,
@@ -3428,6 +3701,7 @@
   {
     "id": 274,
     "type": "Instance",
+    "exclude": true,
     "name": "Operation: Bulwark",
     "title": "Operation: Bulwark",
     "floor": 1,
@@ -3438,6 +3712,7 @@
   {
     "id": 275,
     "type": "Instance",
+    "exclude": true,
     "name": "AWOL",
     "title": "AWOL",
     "floor": 1,
@@ -3448,6 +3723,7 @@
   {
     "id": 276,
     "type": "Instance",
+    "exclude": true,
     "name": "Human's Lament",
     "title": "Human's Lament",
     "floor": 1,
@@ -3468,6 +3744,7 @@
   {
     "id": 282,
     "type": "Instance",
+    "exclude": true,
     "name": "Misplaced Faith",
     "title": "Misplaced Faith",
     "floor": 1,
@@ -3478,6 +3755,7 @@
   {
     "id": 283,
     "type": "Instance",
+    "exclude": true,
     "name": "Thicker Than Water",
     "title": "Thicker Than Water",
     "floor": 1,
@@ -3488,6 +3766,7 @@
   {
     "id": 284,
     "type": "Instance",
+    "exclude": true,
     "name": "Dishonorable Discharge",
     "title": "Dishonorable Discharge",
     "floor": 1,
@@ -3498,6 +3777,7 @@
   {
     "id": 287,
     "type": "Instance",
+    "exclude": true,
     "name": "Searching for the Truth",
     "title": "Searching for the Truth",
     "floor": 1,
@@ -3508,6 +3788,7 @@
   {
     "id": 288,
     "type": "Instance",
+    "exclude": true,
     "name": "Lighting the Beacons",
     "title": "Lighting the Beacons",
     "floor": 1,
@@ -3528,6 +3809,7 @@
   {
     "id": 290,
     "type": "Instance",
+    "exclude": true,
     "name": "Stoking the Flame",
     "title": "Stoking the Flame",
     "floor": 1,
@@ -3538,6 +3820,7 @@
   {
     "id": 294,
     "type": "Instance",
+    "exclude": true,
     "name": "A Fork in the Road",
     "title": "A Fork in the Road",
     "floor": 1,
@@ -3548,6 +3831,7 @@
   {
     "id": 295,
     "type": "Instance",
+    "exclude": true,
     "name": "Sins of the Father",
     "title": "Sins of the Father",
     "floor": 1,
@@ -3558,6 +3842,7 @@
   {
     "id": 297,
     "type": "Instance",
+    "exclude": true,
     "name": "Graveyard Ornaments",
     "title": "Graveyard Ornaments",
     "floor": 1,
@@ -3608,6 +3893,7 @@
   {
     "id": 327,
     "type": "Instance",
+    "exclude": true,
     "name": "Desperate Medicine",
     "title": "Desperate Medicine",
     "floor": 1,
@@ -3628,6 +3914,7 @@
   {
     "id": 330,
     "type": "Instance",
+    "exclude": true,
     "name": "Seraph Headquarters",
     "title": "Seraph Headquarters",
     "floor": 2,
@@ -3658,6 +3945,7 @@
   {
     "id": 336,
     "type": "Instance",
+    "exclude": true,
     "name": "Chantry of Secrets",
     "title": "Chantry of Secrets",
     "floor": -3,
@@ -3708,6 +3996,7 @@
   {
     "id": 363,
     "type": "Instance",
+    "exclude": true,
     "name": "The Sting",
     "title": "The Sting",
     "floor": 1,
@@ -3718,6 +4007,7 @@
   {
     "id": 364,
     "type": "Instance",
+    "exclude": true,
     "name": "Drawing Out the Cult",
     "title": "Drawing Out the Cult",
     "floor": 1,
@@ -3728,6 +4018,7 @@
   {
     "id": 365,
     "type": "Instance",
+    "exclude": true,
     "name": "Ashes of the Past",
     "title": "Ashes of the Past",
     "floor": 1,
@@ -3738,6 +4029,7 @@
   {
     "id": 37,
     "type": "Instance",
+    "exclude": true,
     "name": "Arson at the Orphanage",
     "title": "Arson at the Orphanage",
     "floor": 1,
@@ -3748,6 +4040,7 @@
   {
     "id": 371,
     "type": "Instance",
+    "exclude": true,
     "name": "Hero's Canton (Home)",
     "title": "Hero's Canton (Home)",
     "floor": 1,
@@ -3758,6 +4051,7 @@
   {
     "id": 372,
     "type": "Instance",
+    "exclude": true,
     "name": "Blood Tribune Quarters",
     "title": "Blood Tribune Quarters",
     "floor": 1,
@@ -3768,6 +4062,7 @@
   {
     "id": 373,
     "type": "Instance",
+    "exclude": true,
     "name": "The Command Core",
     "title": "The Command Core",
     "floor": 1,
@@ -3778,6 +4073,7 @@
   {
     "id": 374,
     "type": "Instance",
+    "exclude": true,
     "name": "Knut Whitebear's Loft",
     "title": "Knut Whitebear's Loft",
     "floor": 2,
@@ -3788,6 +4084,7 @@
   {
     "id": 375,
     "type": "Instance",
+    "exclude": true,
     "name": "Hunter's Hearth (Home)",
     "title": "Hunter's Hearth (Home)",
     "floor": 2,
@@ -3798,6 +4095,7 @@
   {
     "id": 376,
     "type": "Instance",
+    "exclude": true,
     "name": "Stonewright's Steading",
     "title": "Stonewright's Steading",
     "floor": 1,
@@ -3808,6 +4106,7 @@
   {
     "id": 378,
     "type": "Instance",
+    "exclude": true,
     "name": "Queen's Throne Room",
     "title": "Queen's Throne Room",
     "floor": 2,
@@ -3838,6 +4137,7 @@
   {
     "id": 380,
     "type": "Instance",
+    "exclude": true,
     "name": "A Weapon of Legend",
     "title": "A Weapon of Legend",
     "floor": 1,
@@ -3848,6 +4148,7 @@
   {
     "id": 381,
     "type": "Instance",
+    "exclude": true,
     "name": "The Last of the Giant-Kings",
     "title": "The Last of the Giant-Kings",
     "floor": 1,
@@ -3858,6 +4159,7 @@
   {
     "id": 382,
     "type": "Instance",
+    "exclude": true,
     "name": "Disciples of the Dragon",
     "title": "Disciples of the Dragon",
     "floor": 1,
@@ -3868,6 +4170,7 @@
   {
     "id": 385,
     "type": "Instance",
+    "exclude": true,
     "name": "A Weapon of Legend",
     "title": "A Weapon of Legend",
     "floor": 1,
@@ -3878,6 +4181,7 @@
   {
     "id": 386,
     "type": "Instance",
+    "exclude": true,
     "name": "Echoes of Ages Past",
     "title": "Echoes of Ages Past",
     "floor": 1,
@@ -3888,6 +4192,7 @@
   {
     "id": 387,
     "type": "Instance",
+    "exclude": true,
     "name": "Wild Spirits",
     "title": "Wild Spirits",
     "floor": 1,
@@ -3898,6 +4203,7 @@
   {
     "id": 388,
     "type": "Instance",
+    "exclude": true,
     "name": "Out of the Skies",
     "title": "Out of the Skies",
     "floor": 1,
@@ -3908,6 +4214,7 @@
   {
     "id": 389,
     "type": "Instance",
+    "exclude": true,
     "name": "Echoes of Ages Past",
     "title": "Echoes of Ages Past",
     "floor": 1,
@@ -3928,6 +4235,7 @@
   {
     "id": 390,
     "type": "Instance",
+    "exclude": true,
     "name": "Twilight of the Wolf",
     "title": "Twilight of the Wolf",
     "floor": 1,
@@ -3938,6 +4246,7 @@
   {
     "id": 391,
     "type": "Instance",
+    "exclude": true,
     "name": "Rage of the Minotaurs",
     "title": "Rage of the Minotaurs",
     "floor": 1,
@@ -3948,6 +4257,7 @@
   {
     "id": 392,
     "type": "Instance",
+    "exclude": true,
     "name": "A Pup's Illness",
     "title": "A Pup's Illness",
     "floor": 1,
@@ -3958,6 +4268,7 @@
   {
     "id": 393,
     "type": "Instance",
+    "exclude": true,
     "name": "Through the Veil",
     "title": "Through the Veil",
     "floor": 1,
@@ -3968,6 +4279,7 @@
   {
     "id": 394,
     "type": "Instance",
+    "exclude": true,
     "name": "A Trap Foiled",
     "title": "A Trap Foiled",
     "floor": 1,
@@ -3978,6 +4290,7 @@
   {
     "id": 396,
     "type": "Instance",
+    "exclude": true,
     "name": "Raven's Revered",
     "title": "Raven's Revered",
     "floor": 1,
@@ -3988,6 +4301,7 @@
   {
     "id": 397,
     "type": "Instance",
+    "exclude": true,
     "name": "One Good Drink Deserves Another",
     "title": "One Good Drink Deserves Another",
     "floor": 1,
@@ -3998,6 +4312,7 @@
   {
     "id": 399,
     "type": "Instance",
+    "exclude": true,
     "name": "Shape of the Spirit",
     "title": "Shape of the Spirit",
     "floor": 1,
@@ -4008,6 +4323,7 @@
   {
     "id": 400,
     "type": "Instance",
+    "exclude": true,
     "name": "Into the Mists",
     "title": "Into the Mists",
     "floor": 1,
@@ -4018,6 +4334,7 @@
   {
     "id": 401,
     "type": "Instance",
+    "exclude": true,
     "name": "Through the Veil",
     "title": "Through the Veil",
     "floor": 1,
@@ -4028,6 +4345,7 @@
   {
     "id": 405,
     "type": "Instance",
+    "exclude": true,
     "name": "Blessed of Bear",
     "title": "Blessed of Bear",
     "floor": 1,
@@ -4036,6 +4354,7 @@
   {
     "id": 407,
     "type": "Instance",
+    "exclude": true,
     "name": "The Wolf Havroun",
     "title": "The Wolf Havroun",
     "floor": 1,
@@ -4046,6 +4365,7 @@
   {
     "id": 410,
     "type": "Instance",
+    "exclude": true,
     "name": "Minotaur Rampant",
     "title": "Minotaur Rampant",
     "floor": 1,
@@ -4056,6 +4376,7 @@
   {
     "id": 411,
     "type": "Instance",
+    "exclude": true,
     "name": "Minotaur Rampant",
     "title": "Minotaur Rampant",
     "floor": 1,
@@ -4066,6 +4387,7 @@
   {
     "id": 412,
     "type": "Instance",
+    "exclude": true,
     "name": "Unexpected Visitors",
     "title": "Unexpected Visitors",
     "floor": 1,
@@ -4076,6 +4398,7 @@
   {
     "id": 413,
     "type": "Instance",
+    "exclude": true,
     "name": "Rumors of Trouble",
     "title": "Rumors of Trouble",
     "floor": 1,
@@ -4086,6 +4409,7 @@
   {
     "id": 414,
     "type": "Instance",
+    "exclude": true,
     "name": "A New Challenger",
     "title": "A New Challenger",
     "floor": 1,
@@ -4096,6 +4420,7 @@
   {
     "id": 415,
     "type": "Instance",
+    "exclude": true,
     "name": "Unexpected Visitors",
     "title": "Unexpected Visitors",
     "floor": 1,
@@ -4106,6 +4431,7 @@
   {
     "id": 416,
     "type": "Instance",
+    "exclude": true,
     "name": "Roadblock",
     "title": "Roadblock",
     "floor": 1,
@@ -4116,6 +4442,7 @@
   {
     "id": 417,
     "type": "Instance",
+    "exclude": true,
     "name": "Assault on Moledavia",
     "title": "Assault on Moledavia",
     "floor": 1,
@@ -4126,6 +4453,7 @@
   {
     "id": 418,
     "type": "Instance",
+    "exclude": true,
     "name": "Don't Leave Your Toys Out",
     "title": "Don't Leave Your Toys Out",
     "floor": 1,
@@ -4136,6 +4464,7 @@
   {
     "id": 419,
     "type": "Instance",
+    "exclude": true,
     "name": "A New Challenger",
     "title": "A New Challenger",
     "floor": 1,
@@ -4146,6 +4475,7 @@
   {
     "id": 420,
     "type": "Instance",
+    "exclude": true,
     "name": "First Attack",
     "title": "First Attack",
     "floor": 1,
@@ -4156,6 +4486,7 @@
   {
     "id": 421,
     "type": "Instance",
+    "exclude": true,
     "name": "The Finishing Blow",
     "title": "The Finishing Blow",
     "floor": 1,
@@ -4166,6 +4497,7 @@
   {
     "id": 422,
     "type": "Instance",
+    "exclude": true,
     "name": "The Semifinals",
     "title": "The Semifinals",
     "floor": 1,
@@ -4176,6 +4508,7 @@
   {
     "id": 423,
     "type": "Instance",
+    "exclude": true,
     "name": "The Championship Fight",
     "title": "The Championship Fight",
     "floor": 1,
@@ -4186,6 +4519,7 @@
   {
     "id": 424,
     "type": "Instance",
+    "exclude": true,
     "name": "The Championship Fight",
     "title": "The Championship Fight",
     "floor": 1,
@@ -4196,6 +4530,7 @@
   {
     "id": 425,
     "type": "Instance",
+    "exclude": true,
     "name": "The Machine in Action",
     "title": "The Machine in Action",
     "floor": 1,
@@ -4206,6 +4541,7 @@
   {
     "id": 427,
     "type": "Instance",
+    "exclude": true,
     "name": "Among the Kodan",
     "title": "Among the Kodan",
     "floor": 1,
@@ -4216,6 +4552,7 @@
   {
     "id": 428,
     "type": "Instance",
+    "exclude": true,
     "name": "Rumors of Trouble",
     "title": "Rumors of Trouble",
     "floor": 1,
@@ -4226,6 +4563,7 @@
   {
     "id": 429,
     "type": "Instance",
+    "exclude": true,
     "name": "Rage of the Minotaurs",
     "title": "Rage of the Minotaurs",
     "floor": 1,
@@ -4236,6 +4574,7 @@
   {
     "id": 430,
     "type": "Instance",
+    "exclude": true,
     "name": "Darkness at Drakentelt",
     "title": "Darkness at Drakentelt",
     "floor": 1,
@@ -4256,6 +4595,7 @@
   {
     "id": 434,
     "type": "Instance",
+    "exclude": true,
     "name": "Preserving the Balance",
     "title": "Preserving the Balance",
     "floor": 1,
@@ -4266,6 +4606,7 @@
   {
     "id": 435,
     "type": "Instance",
+    "exclude": true,
     "name": "Means to an End",
     "title": "Means to an End",
     "floor": 1,
@@ -4276,6 +4617,7 @@
   {
     "id": 436,
     "type": "Instance",
+    "exclude": true,
     "name": "Dredge Technology",
     "title": "Dredge Technology",
     "floor": 1,
@@ -4286,6 +4628,7 @@
   {
     "id": 439,
     "type": "Instance",
+    "exclude": true,
     "name": "Underground Scholar",
     "title": "Underground Scholar",
     "floor": 1,
@@ -4296,6 +4639,7 @@
   {
     "id": 440,
     "type": "Instance",
+    "exclude": true,
     "name": "Dredge Assault",
     "title": "Dredge Assault",
     "floor": 1,
@@ -4306,6 +4650,7 @@
   {
     "id": 441,
     "type": "Instance",
+    "exclude": true,
     "name": "The Dredge Hideout",
     "title": "The Dredge Hideout",
     "floor": 1,
@@ -4316,6 +4661,7 @@
   {
     "id": 444,
     "type": "Instance",
+    "exclude": true,
     "name": "Sabotage",
     "title": "Sabotage",
     "floor": 1,
@@ -4326,6 +4672,7 @@
   {
     "id": 447,
     "type": "Instance",
+    "exclude": true,
     "name": "Codebreaker",
     "title": "Codebreaker",
     "floor": 1,
@@ -4336,6 +4683,7 @@
   {
     "id": 449,
     "type": "Instance",
+    "exclude": true,
     "name": "Armaments",
     "title": "Armaments",
     "floor": 1,
@@ -4346,6 +4694,7 @@
   {
     "id": 453,
     "type": "Instance",
+    "exclude": true,
     "name": "Assault the Hill",
     "title": "Assault the Hill",
     "floor": 1,
@@ -4356,6 +4705,7 @@
   {
     "id": 454,
     "type": "Instance",
+    "exclude": true,
     "name": "Silent Warfare",
     "title": "Silent Warfare",
     "floor": 1,
@@ -4366,6 +4716,7 @@
   {
     "id": 455,
     "type": "Instance",
+    "exclude": true,
     "name": "Sever the Head",
     "title": "Sever the Head",
     "floor": 1,
@@ -4386,6 +4737,7 @@
   {
     "id": 459,
     "type": "Instance",
+    "exclude": true,
     "name": "A Fork in the Road",
     "title": "A Fork in the Road",
     "floor": 1,
@@ -4396,6 +4748,7 @@
   {
     "id": 460,
     "type": "Instance",
+    "exclude": true,
     "name": "Citadel Stockade",
     "title": "Citadel Stockade",
     "floor": 1,
@@ -4406,6 +4759,7 @@
   {
     "id": 464,
     "type": "Instance",
+    "exclude": true,
     "name": "Tribunes in Effigy",
     "title": "Tribunes in Effigy",
     "floor": 1,
@@ -4416,6 +4770,7 @@
   {
     "id": 465,
     "type": "Instance",
+    "exclude": true,
     "name": "Sins of the Father",
     "title": "Sins of the Father",
     "floor": 1,
@@ -4426,6 +4781,7 @@
   {
     "id": 466,
     "type": "Instance",
+    "exclude": true,
     "name": "Misplaced Faith",
     "title": "Misplaced Faith",
     "floor": 1,
@@ -4436,6 +4792,7 @@
   {
     "id": 470,
     "type": "Instance",
+    "exclude": true,
     "name": "Graveyard Ornaments",
     "title": "Graveyard Ornaments",
     "floor": 1,
@@ -4446,6 +4803,7 @@
   {
     "id": 471,
     "type": "Instance",
+    "exclude": true,
     "name": "Undead Infestation",
     "title": "Undead Infestation",
     "floor": 1,
@@ -4456,6 +4814,7 @@
   {
     "id": 474,
     "type": "Instance",
+    "exclude": true,
     "name": "Whispers in the Dark",
     "title": "Whispers in the Dark",
     "floor": 1,
@@ -4466,6 +4825,7 @@
   {
     "id": 476,
     "type": "Instance",
+    "exclude": true,
     "name": "Dangerous Research",
     "title": "Dangerous Research",
     "floor": 1,
@@ -4476,6 +4836,7 @@
   {
     "id": 477,
     "type": "Instance",
+    "exclude": true,
     "name": "Digging Up Answers",
     "title": "Digging Up Answers",
     "floor": 1,
@@ -4486,6 +4847,7 @@
   {
     "id": 480,
     "type": "Instance",
+    "exclude": true,
     "name": "Defending the Keep",
     "title": "Defending the Keep",
     "floor": 1,
@@ -4496,6 +4858,7 @@
   {
     "id": 481,
     "type": "Instance",
+    "exclude": true,
     "name": "Undead Detection",
     "title": "Undead Detection",
     "floor": 1,
@@ -4506,6 +4869,7 @@
   {
     "id": 483,
     "type": "Instance",
+    "exclude": true,
     "name": "Ever Vigilant",
     "title": "Ever Vigilant",
     "floor": 1,
@@ -4516,6 +4880,7 @@
   {
     "id": 485,
     "type": "Instance",
+    "exclude": true,
     "name": "Research and Destroy",
     "title": "Research and Destroy",
     "floor": 1,
@@ -4526,6 +4891,7 @@
   {
     "id": 487,
     "type": "Instance",
+    "exclude": true,
     "name": "Whispers of Vengeance",
     "title": "Whispers of Vengeance",
     "floor": 1,
@@ -4536,6 +4902,7 @@
   {
     "id": 488,
     "type": "Instance",
+    "exclude": true,
     "name": "Killer Instinct",
     "title": "Killer Instinct",
     "floor": 1,
@@ -4546,6 +4913,7 @@
   {
     "id": 489,
     "type": "Instance",
+    "exclude": true,
     "name": "Meeting my Mentor",
     "title": "Meeting my Mentor",
     "floor": 43,
@@ -4554,6 +4922,7 @@
   {
     "id": 490,
     "type": "Instance",
+    "exclude": true,
     "name": "A Fragile Peace",
     "title": "A Fragile Peace",
     "floor": 1,
@@ -4564,6 +4933,7 @@
   {
     "id": 492,
     "type": "Instance",
+    "exclude": true,
     "name": "Don't Shoot the Messenger",
     "title": "Don't Shoot the Messenger",
     "floor": 1,
@@ -4574,6 +4944,7 @@
   {
     "id": 496,
     "type": "Instance",
+    "exclude": true,
     "name": "Meeting my Mentor",
     "title": "Meeting my Mentor",
     "floor": 43,
@@ -4584,6 +4955,7 @@
   {
     "id": 497,
     "type": "Instance",
+    "exclude": true,
     "name": "Dredging Up the Past",
     "title": "Dredging Up the Past",
     "floor": 1,
@@ -4594,6 +4966,7 @@
   {
     "id": 498,
     "type": "Instance",
+    "exclude": true,
     "name": "Dredging Up the Past",
     "title": "Dredging Up the Past",
     "floor": 1,
@@ -4604,6 +4977,7 @@
   {
     "id": 499,
     "type": "Instance",
+    "exclude": true,
     "name": "Scrapyard Dogs",
     "title": "Scrapyard Dogs",
     "floor": 1,
@@ -4624,6 +4998,7 @@
   {
     "id": 502,
     "type": "Instance",
+    "exclude": true,
     "name": "Quaestor's Siege",
     "title": "Quaestor's Siege",
     "floor": 1,
@@ -4634,6 +5009,7 @@
   {
     "id": 503,
     "type": "Instance",
+    "exclude": true,
     "name": "Minister's Defense",
     "title": "Minister's Defense",
     "floor": 1,
@@ -4644,6 +5020,7 @@
   {
     "id": 504,
     "type": "Instance",
+    "exclude": true,
     "name": "Called to Service",
     "title": "Called to Service",
     "floor": 1,
@@ -4654,6 +5031,7 @@
   {
     "id": 505,
     "type": "Instance",
+    "exclude": true,
     "name": "Called to Service",
     "title": "Called to Service",
     "floor": 1,
@@ -4664,6 +5042,7 @@
   {
     "id": 507,
     "type": "Instance",
+    "exclude": true,
     "name": "Mockery of Death",
     "title": "Mockery of Death",
     "floor": 1,
@@ -4674,6 +5053,7 @@
   {
     "id": 509,
     "type": "Instance",
+    "exclude": true,
     "name": "Discovering Darkness",
     "title": "Discovering Darkness",
     "floor": 1,
@@ -4694,6 +5074,7 @@
   {
     "id": 511,
     "type": "Instance",
+    "exclude": true,
     "name": "Hounds and the Hunted",
     "title": "Hounds and the Hunted",
     "floor": 1,
@@ -4704,6 +5085,7 @@
   {
     "id": 512,
     "type": "Instance",
+    "exclude": true,
     "name": "Hounds and the Hunted",
     "title": "Hounds and the Hunted",
     "floor": 1,
@@ -4714,6 +5096,7 @@
   {
     "id": 513,
     "type": "Instance",
+    "exclude": true,
     "name": "Loved and Lost",
     "title": "Loved and Lost",
     "floor": 1,
@@ -4724,6 +5107,7 @@
   {
     "id": 514,
     "type": "Instance",
+    "exclude": true,
     "name": "Saving the Stag",
     "title": "Saving the Stag",
     "floor": 1,
@@ -4734,6 +5118,7 @@
   {
     "id": 515,
     "type": "Instance",
+    "exclude": true,
     "name": "Hidden in Darkness",
     "title": "Hidden in Darkness",
     "floor": 1,
@@ -4744,6 +5129,7 @@
   {
     "id": 516,
     "type": "Instance",
+    "exclude": true,
     "name": "Good Work Spoiled",
     "title": "Good Work Spoiled",
     "floor": 1,
@@ -4754,6 +5140,7 @@
   {
     "id": 517,
     "type": "Instance",
+    "exclude": true,
     "name": "Black Night, White Stag",
     "title": "Black Night, White Stag",
     "floor": 1,
@@ -4764,6 +5151,7 @@
   {
     "id": 518,
     "type": "Instance",
+    "exclude": true,
     "name": "The Omphalos Chamber",
     "title": "The Omphalos Chamber",
     "floor": 1,
@@ -4774,6 +5162,7 @@
   {
     "id": 519,
     "type": "Instance",
+    "exclude": true,
     "name": "Weakness of the Heart",
     "title": "Weakness of the Heart",
     "floor": 1,
@@ -4784,6 +5173,7 @@
   {
     "id": 520,
     "type": "Instance",
+    "exclude": true,
     "name": "Awakening",
     "title": "Awakening",
     "floor": 1,
@@ -4794,6 +5184,7 @@
   {
     "id": 521,
     "type": "Instance",
+    "exclude": true,
     "name": "Holding Back the Darkness",
     "title": "Holding Back the Darkness",
     "floor": 1,
@@ -4804,6 +5195,7 @@
   {
     "id": 522,
     "type": "Instance",
+    "exclude": true,
     "name": "A Sly Trick",
     "title": "A Sly Trick",
     "floor": 1,
@@ -4814,6 +5206,7 @@
   {
     "id": 523,
     "type": "Instance",
+    "exclude": true,
     "name": "Deep Tangled Roots",
     "title": "Deep Tangled Roots",
     "floor": 1,
@@ -4824,6 +5217,7 @@
   {
     "id": 524,
     "type": "Instance",
+    "exclude": true,
     "name": "The Heart of Nightmare",
     "title": "The Heart of Nightmare",
     "floor": 1,
@@ -4834,6 +5228,7 @@
   {
     "id": 525,
     "type": "Instance",
+    "exclude": true,
     "name": "Beneath a Cold Moon",
     "title": "Beneath a Cold Moon",
     "floor": 1,
@@ -4844,6 +5239,7 @@
   {
     "id": 527,
     "type": "Instance",
+    "exclude": true,
     "name": "The Knight's Duel",
     "title": "The Knight's Duel",
     "floor": 1,
@@ -4854,6 +5250,7 @@
   {
     "id": 528,
     "type": "Instance",
+    "exclude": true,
     "name": "Hammer and Steel",
     "title": "Hammer and Steel",
     "floor": 1,
@@ -4864,6 +5261,7 @@
   {
     "id": 529,
     "type": "Instance",
+    "exclude": true,
     "name": "Where Life Goes",
     "title": "Where Life Goes",
     "floor": 1,
@@ -4884,6 +5282,7 @@
   {
     "id": 532,
     "type": "Instance",
+    "exclude": true,
     "name": "After the Storm",
     "title": "After the Storm",
     "floor": 1,
@@ -4894,6 +5293,7 @@
   {
     "id": 533,
     "type": "Instance",
+    "exclude": true,
     "name": "After the Storm",
     "title": "After the Storm",
     "floor": 1,
@@ -4904,6 +5304,7 @@
   {
     "id": 534,
     "type": "Instance",
+    "exclude": true,
     "name": "Beneath the Waves",
     "title": "Beneath the Waves",
     "floor": 1,
@@ -4914,6 +5315,7 @@
   {
     "id": 535,
     "type": "Instance",
+    "exclude": true,
     "name": "Mirror, Mirror",
     "title": "Mirror, Mirror",
     "floor": 1,
@@ -4924,6 +5326,7 @@
   {
     "id": 536,
     "type": "Instance",
+    "exclude": true,
     "name": "A Vision of Darkness",
     "title": "A Vision of Darkness",
     "floor": -16,
@@ -4934,6 +5337,7 @@
   {
     "id": 537,
     "type": "Instance",
+    "exclude": true,
     "name": "Shattered Light",
     "title": "Shattered Light",
     "floor": 1,
@@ -4944,6 +5348,7 @@
   {
     "id": 538,
     "type": "Instance",
+    "exclude": true,
     "name": "An Unknown Soul",
     "title": "An Unknown Soul",
     "floor": 1,
@@ -4954,6 +5359,7 @@
   {
     "id": 539,
     "type": "Instance",
+    "exclude": true,
     "name": "An Unknown Soul",
     "title": "An Unknown Soul",
     "floor": 1,
@@ -4974,6 +5380,7 @@
   {
     "id": 540,
     "type": "Instance",
+    "exclude": true,
     "name": "Where Life Goes",
     "title": "Where Life Goes",
     "floor": 1,
@@ -4984,6 +5391,7 @@
   {
     "id": 542,
     "type": "Instance",
+    "exclude": true,
     "name": "Source of the Issue",
     "title": "Source of the Issue",
     "floor": 1,
@@ -4992,6 +5400,7 @@
   {
     "id": 543,
     "type": "Instance",
+    "exclude": true,
     "name": "Wild Growth",
     "title": "Wild Growth",
     "floor": 1,
@@ -5002,6 +5411,7 @@
   {
     "id": 544,
     "type": "Instance",
+    "exclude": true,
     "name": "Wild Growth",
     "title": "Wild Growth",
     "floor": 1,
@@ -5012,6 +5422,7 @@
   {
     "id": 545,
     "type": "Instance",
+    "exclude": true,
     "name": "Seeking the Zalisco",
     "title": "Seeking the Zalisco",
     "floor": 1,
@@ -5022,6 +5433,7 @@
   {
     "id": 546,
     "type": "Instance",
+    "exclude": true,
     "name": "The Direct Approach",
     "title": "The Direct Approach",
     "floor": 1,
@@ -5032,6 +5444,7 @@
   {
     "id": 547,
     "type": "Instance",
+    "exclude": true,
     "name": "Trading Trickery",
     "title": "Trading Trickery",
     "floor": 1,
@@ -5042,6 +5455,7 @@
   {
     "id": 548,
     "type": "Instance",
+    "exclude": true,
     "name": "Eye of the Sun",
     "title": "Eye of the Sun",
     "floor": 1,
@@ -5062,6 +5476,7 @@
   {
     "id": 55,
     "type": "Instance",
+    "exclude": true,
     "name": "The Hospital in Jeopardy",
     "title": "The Hospital in Jeopardy",
     "floor": 1,
@@ -5072,6 +5487,7 @@
   {
     "id": 552,
     "type": "Instance",
+    "exclude": true,
     "name": "Seeking the Zalisco",
     "title": "Seeking the Zalisco",
     "floor": 1,
@@ -5092,6 +5508,7 @@
   {
     "id": 556,
     "type": "Instance",
+    "exclude": true,
     "name": "A Different Dream",
     "title": "A Different Dream",
     "floor": 1,
@@ -5102,6 +5519,7 @@
   {
     "id": 557,
     "type": "Instance",
+    "exclude": true,
     "name": "A Splinter in the Flesh",
     "title": "A Splinter in the Flesh",
     "floor": 1,
@@ -5112,6 +5530,7 @@
   {
     "id": 558,
     "type": "Instance",
+    "exclude": true,
     "name": "Shadow of the Tree",
     "title": "Shadow of the Tree",
     "floor": 1,
@@ -5122,6 +5541,7 @@
   {
     "id": 559,
     "type": "Instance",
+    "exclude": true,
     "name": "Eye of the Sun",
     "title": "Eye of the Sun",
     "floor": 1,
@@ -5132,6 +5552,7 @@
   {
     "id": 560,
     "type": "Instance",
+    "exclude": true,
     "name": "Sharpened Thorns",
     "title": "Sharpened Thorns",
     "floor": 1,
@@ -5142,6 +5563,7 @@
   {
     "id": 561,
     "type": "Instance",
+    "exclude": true,
     "name": "Bramble Walls",
     "title": "Bramble Walls",
     "floor": 1,
@@ -5152,6 +5574,7 @@
   {
     "id": 563,
     "type": "Instance",
+    "exclude": true,
     "name": "Secrets in the Earth",
     "title": "Secrets in the Earth",
     "floor": 1,
@@ -5162,6 +5585,7 @@
   {
     "id": 564,
     "type": "Instance",
+    "exclude": true,
     "name": "The Blossom of Youth",
     "title": "The Blossom of Youth",
     "floor": 1,
@@ -5172,6 +5596,7 @@
   {
     "id": 566,
     "type": "Instance",
+    "exclude": true,
     "name": "The Bad Apple",
     "title": "The Bad Apple",
     "floor": 1,
@@ -5182,6 +5607,7 @@
   {
     "id": 567,
     "type": "Instance",
+    "exclude": true,
     "name": "Trouble at the Roots",
     "title": "Trouble at the Roots",
     "floor": 1,
@@ -5192,6 +5618,7 @@
   {
     "id": 569,
     "type": "Instance",
+    "exclude": true,
     "name": "Flower of Death",
     "title": "Flower of Death",
     "floor": 1,
@@ -5202,6 +5629,7 @@
   {
     "id": 570,
     "type": "Instance",
+    "exclude": true,
     "name": "Dead of Winter",
     "title": "Dead of Winter",
     "floor": 1,
@@ -5212,6 +5640,7 @@
   {
     "id": 571,
     "type": "Instance",
+    "exclude": true,
     "name": "A Tangle of Weeds",
     "title": "A Tangle of Weeds",
     "floor": 1,
@@ -5232,6 +5661,7 @@
   {
     "id": 574,
     "type": "Instance",
+    "exclude": true,
     "name": "In Snaff's Footsteps",
     "title": "In Snaff's Footsteps",
     "floor": 1,
@@ -5242,6 +5672,7 @@
   {
     "id": 575,
     "type": "Instance",
+    "exclude": true,
     "name": "Golem Positioning System",
     "title": "Golem Positioning System",
     "floor": 1,
@@ -5252,6 +5683,7 @@
   {
     "id": 576,
     "type": "Instance",
+    "exclude": true,
     "name": "Monkey Wrench",
     "title": "Monkey Wrench",
     "floor": 1,
@@ -5262,6 +5694,7 @@
   {
     "id": 577,
     "type": "Instance",
+    "exclude": true,
     "name": "Defusing the Problem",
     "title": "Defusing the Problem",
     "floor": 1,
@@ -5272,6 +5705,7 @@
   {
     "id": 578,
     "type": "Instance",
+    "exclude": true,
     "name": "The Things We Do For Love",
     "title": "The Things We Do For Love",
     "floor": 1,
@@ -5282,6 +5716,7 @@
   {
     "id": 579,
     "type": "Instance",
+    "exclude": true,
     "name": "The Snaff Prize",
     "title": "The Snaff Prize",
     "floor": 1,
@@ -5292,6 +5727,7 @@
   {
     "id": 581,
     "type": "Instance",
+    "exclude": true,
     "name": "A Sparkling Rescue",
     "title": "A Sparkling Rescue",
     "floor": 1,
@@ -5302,6 +5738,7 @@
   {
     "id": 582,
     "type": "Instance",
+    "exclude": true,
     "name": "High Maintenance",
     "title": "High Maintenance",
     "floor": 1,
@@ -5312,6 +5749,7 @@
   {
     "id": 583,
     "type": "Instance",
+    "exclude": true,
     "name": "Snaff Would Be Proud",
     "title": "Snaff Would Be Proud",
     "floor": 1,
@@ -5322,6 +5760,7 @@
   {
     "id": 584,
     "type": "Instance",
+    "exclude": true,
     "name": "Taking Credit Back",
     "title": "Taking Credit Back",
     "floor": 1,
@@ -5332,6 +5771,7 @@
   {
     "id": 586,
     "type": "Instance",
+    "exclude": true,
     "name": "Political Homicide",
     "title": "Political Homicide",
     "floor": 1,
@@ -5342,6 +5782,7 @@
   {
     "id": 587,
     "type": "Instance",
+    "exclude": true,
     "name": "Here, There, Everywhere",
     "title": "Here, There, Everywhere",
     "floor": 1,
@@ -5352,6 +5793,7 @@
   {
     "id": 588,
     "type": "Instance",
+    "exclude": true,
     "name": "Piece Negotiations",
     "title": "Piece Negotiations",
     "floor": 1,
@@ -5362,6 +5804,7 @@
   {
     "id": 589,
     "type": "Instance",
+    "exclude": true,
     "name": "Readings On the Rise",
     "title": "Readings On the Rise",
     "floor": 1,
@@ -5372,6 +5815,7 @@
   {
     "id": 590,
     "type": "Instance",
+    "exclude": true,
     "name": "Snaff Would Be Proud",
     "title": "Snaff Would Be Proud",
     "floor": 1,
@@ -5382,6 +5826,7 @@
   {
     "id": 591,
     "type": "Instance",
+    "exclude": true,
     "name": "Readings On the Rise",
     "title": "Readings On the Rise",
     "floor": 1,
@@ -5392,6 +5837,7 @@
   {
     "id": 592,
     "type": "Instance",
+    "exclude": true,
     "name": "Unscheduled Delay",
     "title": "Unscheduled Delay",
     "floor": 1,
@@ -5402,6 +5848,7 @@
   {
     "id": 594,
     "type": "Instance",
+    "exclude": true,
     "name": "Stand By Your Krewe",
     "title": "Stand By Your Krewe",
     "floor": 1,
@@ -5412,6 +5859,7 @@
   {
     "id": 595,
     "type": "Instance",
+    "exclude": true,
     "name": "Unwelcome Visitors",
     "title": "Unwelcome Visitors",
     "floor": 1,
@@ -5422,6 +5870,7 @@
   {
     "id": 596,
     "type": "Instance",
+    "exclude": true,
     "name": "Where Credit Is Due",
     "title": "Where Credit Is Due",
     "floor": 1,
@@ -5432,6 +5881,7 @@
   {
     "id": 597,
     "type": "Instance",
+    "exclude": true,
     "name": "Where Credit Is Due",
     "title": "Where Credit Is Due",
     "floor": 1,
@@ -5442,6 +5892,7 @@
   {
     "id": 598,
     "type": "Instance",
+    "exclude": true,
     "name": "Short Fuse",
     "title": "Short Fuse",
     "floor": 1,
@@ -5452,6 +5903,7 @@
   {
     "id": 599,
     "type": "Instance",
+    "exclude": true,
     "name": "Short Fuse",
     "title": "Short Fuse",
     "floor": 1,
@@ -5462,6 +5914,7 @@
   {
     "id": 606,
     "type": "Instance",
+    "exclude": true,
     "name": "Salt in the Wound",
     "title": "Salt in the Wound",
     "floor": 1,
@@ -5472,6 +5925,7 @@
   {
     "id": 607,
     "type": "Instance",
+    "exclude": true,
     "name": "Free Rein",
     "title": "Free Rein",
     "floor": 1,
@@ -5482,6 +5936,7 @@
   {
     "id": 608,
     "type": "Instance",
+    "exclude": true,
     "name": "Serving Up Trouble",
     "title": "Serving Up Trouble",
     "floor": 1,
@@ -5492,6 +5947,7 @@
   {
     "id": 609,
     "type": "Instance",
+    "exclude": true,
     "name": "Serving Up Trouble",
     "title": "Serving Up Trouble",
     "floor": 1,
@@ -5502,6 +5958,7 @@
   {
     "id": 61,
     "type": "Instance",
+    "exclude": true,
     "name": "Infiltration",
     "title": "Infiltration",
     "floor": 1,
@@ -5512,6 +5969,7 @@
   {
     "id": 610,
     "type": "Instance",
+    "exclude": true,
     "name": "Flash Flood",
     "title": "Flash Flood",
     "floor": 1,
@@ -5522,6 +5980,7 @@
   {
     "id": 611,
     "type": "Instance",
+    "exclude": true,
     "name": "I Smell a Rat",
     "title": "I Smell a Rat",
     "floor": 1,
@@ -5532,6 +5991,7 @@
   {
     "id": 613,
     "type": "Instance",
+    "exclude": true,
     "name": "Magnum Opus",
     "title": "Magnum Opus",
     "floor": 1,
@@ -5542,6 +6002,7 @@
   {
     "id": 614,
     "type": "Instance",
+    "exclude": true,
     "name": "Magnum Opus",
     "title": "Magnum Opus",
     "floor": 1,
@@ -5552,6 +6013,7 @@
   {
     "id": 617,
     "type": "Instance",
+    "exclude": true,
     "name": "Bad Business",
     "title": "Bad Business",
     "floor": 1,
@@ -5562,6 +6024,7 @@
   {
     "id": 618,
     "type": "Instance",
+    "exclude": true,
     "name": "Beta Test",
     "title": "Beta Test",
     "floor": 1,
@@ -5572,6 +6035,7 @@
   {
     "id": 619,
     "type": "Instance",
+    "exclude": true,
     "name": "Beta Test",
     "title": "Beta Test",
     "floor": 1,
@@ -5592,6 +6056,7 @@
   {
     "id": 620,
     "type": "Instance",
+    "exclude": true,
     "name": "Any Sufficiently Advanced Science",
     "title": "Any Sufficiently Advanced Science",
     "floor": 1,
@@ -5602,6 +6067,7 @@
   {
     "id": 621,
     "type": "Instance",
+    "exclude": true,
     "name": "Any Sufficiently Advanced Science",
     "title": "Any Sufficiently Advanced Science",
     "floor": 1,
@@ -5612,6 +6078,7 @@
   {
     "id": 622,
     "type": "Instance",
+    "exclude": true,
     "name": "Bad Forecast",
     "title": "Bad Forecast",
     "floor": 1,
@@ -5622,6 +6089,7 @@
   {
     "id": 623,
     "type": "Instance",
+    "exclude": true,
     "name": "Industrial Espionage",
     "title": "Industrial Espionage",
     "floor": 1,
@@ -5632,6 +6100,7 @@
   {
     "id": 624,
     "type": "Instance",
+    "exclude": true,
     "name": "Split Second",
     "title": "Split Second",
     "floor": 1,
@@ -5642,6 +6111,7 @@
   {
     "id": 625,
     "type": "Instance",
+    "exclude": true,
     "name": "Carry a Big Stick",
     "title": "Carry a Big Stick",
     "floor": 1,
@@ -5652,6 +6122,7 @@
   {
     "id": 627,
     "type": "Instance",
+    "exclude": true,
     "name": "Meeting my Mentor",
     "title": "Meeting my Mentor",
     "floor": 43,
@@ -5662,6 +6133,7 @@
   {
     "id": 628,
     "type": "Instance",
+    "exclude": true,
     "name": "Stealing Secrets",
     "title": "Stealing Secrets",
     "floor": 1,
@@ -5672,6 +6144,7 @@
   {
     "id": 629,
     "type": "Instance",
+    "exclude": true,
     "name": "A Bold New Theory",
     "title": "A Bold New Theory",
     "floor": 1,
@@ -5692,6 +6165,7 @@
   {
     "id": 630,
     "type": "Instance",
+    "exclude": true,
     "name": "Forging Permission",
     "title": "Forging Permission",
     "floor": 1,
@@ -5702,6 +6176,7 @@
   {
     "id": 631,
     "type": "Instance",
+    "exclude": true,
     "name": "Forging Permission",
     "title": "Forging Permission",
     "floor": 1,
@@ -5712,6 +6187,7 @@
   {
     "id": 633,
     "type": "Instance",
+    "exclude": true,
     "name": "Setting the Stage",
     "title": "Setting the Stage",
     "floor": 43,
@@ -5722,6 +6198,7 @@
   {
     "id": 634,
     "type": "Instance",
+    "exclude": true,
     "name": "Containment",
     "title": "Containment",
     "floor": 1,
@@ -5732,6 +6209,7 @@
   {
     "id": 635,
     "type": "Instance",
+    "exclude": true,
     "name": "Containment",
     "title": "Containment",
     "floor": 1,
@@ -5742,6 +6220,7 @@
   {
     "id": 636,
     "type": "Instance",
+    "exclude": true,
     "name": "Hazardous Environment",
     "title": "Hazardous Environment",
     "floor": 1,
@@ -5752,6 +6231,7 @@
   {
     "id": 638,
     "type": "Instance",
+    "exclude": true,
     "name": "Down the Hatch",
     "title": "Down the Hatch",
     "floor": 1,
@@ -5762,6 +6242,7 @@
   {
     "id": 639,
     "type": "Instance",
+    "exclude": true,
     "name": "Down the Hatch",
     "title": "Down the Hatch",
     "floor": 43,
@@ -5782,6 +6263,7 @@
   {
     "id": 642,
     "type": "Instance",
+    "exclude": true,
     "name": "The Stone Sheath",
     "title": "The Stone Sheath",
     "floor": 1,
@@ -5792,6 +6274,7 @@
   {
     "id": 643,
     "type": "Instance",
+    "exclude": true,
     "name": "Bad Blood",
     "title": "Bad Blood",
     "floor": 1,
@@ -5802,6 +6285,7 @@
   {
     "id": 644,
     "type": "Instance",
+    "exclude": true,
     "name": "Test Subject",
     "title": "Test Subject",
     "floor": 1,
@@ -5812,6 +6296,7 @@
   {
     "id": 645,
     "type": "Instance",
+    "exclude": true,
     "name": "Field Test",
     "title": "Field Test",
     "floor": 1,
@@ -5822,6 +6307,7 @@
   {
     "id": 646,
     "type": "Instance",
+    "exclude": true,
     "name": "The House of Caithe",
     "title": "The House of Caithe",
     "floor": 3,
@@ -5832,6 +6318,7 @@
   {
     "id": 647,
     "type": "Instance",
+    "exclude": true,
     "name": "Dreamer's Terrace (Home)",
     "title": "Dreamer's Terrace (Home)",
     "floor": 3,
@@ -5842,6 +6329,7 @@
   {
     "id": 648,
     "type": "Instance",
+    "exclude": true,
     "name": "The Omphalos Chamber",
     "title": "The Omphalos Chamber",
     "floor": 2,
@@ -5852,6 +6340,7 @@
   {
     "id": 649,
     "type": "Instance",
+    "exclude": true,
     "name": "Snaff Memorial Lab",
     "title": "Snaff Memorial Lab",
     "floor": 1,
@@ -5872,6 +6361,7 @@
   {
     "id": 650,
     "type": "Instance",
+    "exclude": true,
     "name": "Applied Development Lab (Home)",
     "title": "Applied Development Lab (Home)",
     "floor": 1,
@@ -5882,6 +6372,7 @@
   {
     "id": 651,
     "type": "Instance",
+    "exclude": true,
     "name": "Council Level",
     "title": "Council Level",
     "floor": 2,
@@ -5892,6 +6383,7 @@
   {
     "id": 652,
     "type": "Instance",
+    "exclude": true,
     "name": "A Meeting of the Minds",
     "title": "A Meeting of the Minds",
     "floor": 1,
@@ -5902,6 +6394,7 @@
   {
     "id": 653,
     "type": "Instance",
+    "exclude": true,
     "name": "Mightier than the Sword",
     "title": "Mightier than the Sword",
     "floor": 1,
@@ -5912,6 +6405,7 @@
   {
     "id": 654,
     "type": "Instance",
+    "exclude": true,
     "name": "They Went Thataway",
     "title": "They Went Thataway",
     "floor": 43,
@@ -5922,6 +6416,7 @@
   {
     "id": 655,
     "type": "Instance",
+    "exclude": true,
     "name": "Lines of Communication",
     "title": "Lines of Communication",
     "floor": 1,
@@ -5932,6 +6427,7 @@
   {
     "id": 656,
     "type": "Instance",
+    "exclude": true,
     "name": "Untamed Wilds",
     "title": "Untamed Wilds",
     "floor": 1,
@@ -5942,6 +6438,7 @@
   {
     "id": 657,
     "type": "Instance",
+    "exclude": true,
     "name": "An Apple a Day",
     "title": "An Apple a Day",
     "floor": 1,
@@ -5952,6 +6449,7 @@
   {
     "id": 658,
     "type": "Instance",
+    "exclude": true,
     "name": "Base of Operations",
     "title": "Base of Operations",
     "floor": -3,
@@ -5962,6 +6460,7 @@
   {
     "id": 659,
     "type": "Instance",
+    "exclude": true,
     "name": "The Lost Chieftain's Return",
     "title": "The Lost Chieftain's Return",
     "floor": 1,
@@ -5982,6 +6481,7 @@
   {
     "id": 660,
     "type": "Instance",
+    "exclude": true,
     "name": "Thrown Off Guard",
     "title": "Thrown Off Guard",
     "floor": 43,
@@ -5992,6 +6492,7 @@
   {
     "id": 662,
     "type": "Instance",
+    "exclude": true,
     "name": "Pets and Walls Make Stronger Kraals",
     "title": "Pets and Walls Make Stronger Kraals",
     "floor": 1,
@@ -6002,6 +6503,7 @@
   {
     "id": 663,
     "type": "Instance",
+    "exclude": true,
     "name": "Doubt",
     "title": "Doubt",
     "floor": 1,
@@ -6012,6 +6514,7 @@
   {
     "id": 664,
     "type": "Instance",
+    "exclude": true,
     "name": "The False God's Lair",
     "title": "The False God's Lair",
     "floor": 1,
@@ -6022,6 +6525,7 @@
   {
     "id": 666,
     "type": "Instance",
+    "exclude": true,
     "name": "Bad Ice",
     "title": "Bad Ice",
     "floor": 1,
@@ -6032,6 +6536,7 @@
   {
     "id": 667,
     "type": "Instance",
+    "exclude": true,
     "name": "Bad Ice",
     "title": "Bad Ice",
     "floor": 1,
@@ -6042,6 +6547,7 @@
   {
     "id": 668,
     "type": "Instance",
+    "exclude": true,
     "name": "Pets and Walls Make Stronger Kraals",
     "title": "Pets and Walls Make Stronger Kraals",
     "floor": 1,
@@ -6052,6 +6558,7 @@
   {
     "id": 669,
     "type": "Instance",
+    "exclude": true,
     "name": "Attempted Deicide",
     "title": "Attempted Deicide",
     "floor": 1,
@@ -6072,6 +6579,7 @@
   {
     "id": 670,
     "type": "Instance",
+    "exclude": true,
     "name": "Doubt",
     "title": "Doubt",
     "floor": 1,
@@ -6082,6 +6590,7 @@
   {
     "id": 672,
     "type": "Instance",
+    "exclude": true,
     "name": "Rat-Tastrophe",
     "title": "Rat-Tastrophe",
     "floor": 1,
@@ -6092,6 +6601,7 @@
   {
     "id": 673,
     "type": "Instance",
+    "exclude": true,
     "name": "Salvation Through Heresy",
     "title": "Salvation Through Heresy",
     "floor": 1,
@@ -6102,6 +6612,7 @@
   {
     "id": 674,
     "type": "Instance",
+    "exclude": true,
     "name": "Enraged and Unashamed",
     "title": "Enraged and Unashamed",
     "floor": 1,
@@ -6112,6 +6623,7 @@
   {
     "id": 675,
     "type": "Instance",
+    "exclude": true,
     "name": "Pastkeeper",
     "title": "Pastkeeper",
     "floor": 1,
@@ -6122,6 +6634,7 @@
   {
     "id": 676,
     "type": "Instance",
+    "exclude": true,
     "name": "Protest Too Much",
     "title": "Protest Too Much",
     "floor": 1,
@@ -6132,6 +6645,7 @@
   {
     "id": 677,
     "type": "Instance",
+    "exclude": true,
     "name": "Prying the Eye Open",
     "title": "Prying the Eye Open",
     "floor": 1,
@@ -6142,6 +6656,7 @@
   {
     "id": 678,
     "type": "Instance",
+    "exclude": true,
     "name": "The Hatchery",
     "title": "The Hatchery",
     "floor": 1,
@@ -6162,6 +6677,7 @@
   {
     "id": 680,
     "type": "Instance",
+    "exclude": true,
     "name": "Convincing the Faithful",
     "title": "Convincing the Faithful",
     "floor": 1,
@@ -6172,6 +6688,7 @@
   {
     "id": 681,
     "type": "Instance",
+    "exclude": true,
     "name": "Evacuation",
     "title": "Evacuation",
     "floor": 1,
@@ -6182,6 +6699,7 @@
   {
     "id": 682,
     "type": "Instance",
+    "exclude": true,
     "name": "Untamed Wilds",
     "title": "Untamed Wilds",
     "floor": 1,
@@ -6192,6 +6710,7 @@
   {
     "id": 683,
     "type": "Instance",
+    "exclude": true,
     "name": "Champion's Sacrifice",
     "title": "Champion's Sacrifice",
     "floor": 1,
@@ -6202,6 +6721,7 @@
   {
     "id": 684,
     "type": "Instance",
+    "exclude": true,
     "name": "Thieving from Thieves",
     "title": "Thieving from Thieves",
     "floor": 1,
@@ -6212,6 +6732,7 @@
   {
     "id": 685,
     "type": "Instance",
+    "exclude": true,
     "name": "Crusader's Return",
     "title": "Crusader's Return",
     "floor": 1,
@@ -6222,6 +6743,7 @@
   {
     "id": 686,
     "type": "Instance",
+    "exclude": true,
     "name": "Unholy Grounds",
     "title": "Unholy Grounds",
     "floor": 1,
@@ -6232,6 +6754,7 @@
   {
     "id": 687,
     "type": "Instance",
+    "exclude": true,
     "name": "Chosen of the Sun",
     "title": "Chosen of the Sun",
     "floor": 1,
@@ -6252,6 +6775,7 @@
   {
     "id": 691,
     "type": "Instance",
+    "exclude": true,
     "name": "Set to Blow",
     "title": "Set to Blow",
     "floor": 1,
@@ -6262,6 +6786,7 @@
   {
     "id": 692,
     "type": "Instance",
+    "exclude": true,
     "name": "Gadd's Last Gizmo",
     "title": "Gadd's Last Gizmo",
     "floor": 1,
@@ -6272,6 +6797,7 @@
   {
     "id": 693,
     "type": "Instance",
+    "exclude": true,
     "name": "Library Science",
     "title": "Library Science",
     "floor": 1,
@@ -6282,6 +6808,7 @@
   {
     "id": 694,
     "type": "Instance",
+    "exclude": true,
     "name": "Rakt and Ruin",
     "title": "Rakt and Ruin",
     "floor": 1,
@@ -6292,6 +6819,7 @@
   {
     "id": 695,
     "type": "Instance",
+    "exclude": true,
     "name": "Suspicious Activity",
     "title": "Suspicious Activity",
     "floor": -3,
@@ -6302,6 +6830,7 @@
   {
     "id": 696,
     "type": "Instance",
+    "exclude": true,
     "name": "Reconnaissance",
     "title": "Reconnaissance",
     "floor": 43,
@@ -6312,6 +6841,7 @@
   {
     "id": 697,
     "type": "Instance",
+    "exclude": true,
     "name": "Critical Blowback",
     "title": "Critical Blowback",
     "floor": -3,
@@ -6322,6 +6852,7 @@
   {
     "id": 698,
     "type": "Instance",
+    "exclude": true,
     "name": "The Battle of Claw Island",
     "title": "The Battle of Claw Island",
     "floor": 1,
@@ -6332,6 +6863,7 @@
   {
     "id": 699,
     "type": "Instance",
+    "exclude": true,
     "name": "Suspicious Activity",
     "title": "Suspicious Activity",
     "floor": 43,
@@ -6352,6 +6884,7 @@
   {
     "id": 700,
     "type": "Instance",
+    "exclude": true,
     "name": "Priory Library",
     "title": "Priory Library",
     "floor": 1,
@@ -6362,6 +6895,7 @@
   {
     "id": 701,
     "type": "Instance",
+    "exclude": true,
     "name": "On Red Alert",
     "title": "On Red Alert",
     "floor": 43,
@@ -6372,6 +6906,7 @@
   {
     "id": 702,
     "type": "Instance",
+    "exclude": true,
     "name": "Forearmed Is Forewarned",
     "title": "Forearmed Is Forewarned",
     "floor": 43,
@@ -6382,6 +6917,7 @@
   {
     "id": 703,
     "type": "Instance",
+    "exclude": true,
     "name": "The Oratory",
     "title": "The Oratory",
     "floor": 1,
@@ -6392,6 +6928,7 @@
   {
     "id": 704,
     "type": "Instance",
+    "exclude": true,
     "name": "Killing Fields",
     "title": "Killing Fields",
     "floor": 43,
@@ -6402,6 +6939,7 @@
   {
     "id": 705,
     "type": "Instance",
+    "exclude": true,
     "name": "The Ghost Rite",
     "title": "The Ghost Rite",
     "floor": 43,
@@ -6412,6 +6950,7 @@
   {
     "id": 706,
     "type": "Instance",
+    "exclude": true,
     "name": "The Good Fight",
     "title": "The Good Fight",
     "floor": 1,
@@ -6422,6 +6961,7 @@
   {
     "id": 707,
     "type": "Instance",
+    "exclude": true,
     "name": "Defense Contract",
     "title": "Defense Contract",
     "floor": 1,
@@ -6432,6 +6972,7 @@
   {
     "id": 708,
     "type": "Instance",
+    "exclude": true,
     "name": "Shards of Orr",
     "title": "Shards of Orr",
     "floor": 1,
@@ -6442,6 +6983,7 @@
   {
     "id": 709,
     "type": "Instance",
+    "exclude": true,
     "name": "The Sound of Psi-Lance",
     "title": "The Sound of Psi-Lance",
     "floor": 1,
@@ -6462,6 +7004,7 @@
   {
     "id": 710,
     "type": "Instance",
+    "exclude": true,
     "name": "Early Parole",
     "title": "Early Parole",
     "floor": 1,
@@ -6472,6 +7015,7 @@
   {
     "id": 711,
     "type": "Instance",
+    "exclude": true,
     "name": "Magic Sucks",
     "title": "Magic Sucks",
     "floor": 1,
@@ -6482,6 +7026,7 @@
   {
     "id": 712,
     "type": "Instance",
+    "exclude": true,
     "name": "A Light in the Darkness",
     "title": "A Light in the Darkness",
     "floor": -16,
@@ -6492,6 +7037,7 @@
   {
     "id": 713,
     "type": "Instance",
+    "exclude": true,
     "name": "The Priory Assailed",
     "title": "The Priory Assailed",
     "floor": 1,
@@ -6502,6 +7048,7 @@
   {
     "id": 714,
     "type": "Instance",
+    "exclude": true,
     "name": "Under Siege",
     "title": "Under Siege",
     "floor": 1,
@@ -6512,6 +7059,7 @@
   {
     "id": 715,
     "type": "Instance",
+    "exclude": true,
     "name": "Retribution",
     "title": "Retribution",
     "floor": 1,
@@ -6522,6 +7070,7 @@
   {
     "id": 716,
     "type": "Instance",
+    "exclude": true,
     "name": "Retribution",
     "title": "Retribution",
     "floor": 43,
@@ -6532,6 +7081,7 @@
   {
     "id": 719,
     "type": "Instance",
+    "exclude": true,
     "name": "The Sound of Psi-Lance",
     "title": "The Sound of Psi-Lance",
     "floor": 1,
@@ -6542,6 +7092,7 @@
   {
     "id": 726,
     "type": "Instance",
+    "exclude": true,
     "name": "Wet Work",
     "title": "Wet Work",
     "floor": 1,
@@ -6552,6 +7103,7 @@
   {
     "id": 727,
     "type": "Instance",
+    "exclude": true,
     "name": "Shell Shock",
     "title": "Shell Shock",
     "floor": 1,
@@ -6562,6 +7114,7 @@
   {
     "id": 728,
     "type": "Instance",
+    "exclude": true,
     "name": "Volcanic Extraction",
     "title": "Volcanic Extraction",
     "floor": 1,
@@ -6572,6 +7125,7 @@
   {
     "id": 729,
     "type": "Instance",
+    "exclude": true,
     "name": "Munition Acquisition",
     "title": "Munition Acquisition",
     "floor": 1,
@@ -6592,6 +7146,7 @@
   {
     "id": 730,
     "type": "Instance",
+    "exclude": true,
     "name": "To the Core",
     "title": "To the Core",
     "floor": 1,
@@ -6602,6 +7157,7 @@
   {
     "id": 731,
     "type": "Instance",
+    "exclude": true,
     "name": "The Battle of Fort Trinity",
     "title": "The Battle of Fort Trinity",
     "floor": 1,
@@ -6612,6 +7168,7 @@
   {
     "id": 732,
     "type": "Instance",
+    "exclude": true,
     "name": "Tower Down",
     "title": "Tower Down",
     "floor": 1,
@@ -6622,6 +7179,7 @@
   {
     "id": 733,
     "type": "Instance",
+    "exclude": true,
     "name": "Forging the Pact",
     "title": "Forging the Pact",
     "floor": 1,
@@ -6632,6 +7190,7 @@
   {
     "id": 735,
     "type": "Instance",
+    "exclude": true,
     "name": "Willing Captives",
     "title": "Willing Captives",
     "floor": 1,
@@ -6642,6 +7201,7 @@
   {
     "id": 736,
     "type": "Instance",
+    "exclude": true,
     "name": "Marshaling the Truth",
     "title": "Marshaling the Truth",
     "floor": 1,
@@ -6652,6 +7212,7 @@
   {
     "id": 737,
     "type": "Instance",
+    "exclude": true,
     "name": "Breaking the Bone Ship",
     "title": "Breaking the Bone Ship",
     "floor": 1,
@@ -6662,6 +7223,7 @@
   {
     "id": 738,
     "type": "Instance",
+    "exclude": true,
     "name": "Liberating Apatia",
     "title": "Liberating Apatia",
     "floor": 1,
@@ -6672,6 +7234,7 @@
   {
     "id": 739,
     "type": "Instance",
+    "exclude": true,
     "name": "Liberating Apatia",
     "title": "Liberating Apatia",
     "floor": 1,
@@ -6682,6 +7245,7 @@
   {
     "id": 743,
     "type": "Instance",
+    "exclude": true,
     "name": "Fixing the Blame",
     "title": "Fixing the Blame",
     "floor": 1,
@@ -6692,6 +7256,7 @@
   {
     "id": 744,
     "type": "Instance",
+    "exclude": true,
     "name": "A Sad Duty",
     "title": "A Sad Duty",
     "floor": 1,
@@ -6702,6 +7267,7 @@
   {
     "id": 745,
     "type": "Instance",
+    "exclude": true,
     "name": "Striking off the Chains",
     "title": "Striking off the Chains",
     "floor": 1,
@@ -6712,6 +7278,7 @@
   {
     "id": 746,
     "type": "Instance",
+    "exclude": true,
     "name": "Delivering Justice",
     "title": "Delivering Justice",
     "floor": 1,
@@ -6722,6 +7289,7 @@
   {
     "id": 747,
     "type": "Instance",
+    "exclude": true,
     "name": "Intercepting the Orb",
     "title": "Intercepting the Orb",
     "floor": 1,
@@ -6742,6 +7310,7 @@
   {
     "id": 750,
     "type": "Instance",
+    "exclude": true,
     "name": "Close the Eye",
     "title": "Close the Eye",
     "floor": 1,
@@ -6752,6 +7321,7 @@
   {
     "id": 751,
     "type": "Instance",
+    "exclude": true,
     "name": "Through the Looking Glass",
     "title": "Through the Looking Glass",
     "floor": 1,
@@ -6762,6 +7332,7 @@
   {
     "id": 758,
     "type": "Instance",
+    "exclude": true,
     "name": "The Cathedral of Silence",
     "title": "The Cathedral of Silence",
     "floor": 1,
@@ -6782,6 +7353,7 @@
   {
     "id": 760,
     "type": "Instance",
+    "exclude": true,
     "name": "Starving the Beast",
     "title": "Starving the Beast",
     "floor": 1,
@@ -6792,6 +7364,7 @@
   {
     "id": 761,
     "type": "Instance",
+    "exclude": true,
     "name": "Stealing Light",
     "title": "Stealing Light",
     "floor": 1,
@@ -6802,6 +7375,7 @@
   {
     "id": 762,
     "type": "Instance",
+    "exclude": true,
     "name": "Hunters and Prey",
     "title": "Hunters and Prey",
     "floor": 1,
@@ -6812,6 +7386,7 @@
   {
     "id": 763,
     "type": "Instance",
+    "exclude": true,
     "name": "Romke's Final Voyage",
     "title": "Romke's Final Voyage",
     "floor": 1,
@@ -6822,6 +7397,7 @@
   {
     "id": 764,
     "type": "Instance",
+    "exclude": true,
     "name": "Marching Orders",
     "title": "Marching Orders",
     "floor": 1,
@@ -6832,6 +7408,7 @@
   {
     "id": 766,
     "type": "Instance",
+    "exclude": true,
     "name": "Air Drop",
     "title": "Air Drop",
     "floor": 1,
@@ -6842,6 +7419,7 @@
   {
     "id": 767,
     "type": "Instance",
+    "exclude": true,
     "name": "Estate of Decay",
     "title": "Estate of Decay",
     "floor": 1,
@@ -6852,6 +7430,7 @@
   {
     "id": 768,
     "type": "Instance",
+    "exclude": true,
     "name": "What the Eye Beholds",
     "title": "What the Eye Beholds",
     "floor": 1,
@@ -6862,6 +7441,7 @@
   {
     "id": 769,
     "type": "Instance",
+    "exclude": true,
     "name": "Conscript the Dead Ships",
     "title": "Conscript the Dead Ships",
     "floor": 1,
@@ -6872,6 +7452,7 @@
   {
     "id": 77,
     "type": "Instance",
+    "exclude": true,
     "name": "Search the Premises",
     "title": "Search the Premises",
     "floor": 1,
@@ -6882,6 +7463,7 @@
   {
     "id": 772,
     "type": "Instance",
+    "exclude": true,
     "name": "Ossuary of Unquiet Dead",
     "title": "Ossuary of Unquiet Dead",
     "floor": 1,
@@ -6892,6 +7474,7 @@
   {
     "id": 775,
     "type": "Instance",
+    "exclude": true,
     "name": "Temple of the Forgotten God",
     "title": "Temple of the Forgotten God",
     "floor": 1,
@@ -6902,6 +7485,7 @@
   {
     "id": 776,
     "type": "Instance",
+    "exclude": true,
     "name": "Temple of the Forgotten God",
     "title": "Temple of the Forgotten God",
     "floor": -8,
@@ -6912,6 +7496,7 @@
   {
     "id": 777,
     "type": "Instance",
+    "exclude": true,
     "name": "Temple of the Forgotten God",
     "title": "Temple of the Forgotten God",
     "floor": 1,
@@ -6922,6 +7507,7 @@
   {
     "id": 778,
     "type": "Instance",
+    "exclude": true,
     "name": "Through the Looking Glass",
     "title": "Through the Looking Glass",
     "floor": 1,
@@ -6932,6 +7518,7 @@
   {
     "id": 779,
     "type": "Instance",
+    "exclude": true,
     "name": "Starving the Beast",
     "title": "Starving the Beast",
     "floor": 1,
@@ -6942,6 +7529,7 @@
   {
     "id": 780,
     "type": "Instance",
+    "exclude": true,
     "name": "Against the Corruption",
     "title": "Against the Corruption",
     "floor": 1,
@@ -6952,6 +7540,7 @@
   {
     "id": 781,
     "type": "Instance",
+    "exclude": true,
     "name": "The Source of Orr",
     "title": "The Source of Orr",
     "floor": 1,
@@ -6962,6 +7551,7 @@
   {
     "id": 782,
     "type": "Instance",
+    "exclude": true,
     "name": "Armor Guard",
     "title": "Armor Guard",
     "floor": 1,
@@ -6972,6 +7562,7 @@
   {
     "id": 783,
     "type": "Instance",
+    "exclude": true,
     "name": "Blast from the Past",
     "title": "Blast from the Past",
     "floor": 1,
@@ -6982,6 +7573,7 @@
   {
     "id": 784,
     "type": "Instance",
+    "exclude": true,
     "name": "The Steel Tide",
     "title": "The Steel Tide",
     "floor": 1,
@@ -6992,6 +7584,7 @@
   {
     "id": 785,
     "type": "Instance",
+    "exclude": true,
     "name": "Further Into Orr",
     "title": "Further Into Orr",
     "floor": 1,
@@ -7002,6 +7595,7 @@
   {
     "id": 786,
     "type": "Instance",
+    "exclude": true,
     "name": "Ships of the Line",
     "title": "Ships of the Line",
     "floor": 1,
@@ -7012,6 +7606,7 @@
   {
     "id": 787,
     "type": "Instance",
+    "exclude": true,
     "name": "Source of Orr",
     "title": "Source of Orr",
     "floor": 1,
@@ -7022,6 +7617,7 @@
   {
     "id": 788,
     "type": "Instance",
+    "exclude": true,
     "name": "Victory or Death",
     "title": "Victory or Death",
     "floor": 1,
@@ -7032,6 +7628,7 @@
   {
     "id": 789,
     "type": "Instance",
+    "exclude": true,
     "name": "A Grisly Shipment",
     "title": "A Grisly Shipment",
     "floor": 1,
@@ -7042,6 +7639,7 @@
   {
     "id": 79,
     "type": "Instance",
+    "exclude": true,
     "name": "The Informant",
     "title": "The Informant",
     "floor": 1,
@@ -7052,6 +7650,7 @@
   {
     "id": 790,
     "type": "Instance",
+    "exclude": true,
     "name": "Blast from the Past",
     "title": "Blast from the Past",
     "floor": 1,
@@ -7062,6 +7661,7 @@
   {
     "id": 792,
     "type": "Instance",
+    "exclude": true,
     "name": "A Pup's Illness",
     "title": "A Pup's Illness",
     "floor": 1,
@@ -7072,6 +7672,7 @@
   {
     "id": 793,
     "type": "Instance",
+    "exclude": true,
     "name": "Hunters and Prey",
     "title": "Hunters and Prey",
     "floor": 1,
@@ -7092,6 +7693,7 @@
   {
     "id": 796,
     "type": "Instance",
+    "exclude": true,
     "name": "The Informant",
     "title": "The Informant",
     "floor": 1,
@@ -7102,6 +7704,7 @@
   {
     "id": 797,
     "type": "Instance",
+    "exclude": true,
     "name": "A Traitor's Testimony",
     "title": "A Traitor's Testimony",
     "floor": 1,
@@ -7112,6 +7715,7 @@
   {
     "id": 799,
     "type": "Instance",
+    "exclude": true,
     "name": "Follow the Trail",
     "title": "Follow the Trail",
     "floor": 1,
@@ -7122,6 +7726,7 @@
   {
     "id": 80,
     "type": "Instance",
+    "exclude": true,
     "name": "A Society Function",
     "title": "A Society Function",
     "floor": 1,
@@ -7132,6 +7737,7 @@
   {
     "id": 806,
     "type": "Instance",
+    "exclude": true,
     "name": "Awakening",
     "title": "Awakening",
     "floor": 1,
@@ -7142,6 +7748,7 @@
   {
     "id": 807,
     "type": "Instance",
+    "exclude": true,
     "name": "Eye of the North",
     "title": "Eye of the North",
     "floor": 1,
@@ -7172,6 +7779,7 @@
   {
     "id": 820,
     "type": "Instance",
+    "exclude": true,
     "name": "The Omphalos Chamber",
     "title": "The Omphalos Chamber",
     "floor": 1,
@@ -7182,6 +7790,7 @@
   {
     "id": 821,
     "type": "Instance",
+    "exclude": true,
     "name": "The Omphalos Chamber",
     "title": "The Omphalos Chamber",
     "floor": 1,
@@ -7192,6 +7801,7 @@
   {
     "id": 825,
     "type": "Instance",
+    "exclude": true,
     "name": "Codebreaker",
     "title": "Codebreaker",
     "floor": 1,
@@ -7202,6 +7812,7 @@
   {
     "id": 827,
     "type": "Instance",
+    "exclude": true,
     "name": "Caer Aval",
     "title": "Caer Aval",
     "floor": 1,
@@ -7212,6 +7823,7 @@
   {
     "id": 828,
     "type": "Instance",
+    "exclude": true,
     "name": "The Durmand Priory",
     "title": "The Durmand Priory",
     "floor": 1,
@@ -7222,6 +7834,7 @@
   {
     "id": 830,
     "type": "Instance",
+    "exclude": true,
     "name": "Vigil Headquarters",
     "title": "Vigil Headquarters",
     "floor": 1,
@@ -7232,6 +7845,7 @@
   {
     "id": 833,
     "type": "Instance",
+    "exclude": true,
     "name": "Ash Tribune Quarters",
     "title": "Ash Tribune Quarters",
     "floor": 1,
@@ -7242,6 +7856,7 @@
   {
     "id": 845,
     "type": "Instance",
+    "exclude": true,
     "name": "Shattered Light",
     "title": "Shattered Light",
     "floor": 1,
@@ -7262,6 +7877,7 @@
   {
     "id": 863,
     "type": "Instance",
+    "exclude": true,
     "name": "Ascent to Madness",
     "title": "Ascent to Madness",
     "floor": -28,
@@ -7342,6 +7958,7 @@
   {
     "id": 878,
     "type": "Instance",
+    "exclude": true,
     "name": "Tixx's Infinirarium",
     "title": "Tixx's Infinirarium",
     "floor": 13,
@@ -7382,6 +7999,7 @@
   {
     "id": 89,
     "type": "Instance",
+    "exclude": true,
     "name": "Chasing the Culprits",
     "title": "Chasing the Culprits",
     "floor": 1,
@@ -7402,6 +8020,7 @@
   {
     "id": 895,
     "type": "Instance",
+    "exclude": true,
     "name": "Super Adventure Box",
     "title": "Super Adventure Box",
     "floor": 21,
@@ -7412,6 +8031,7 @@
   {
     "id": 896,
     "type": "Instance",
+    "exclude": true,
     "name": "North Nolan Hatchery",
     "title": "North Nolan Hatchery",
     "floor": 1,
@@ -7422,6 +8042,7 @@
   {
     "id": 897,
     "type": "Instance",
+    "exclude": true,
     "name": "Cragstead",
     "title": "Cragstead",
     "floor": 1,
@@ -7482,6 +8103,7 @@
   {
     "id": 914,
     "type": "Instance",
+    "exclude": true,
     "name": "The Dead End",
     "title": "The Dead End",
     "floor": 1,
@@ -7512,6 +8134,7 @@
   {
     "id": 92,
     "type": "Instance",
+    "exclude": true,
     "name": "The Trial of Julius Zamon",
     "title": "The Trial of Julius Zamon",
     "floor": 1,
@@ -7542,6 +8165,7 @@
   {
     "id": 924,
     "type": "Instance",
+    "exclude": true,
     "name": "Grandmaster of Om",
     "title": "Grandmaster of Om",
     "floor": 1,
@@ -7562,6 +8186,7 @@
   {
     "id": 934,
     "type": "Instance",
+    "exclude": true,
     "name": "Super Adventure Box",
     "title": "Super Adventure Box",
     "floor": 28,
@@ -7752,6 +8377,7 @@
   {
     "id": 964,
     "type": "Instance",
+    "exclude": true,
     "name": "Scarlet's Secret Lair",
     "title": "Scarlet's Secret Lair",
     "floor": 1,
@@ -7772,6 +8398,7 @@
   {
     "id": 97,
     "type": "Instance",
+    "exclude": true,
     "name": "Infiltration",
     "title": "Infiltration",
     "floor": 1,
@@ -7802,6 +8429,7 @@
   {
     "id": 989,
     "type": "Instance",
+    "exclude": true,
     "name": "Prosperity's Mystery",
     "title": "Prosperity's Mystery",
     "floor": 1,
@@ -7812,6 +8440,7 @@
   {
     "id": 990,
     "type": "Instance",
+    "exclude": true,
     "name": "Cornered",
     "title": "Cornered",
     "floor": 1,
@@ -7822,6 +8451,7 @@
   {
     "id": 991,
     "type": "Instance",
+    "exclude": true,
     "name": "Disturbance in Brisban Wildlands",
     "title": "Disturbance in Brisban Wildlands",
     "floor": 1,
@@ -7832,6 +8462,7 @@
   {
     "id": 992,
     "type": "Instance",
+    "exclude": true,
     "name": "Fallen Hopes",
     "title": "Fallen Hopes",
     "floor": 1,
@@ -7842,6 +8473,7 @@
   {
     "id": 993,
     "type": "Instance",
+    "exclude": true,
     "name": "Scarlet's Secret Room",
     "title": "Scarlet's Secret Room",
     "floor": 1,
@@ -7852,6 +8484,7 @@
   {
     "id": 994,
     "type": "Instance",
+    "exclude": true,
     "name": "The Concordia Incident",
     "title": "The Concordia Incident",
     "floor": 1,
@@ -7862,6 +8495,7 @@
   {
     "id": 997,
     "type": "Instance",
+    "exclude": true,
     "name": "Discovering Scarlet's Breakthrough",
     "title": "Discovering Scarlet's Breakthrough",
     "floor": 1,
@@ -7870,6 +8504,7 @@
   {
     "id": 998,
     "type": "Instance",
+    "exclude": true,
     "name": "The Machine",
     "title": "The Machine",
     "floor": 1,
@@ -7878,6 +8513,7 @@
   {
     "id": 999,
     "type": "Instance",
+    "exclude": true,
     "name": "Trouble at Fort Salma",
     "title": "Trouble at Fort Salma",
     "floor": 1,

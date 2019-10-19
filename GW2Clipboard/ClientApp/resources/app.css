@@ -107,15 +107,18 @@ div.selected-group {
 
 fieldset {
     color: #fff;
-    border-color: #666;
+    border-color: #333;
     border-radius: 5px;
     padding: 0 5px 0 5px;
     margin: 5px;
+    border: none; /* Testing cleaner look */
 }
 
 legend {
+    position: relative;
     color: #fff
 }
+
 
 input, select {
     border-radius: 5px;

@@ -28,12 +28,19 @@ export interface ICategory {
 }
 
 export interface ISettings {
-	uISize: number;
-	hostFormTop: number;
-	hostFormLeft: number;
-	hostFormHeight: number;
-	hostFormWidth: number;
-	hotKeys: { [key: number]: number[] };
+	UISize: number;
+	Opacity:number;
+	MinimizeOnStart:boolean;
+	MinimizeOnDrawerClosed:boolean;
+	DrawerOpenTop:number;
+	DrawerOpenLeft:number;
+	DrawerOpenHeight:number;
+	DrawerOpenWidth:number;
+	DrawerClosedTop:number;
+	DrawerClosedLeft:number;
+	DrawerClosedHeight:number;
+	DrawerClosedWidth:number;
+	HotKeys: { [key: number]: number[] };
 }
 
 export enum HotKey {
@@ -44,7 +51,8 @@ export enum HotKey {
 	Down = 104,
 	Left = 105,
 	Right = 106,
-	Select = 107
+	Select = 107,
+	Minimize = 108
 }
 
 export interface IConfig {

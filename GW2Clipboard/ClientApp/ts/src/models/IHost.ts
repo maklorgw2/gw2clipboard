@@ -6,6 +6,7 @@ export interface IHost {
 	IsInSystemTray: () => boolean;
 	openDrawer: () => void;
 	closeDrawer: () => void;
+	minimize: () => void;
 	exit: () => void;
 	refresh: () => void;
 	setClipBoardData: (text: string) => void;
