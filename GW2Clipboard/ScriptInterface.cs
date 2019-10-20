@@ -35,7 +35,7 @@ namespace GW2Clipboard
             this.hostBridge = hostBridge;
         }
 
-        public void OpenDrawer() => hostBridge.OpenDrawer();
+        public void OpenDrawer() => hostBridge.OpenDrawer(true);
 
         public bool IsDrawerOpen() => hostBridge.IsDrawerOpen;
 
@@ -43,11 +43,13 @@ namespace GW2Clipboard
 
         public bool IsDebugMode => hostBridge.IsDebugMode;
 
-        public void CloseDrawer() => hostBridge.CloseDrawer();
+        public void CloseDrawer() => hostBridge.CloseDrawer(true);
 
         public void Exit() => hostBridge.Exit();
 
-        public void Minimize() => hostBridge.Minimize();
+        public void MinimizeWindow() => hostBridge.MinimizeWindow();
+
+        public void RestoreWindow() => hostBridge.RestoreWindow();
 
         public void Refresh() => hostBridge.Refresh();
 
@@ -60,7 +62,9 @@ namespace GW2Clipboard
         public string LoadCategories() => hostBridge.LoadCategories();
 
         public void SaveCategories(string json) => hostBridge.SaveCategories(json);
-
+        
+        public void SetClientReady(bool ready) => hostBridge.IsClientReady = ready;
+        
         public string SetClipBoardData(string data)
         {
             try
@@ -72,7 +76,7 @@ namespace GW2Clipboard
                     {
                         try
                         {
-                            Clipboard.SetText(data,TextDataFormat.Text);
+                            Clipboard.SetText(data, TextDataFormat.Text);
                         }
 
                         catch (Exception ex)
@@ -85,9 +89,9 @@ namespace GW2Clipboard
                 staThread.Join();
                 return clipboardData;
             }
-            #pragma warning disable CS0168 // Variable is declared but never used
+#pragma warning disable CS0168 // Variable is declared but never used
             catch (Exception exception)
-            #pragma warning restore CS0168 // Variable is declared but never used
+#pragma warning restore CS0168 // Variable is declared but never used
             {
                 return string.Empty;
             }
@@ -129,7 +133,8 @@ namespace GW2Clipboard
             var context = ByteArrayToContext(mumbleData.context);
 
             var identity = string.IsNullOrEmpty(mumbleData.identity) ? "{}" : mumbleData.identity;
-            var output = JsonConvert.SerializeObject(new {
+            var output = JsonConvert.SerializeObject(new
+            {
                 mumbleData.fAvatarFront,
                 mumbleData.fAvatarPosition,
                 mumbleData.fCameraFront,
@@ -141,7 +146,7 @@ namespace GW2Clipboard
                 context,
             });
 
-            var outputEx= $"{output.Substring(0, output.Length - 1)},\"identity\":{identity}}}";
+            var outputEx = $"{output.Substring(0, output.Length - 1)},\"identity\":{identity}}}";
             return outputEx;
         }
     }

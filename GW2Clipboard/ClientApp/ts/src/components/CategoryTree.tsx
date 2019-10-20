@@ -13,9 +13,9 @@ import {
 	IMapLocationTag,
 	IProfessionTag,
 	GameModeType,
-	IGameModeTag,
+	IGameModeTag
 } from '@models/ITag';
-import { HotKey, ICategory, CategoryType } from '@models/IConfig';
+import { Actions, ICategory, CategoryType } from '@models/IConfig';
 import { EditCategory } from './EditCategory';
 
 export interface IRenderData extends IMumbleData {
@@ -59,13 +59,13 @@ const generateNodes = (selected: ISelectedCategory, categoryLength: number) => {
 	};
 };
 
-export const moveSelected = (store: IStore, hotKey: HotKey) => {
+export const moveSelected = (store: IStore, hotKey: Actions) => {
 	const state = store.getState();
 	const selected = { ...state.selectedCategory };
 	const nodes = generateNodes(selected, state.filteredCategories.length);
 
 	switch (hotKey) {
-		case HotKey.Up:
+		case Actions.Up:
 			if (nodes.childSelected && nodes.previousChild != null) {
 				selected.childIndex = nodes.previousChild;
 				break;
@@ -92,7 +92,7 @@ export const moveSelected = (store: IStore, hotKey: HotKey) => {
 			}
 			break;
 
-		case HotKey.Down:
+		case Actions.Down:
 			if (nodes.childSelected && nodes.nextChild != null) {
 				selected.childIndex = nodes.nextChild;
 				break;
@@ -110,7 +110,7 @@ export const moveSelected = (store: IStore, hotKey: HotKey) => {
 			}
 			break;
 
-		case HotKey.Left:
+		case Actions.Left:
 			if (nodes.childSelected) {
 				selected.childIndex = null;
 				if (state.filteredCategories[selected.index].groups[selected.groupIndex].text.length == 1)
@@ -123,7 +123,7 @@ export const moveSelected = (store: IStore, hotKey: HotKey) => {
 			}
 			break;
 
-		case HotKey.Right:
+		case Actions.Right:
 			if (nodes.childSelected) break;
 			if (nodes.groupSelected) {
 				selected.childIndex = 0;
@@ -201,31 +201,32 @@ enum FilterMode {
 	None
 }
 
-type FilterOptions = {
+interface IFilterOptions {
 	filterMode: FilterMode;
-};
+}
 
 export const CategoryTree = () => {
 	const { store, state } = useStore();
 	const { categoryType } = useParams();
 	const mumbleData = useMumbleData(POLL_MS);
-	const [ filterOptions, setFilterOptions ] = useState<FilterOptions>({ filterMode: FilterMode.All });
+	const [ filterOptions, setFilterOptions ] = useState<IFilterOptions>({ filterMode: FilterMode.All });
 	const [ viewMode, setViewMode ] = useState<ViewMode>(ViewMode.View);
 	const typeCategories = HostManager.getConfig().categoryData.filter((cd) => cd.categoryType == Number(categoryType));
 
 	useEffect(
 		() => {
 			document.body.focus();
-
 			setViewMode(ViewMode.View);
-
+			// Profession filter mode not valid for Text category
+			if (filterOptions.filterMode == FilterMode.Profession && Number(categoryType) == CategoryType.Text) {
+				setFilterOptions({ filterMode: FilterMode.All });
+			}
 			store.updateState({
 				area: Number(categoryType),
 				selectedCategory: {} as any,
 				filteredCategories: [],
 				hotKeyHandler: (hotKey) => moveSelected(store, hotKey)
 			});
-			if (!HostManager.isDrawerOpen()) HostManager.openDrawer();
 			return () => {
 				store.updateState({ hotKeyHandler: null });
 			};

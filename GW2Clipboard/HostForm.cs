@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
+using static GW2Clipboard.Settings;
 
 namespace GW2Clipboard
 {
     public partial class HostForm : FormBase
     {
-        Dictionary<int, HotKey> hotKeys = new Dictionary<int, HotKey>();
+        HotKey hotKeys;
         public HostBridge hostBridge;
         string appFileName;
+        bool firstRun = true;
 
         #region HostForm
         public HostForm()
@@ -44,7 +47,7 @@ namespace GW2Clipboard
             // Allow this window to be 
             MinimumSize = new Size(30, 30);
             UpdateBounds();
-            
+
             TitleLabel.MouseDown += TitleLabel_MouseDown;
             TitleLabel.MouseUp += (s, e) => { if (e.Button == MouseButtons.Right && TitleLabel.ClientRectangle.Contains(e.Location)) ShowSystemMenu(MouseButtons); };
             TitleLabel.Text = Text;
@@ -69,7 +72,7 @@ namespace GW2Clipboard
             }
         }
 
-        public void setOpacity()
+        public void ApplySettings()
         {
             var newOpacity = hostBridge.Settings.Opacity / 100.0;
             if (newOpacity < 0) newOpacity = 0.1;
@@ -82,37 +85,44 @@ namespace GW2Clipboard
 
         private void HostForm_Load(object sender, EventArgs e)
         {
-            this.Hide();
-
             this.Text = "GW2Clipboard";
             this.notifyIcon.Icon = this.Icon;
+            this.notifyIcon.Visible = true;
 
             hostBridge = new HostBridge(this);
-            setOpacity();
+            ApplySettings();
 
             // Configure launch page (app.html for a release and app-debug.html when debugger is attached)
             string currentDirectory = Directory.GetCurrentDirectory();
             if (hostBridge.IsDebugMode)
             {
+                //#/CategoryType/0
                 currentDirectory = Directory.GetParent(currentDirectory).Parent.FullName;
-                appFileName = String.Format("file:///{0}/ClientApp/app-debug.html", currentDirectory.Replace("\\", "/"));
-            } else appFileName = String.Format("file:///{0}/ClientApp/app.html", currentDirectory.Replace("\\", "/"));
+                appFileName = String.Format("file:///{0}/ClientApp/app-debug.html#/CategoryType/0", currentDirectory.Replace("\\", "/"));
+            }
+            else appFileName = String.Format("file:///{0}/ClientApp/app.html#/CategoryType/0", currentDirectory.Replace("\\", "/"));
 
-            hostBridge.CloseDrawer();
+            if (hostBridge.Settings.MinimizeOnStart || hostBridge.Settings.MinimizeOnDrawerClosed) hostBridge.OpenDrawer(false);
+            else hostBridge.CloseDrawer(false);
 
             // Registry HotKeys
             var hotKeySettings = hostBridge.Settings.HotKeys;
+            var hotKeyDefs = new List<HotKeyDefinition>();
             foreach (var key in hotKeySettings.Keys)
             {
                 var hotkey = hotKeySettings[key];
-                hotKeys.Add(key, new HotKey(key, (Keys)hotkey[0], (HotKey.KeyModifiers)hotkey[1], HotKeyDetected));
+                hotKeyDefs.Add(new HotKeyDefinition
+                {
+                    id = key,
+                    key = (Keys)hotkey[0],
+                    modifier = (KeyModifiers)hotkey[1]
+                });
             }
+            hotKeys = new HotKey(hotKeyDefs, HotKeyDetected);
 
             this.browser.ObjectForScripting = new ScriptInterface(hostBridge);
             this.browser.DocumentCompleted += DocumentCompleted;
             this.browser.Navigate(appFileName);
-
-            this.Show();
 
             autoSaveTimer.Enabled = true;
         }
@@ -148,7 +158,6 @@ namespace GW2Clipboard
             Hover,
             Down
         }
-
         protected void SetLabelColors(Control control, MouseState state)
         {
             if (!ContainsFocus) return;
@@ -200,7 +209,7 @@ namespace GW2Clipboard
         {
             if (e.Button == MouseButtons.Right) ShowSystemMenu(MouseButtons);
         }
-     
+
         void SystemLabel_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -234,7 +243,6 @@ namespace GW2Clipboard
         {
             if (e.Button == MouseButtons.Left)
             {
-
                 var clickTime = (DateTime.Now - titleClickTime).TotalMilliseconds;
                 if (clickTime < SystemInformation.DoubleClickTime && e.Location == titleClickPosition)
                 {
@@ -301,7 +309,6 @@ namespace GW2Clipboard
         }
         #endregion
 
-
         #region WebBrowserControl methods
         public void RefreshBrowser()
         {
@@ -311,25 +318,18 @@ namespace GW2Clipboard
 
         private void HotKeyDetected(object sender, HotKeyEventArgs e)
         {
-            this.browser.Document.InvokeScript("eval", new object[] { $"window.store.processHotKey({e.id})" });
+            this.browser.Document.InvokeScript("eval", new object[] { $"window.store.processAction({e.id})" });
+        }
+
+        public void ClientAction(int action)
+        {
+            if (this.browser.Document != null) this.browser.Document.InvokeScript("eval", new object[] { $"window.store.processAction({action})" });
         }
 
         void DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
         }
         #endregion
-
-        private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            Show();
-            this.WindowState = FormWindowState.Normal;
-            notifyIcon.Visible = false;
-        }
-
-        private void notifyIcon_MouseClick(object sender, MouseEventArgs e)
-        {
-            notifyIcon_MouseDoubleClick(sender, e);
-        }
 
         private void autoSaveTimer_Tick(object sender, EventArgs e)
         {
@@ -344,23 +344,58 @@ namespace GW2Clipboard
             {
                 hostBridge.Settings.DrawerClosedTop = this.Top;
                 hostBridge.Settings.DrawerClosedLeft = this.Left;
-                hostBridge.Settings.DrawerClosedHeight = this.Height;
-                hostBridge.Settings.DrawerClosedWidth = this.Width;
+                //hostBridge.Settings.DrawerClosedHeight = this.Height;
+                //hostBridge.Settings.DrawerClosedWidth = this.Width;
             }
         }
 
+        public void OpenFromSystemTray()
+        {
+            hostBridge.IsInSystemTray = false;
+            Show();
+            hostBridge.RefreshClient();
+            this.WindowState = FormWindowState.Normal;
+        }
+
+        public void MinimizeToSystemTray()
+        {
+            Hide();
+            //hostBridge.RefreshClient();
+            hostBridge.IsInSystemTray = true;
+        }
+
+        private void ToggleFromSystemTray()
+        {
+            if (hostBridge.IsInSystemTray) OpenFromSystemTray();
+            else MinimizeToSystemTray();
+        }
+
+        private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            ToggleFromSystemTray();
+        }
+
+        private void notifyIcon_MouseClick(object sender, MouseEventArgs e)
+        {
+            ToggleFromSystemTray();
+        }
+
+
         private void HostForm_Resize(object sender, EventArgs e)
         {
-            //if (this.WindowState == FormWindowState.Minimized)
-            //{
-            //    Hide();
-            //    notifyIcon.Visible = true;
-            //}
             if (this.MinMaxState == FormWindowState.Minimized)
             {
-                Hide();
-                notifyIcon.Visible = true;
+                MinimizeToSystemTray();
             }
+        }
+
+        private void HostForm_Shown(object sender, EventArgs e)
+        {
+            if (hostBridge.Settings.MinimizeOnStart && firstRun)
+            {
+                MinimizeToSystemTray();
+            }
+            firstRun = false;
         }
     }
 }

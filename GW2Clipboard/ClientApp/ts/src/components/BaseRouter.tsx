@@ -7,17 +7,17 @@ import { Config } from "@components/Config";
 export const BaseRouter = () => {
 	return (<Switch>
 		<Route path="/CategoryType/:categoryType">
-			<Layout drawerOpen={true}>
+			<Layout>
 				<CategoryTree />
 			</Layout>
 		</Route>
 		<Route path="/Config">
-			<Layout drawerOpen={true}>
+			<Layout>
 				<Config />
 			</Layout>
 		</Route>
-		<Route exact path="/">
-			<Layout drawerOpen={false} />
+		<Route path="/">
+			<Layout />
 		</Route>
 	</Switch>);
 };

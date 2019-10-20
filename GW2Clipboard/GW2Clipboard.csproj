@@ -80,6 +80,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionsEnum.cs" />
     <Compile Include="FormBase.cs">
       <SubType>Form</SubType>
     </Compile>

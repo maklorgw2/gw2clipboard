@@ -16,6 +16,7 @@ export interface IMap {
 	id: number; // mapId
 	t: string; // map name / title
 	m: GameModeType; // game mode
+	e?: boolean; // exclude from selectable maps
 }
 
 export interface ICategory {
@@ -43,7 +44,8 @@ export interface ISettings {
 	HotKeys: { [key: number]: number[] };
 }
 
-export enum HotKey {
+export enum Actions {
+	// HotKeys
 	OpenBuild = 100,
 	OpenText = 101,
 	CloseDrawer = 102,
@@ -52,7 +54,10 @@ export enum HotKey {
 	Left = 105,
 	Right = 106,
 	Select = 107,
-	Minimize = 108
+	Minimize = 108,
+	// Other Actions
+	OpenConfig = 150,
+	RefreshClient = 200
 }
 
 export interface IConfig {

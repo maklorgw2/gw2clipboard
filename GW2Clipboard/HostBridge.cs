@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace GW2Clipboard
@@ -24,6 +25,7 @@ namespace GW2Clipboard
         public MapManager MapManager { get; set; }
         public bool IsDrawerOpen { get; set; }
         public bool IsInSystemTray { get; set; }
+        public bool IsClientReady { get; set; } = false;
         public MumbleLinkFile MumbleLinkFile { get; private set; }
 
         #region Interop
@@ -47,7 +49,7 @@ namespace GW2Clipboard
         {
             MumbleLinkFile.Dispose();
         }
-      
+
 
         #region Settings and Categories
         public Settings LoadSettings()
@@ -73,7 +75,7 @@ namespace GW2Clipboard
             if (!string.IsNullOrEmpty(newSettings))
             {
                 Settings = JsonConvert.DeserializeObject<Settings>(newSettings);
-                hostForm.setOpacity();
+                hostForm.ApplySettings();
             }
             Settings.Save(SettingsFileName);
         }
@@ -102,6 +104,11 @@ namespace GW2Clipboard
 
         public bool IsDebugMode => Debugger.IsAttached;
 
+        public void RefreshClient()
+        {
+            hostForm.ClientAction((int)Settings.ActionsEnum.RefreshClient);
+        }
+
         public void FocusToPreviousWindow()
         {
             // Restore focus
@@ -123,10 +130,11 @@ namespace GW2Clipboard
             }
         }
 
-        public void OpenDrawer()
+        public void OpenDrawer(bool fromClient)
         {
-            hostForm.Hide();
             hostForm.autoSaveTimer.Enabled = false;
+            hostForm.Hide();
+            Application.DoEvents();
 
             hostForm.Text = " GW2 Clipboard";
             hostForm.FormBorderStyle = FormBorderStyle.Sizable;
@@ -135,22 +143,26 @@ namespace GW2Clipboard
             hostForm.Left = Settings.DrawerOpenLeft;
             hostForm.Height = Settings.DrawerOpenHeight;
             hostForm.Width = Settings.DrawerOpenWidth;
-            
+
             // Must be set before timer is enabled
-            IsDrawerOpen = true; 
+            IsDrawerOpen = true;
 
             hostForm.Show();
+            Application.DoEvents();
+
             hostForm.autoSaveTimer.Enabled = true;
         }
 
-        public void CloseDrawer()
+        public void CloseDrawer(bool fromClient)
         {
-            hostForm.Hide();
             hostForm.autoSaveTimer.Enabled = false;
 
-            hostForm.Text = " ";
+            hostForm.Hide();
+            Application.DoEvents();
+
+            hostForm.Text = "";
             hostForm.FormBorderStyle = FormBorderStyle.FixedToolWindow;
-            
+
             hostForm.Top = Settings.DrawerClosedTop;
             hostForm.Left = Settings.DrawerClosedLeft;
             hostForm.Height = Settings.DrawerClosedHeight;
@@ -160,15 +172,21 @@ namespace GW2Clipboard
             IsDrawerOpen = false;
 
             hostForm.Show();
+            Application.DoEvents();
+
             hostForm.autoSaveTimer.Enabled = true;
 
             FocusToPreviousWindow();
         }
 
-
-        public void Minimize()
+        public void MinimizeWindow()
         {
-            //hostForm.
+            hostForm.MinimizeToSystemTray();
+        }
+
+        public void RestoreWindow()
+        {
+            hostForm.OpenFromSystemTray();
         }
 
         public void Exit()

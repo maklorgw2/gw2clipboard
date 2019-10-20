@@ -1,8 +1,8 @@
 import React, { createContext, useState, ReactNode, useRef, useContext } from 'react';
-import { HotKey, CategoryType, ICategory } from '@models/IConfig';
+import { CategoryType, ICategory, Actions } from '@models/IConfig';
 import { useHistory } from 'react-router-dom';
 import { History } from 'history';
-import { HostManager } from '@libs/HostManager';
+import { HostManager, WindowState } from '@libs/HostManager';
 import { GameModeType, ProfessionType } from '@models/ITag';
 
 /*=========================================================
@@ -40,7 +40,8 @@ export interface ISelectedCategory {
 
 export interface IState {
 	area: Area;
-	hotKeyHandler: (hotKey: HotKey) => void;
+	windowState: WindowState;
+	hotKeyHandler: (action: Actions) => void;
 	selectedCategory: ISelectedCategory;
 	filteredCategories: ICategory[];
 	cachedGameMode: GameModeType;
@@ -49,7 +50,7 @@ export interface IState {
 }
 
 export interface IStore {
-	processHotKey: (hotKeyId: number) => void;
+	processAction: (hotKeyId: number) => void;
 	updateState: (partialState: Partial<IState>) => void;
 	getInitialState: () => IState;
 	setState: (state: Partial<IState>) => void;
@@ -66,48 +67,49 @@ export const createGuid = () => idPrefix.substr(idPrefix.length - 2, 2) + Date.n
 
 const Store: IStore = {
 	getHistory: () => Store._history,
-	processHotKey: (hotKey: HotKey) => {
+	processAction: (hotKey: Actions) => {
 		const state = Store.getState();
 		const history = Store.getHistory();
+
 		switch (hotKey) {
-			case HotKey.OpenBuild:
-				if (HostManager.isDrawerOpen()) {
-					if (state.area == Area.Build) {
-						HostManager.closeDrawer();
-						history.replace(`/`);
-						break;
-					}
+			case Actions.RefreshClient:
+				//alert("Refresh client")
+				Store.updateState({ windowState: HostManager.getWindowState() });
+				break;
+
+			case Actions.OpenBuild:
+				if (Store.getState().windowState == WindowState.OpenVisible && state.area == Area.Build) {
+					Store.updateState({ windowState: HostManager.getCloseState() });
+					break;
 				}
-				Store.updateState({ area: Area.Build });
+				Store.updateState({ area: Area.Build, windowState: WindowState.OpenVisible });
 				history.replace(`/CategoryType/${CategoryType.Build}`);
 				break;
-			case HotKey.OpenText:
-				if (HostManager.isDrawerOpen()) {
-					if (state.area == Area.Text) {
-						HostManager.closeDrawer();
-						history.replace(`/`);
-						break;
-					}
+
+			case Actions.OpenText:
+				if (Store.getState().windowState == WindowState.OpenVisible && state.area == Area.Text) {
+					Store.updateState({ windowState: HostManager.getCloseState() });
+					break;
 				}
-				Store.updateState({ area: Area.Text });
+				Store.updateState({ area: Area.Text, windowState: WindowState.OpenVisible });
 				history.replace(`/CategoryType/${CategoryType.Text}`);
 				break;
-			case HotKey.CloseDrawer:
-				if (HostManager.isDrawerOpen()) {
-					HostManager.closeDrawer();
-					history.replace(`/`);
+
+			case Actions.OpenConfig:
+				if (Store.getState().windowState == WindowState.OpenVisible && state.area == Area.Config) {
+					Store.updateState({ windowState: HostManager.getCloseState() });
+					break;
+				}
+				Store.updateState({ area: Area.Config, windowState: WindowState.OpenVisible });
+				history.replace(`/Config`);
+				break;
+
+			case Actions.CloseDrawer:
+				if (Store.getState().windowState == WindowState.OpenVisible) {
+					Store.updateState({ windowState: HostManager.getCloseState() });
+					break;
 				} else {
-					switch (state.area) {
-						case Area.Text:
-							history.replace(`/CategoryType/${CategoryType.Text}`);
-							break;
-						case Area.Config:
-							history.replace(`/Config`);
-							break;
-						default:
-							history.replace(`/CategoryType/${CategoryType.Build}`);
-							break;
-					}
+					Store.updateState({ windowState: WindowState.OpenVisible });
 				}
 				break;
 			default:
@@ -140,7 +142,12 @@ const Store: IStore = {
 const StateContext = createContext<number>(null);
 
 export const StateProvider = (props: { children: ReactNode[] | ReactNode }) => {
-	const stateRef = useRef<IState>({ selectedCategory: {} } as IState);
+	const stateRef = useRef<IState>({
+		selectedCategory: {},
+		windowState: HostManager.getConfig().settings.MinimizeOnStart
+			? WindowState.OpenMinimized
+			: WindowState.ClosedVisible
+	} as IState);
 	const [ update, updater ] = useState(0);
 
 	if (window.store == null) {

@@ -4,9 +4,11 @@ export interface IHost {
 	isDrawerOpen: () => boolean;
 	isDebugMode: () => boolean;
 	IsInSystemTray: () => boolean;
+	setClientReady: (ready:boolean) => void;
 	openDrawer: () => void;
 	closeDrawer: () => void;
-	minimize: () => void;
+	minimizeWindow: () => void;
+	restoreWindow: () => void;
 	exit: () => void;
 	refresh: () => void;
 	setClipBoardData: (text: string) => void;

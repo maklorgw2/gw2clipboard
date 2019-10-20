@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -10,6 +12,22 @@ namespace GW2Clipboard
         public int id { get; set; }
     }
 
+    public enum KeyModifiers
+    {
+        None = 0,
+        Alt = 1,
+        Control = 2,
+        Shift = 4,
+        Windows = 8
+    }
+
+    public class HotKeyDefinition
+    {
+        public int id { get; set; }
+        public Keys key { get; set; }
+        public KeyModifiers modifier { get; set; }
+    }
+
     class HotKey : IMessageFilter
     {
         #region Interop
@@ -19,22 +37,9 @@ namespace GW2Clipboard
         private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
         #endregion
 
-        public enum KeyModifiers
-        {
-            None = 0,
-            Alt = 1,
-            Control = 2,
-            Shift = 4,
-            Windows = 8
-        }
-
         private const int WM_HOTKEY = 0x0312;
-        
-        public int id
-        {
-            get;
-            private set;
-        }
+
+        private List<HotKeyDefinition> hotKeyDefinitions;
 
         public IntPtr Handle
         {
@@ -42,24 +47,23 @@ namespace GW2Clipboard
             set;
         }
 
-
         public event EventHandler<HotKeyEventArgs> HotKeyPressed;
 
-        public HotKey(int id, Keys key, KeyModifiers modifier, EventHandler<HotKeyEventArgs> hotKeyPressed)
+        public HotKey (List<HotKeyDefinition> hotKeyDefinitions, EventHandler<HotKeyEventArgs> hotKeyPressed)
         {
-            this.id = id;
+            this.hotKeyDefinitions = hotKeyDefinitions;
             HotKeyPressed = hotKeyPressed;
-            RegisterHotKey(key, modifier);
+            hotKeyDefinitions.ForEach(def => RegisterHotKey(def.id, def.key, def.modifier));
             Application.AddMessageFilter(this);
         }
 
         ~HotKey()
         {
             Application.RemoveMessageFilter(this);
-            UnregisterHotKey(Handle, id);
+            hotKeyDefinitions.ForEach(def => UnregisterHotKey(Handle, def.id));
         }
 
-        private void RegisterHotKey(Keys key, KeyModifiers modifier)
+        private void RegisterHotKey(int id, Keys key, KeyModifiers modifier)
         {
             if (key == Keys.None)
                 return;

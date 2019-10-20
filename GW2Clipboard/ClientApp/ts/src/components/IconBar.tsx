@@ -1,9 +1,8 @@
 import React, { Fragment } from 'react';
 import { useHistory } from 'react-router-dom';
-import { CategoryType, HotKey } from '@models/IConfig';
+import { Actions } from '@models/IConfig';
 import { useStore, Area } from './StateContext';
-import { HostManager } from '@libs/HostManager';
-import { checkPropTypes } from 'prop-types';
+import { HostManager, WindowState } from '@libs/HostManager';
 
 export const IconBar = () => {
 	const { store, state } = useStore();
@@ -23,27 +22,30 @@ export const IconBar = () => {
 		};
 	};
 
+	const isDrawerOpen = state.windowState == WindowState.OpenVisible || state.windowState == WindowState.OpenMinimized;
 	return (
 		<Fragment>
 			<button
 				title="Builds (Alt-B)"
 				style={getIconStyle(Area.Build, state.area)}
-				onClick={() => store.processHotKey(HotKey.OpenBuild)}
+				onClick={() => store.processAction(Actions.OpenBuild)}
 			/>
 			<button
 				title="Text (Alt-T)"
 				style={getIconStyle(Area.Text, state.area)}
-				onClick={() => store.processHotKey(HotKey.OpenText)}
+				onClick={() => store.processAction(Actions.OpenText)}
 			/>
 			<button
 				title="Configure"
 				style={getIconStyle(Area.Config, state.area)}
-				onClick={() => history.replace(`/Config/`)}
+				onClick={() => {
+					store.processAction(Actions.OpenConfig);
+				}}
 			/>
 			<button
 				title="Toggle drawer (Alt-Backspace)"
 				onClick={() => {
-					store.processHotKey(HotKey.CloseDrawer);
+					store.processAction(Actions.CloseDrawer);
 				}}
 				style={{
 					marginTop: '-2px',
@@ -55,12 +57,12 @@ export const IconBar = () => {
 					color: '#fff8d0',
 					fontSize: '25px',
 					backgroundColor: '#000',
-					transform: HostManager.isDrawerOpen() ? null : 'rotateY(180deg)'
+					transform: isDrawerOpen ? null : 'rotateY(180deg)'
 				}}
 			>
 				&#x27a4;
 			</button>
-			{HostManager.isDrawerOpen() &&
+			{isDrawerOpen  &&
 			HostManager.isDebugMode() && (
 				<button
 					title="Refresh Host"

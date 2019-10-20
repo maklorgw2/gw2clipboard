@@ -21,6 +21,6 @@ namespace GW2Clipboard
             Maps = JsonConvert.DeserializeObject<List<Map>>(File.ReadAllText("maps.json"));
         }
 
-        public string ToJson() => JsonConvert.SerializeObject(Maps.Where(m => !m.exclude).Select(m => new { m.id, t = m.title, m = m.gameMode }));
+        public string ToJson() => JsonConvert.SerializeObject(Maps.Select(m => new { m.id, t = m.title, m = m.gameMode, e = m.exclude}));
     }
 }

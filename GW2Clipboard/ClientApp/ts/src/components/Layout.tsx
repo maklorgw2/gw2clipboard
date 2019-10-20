@@ -1,11 +1,11 @@
-import React, { ReactNode, Fragment, useEffect } from 'react';
+import React, { ReactNode, Fragment, useEffect, useLayoutEffect } from 'react';
 import { IconBar } from './IconBar';
 import { useStore } from './StateContext';
-import { HotKey } from '@models/IConfig';
-import { HostManager } from '@libs/HostManager';
+import { Actions } from '@models/IConfig';
+import { HostManager, WindowState } from '@libs/HostManager';
 
-export const Layout = (props: { drawerOpen: boolean; children?: ReactNode | ReactNode[] }) => {
-	const { store } = useStore();
+export const Layout = (props: { children?: ReactNode | ReactNode[] }) => {
+	const { store, state } = useStore();
 
 	useEffect(() => {
 		const handleKey = (event: any) => {
@@ -13,27 +13,26 @@ export const Layout = (props: { drawerOpen: boolean; children?: ReactNode | Reac
 			switch (event.key) {
 				case 'Esc':
 				case 'Escape':
-					store.getHistory().replace(`/`);
-					HostManager.closeDrawer();
+					store.processAction(Actions.CloseDrawer);
 					break;
 				case 'Up':
 				case 'ArrowUp':
-					store.processHotKey(HotKey.Up);
+					store.processAction(Actions.Up);
 					break;
 				case 'Down':
 				case 'ArrowDown':
-					store.processHotKey(HotKey.Down);
+					store.processAction(Actions.Down);
 					break;
 				case 'Left':
 				case 'ArrowLeft':
-					store.processHotKey(HotKey.Left);
+					store.processAction(Actions.Left);
 					break;
 				case 'Right':
 				case 'ArrowRight':
-					store.processHotKey(HotKey.Right);
+					store.processAction(Actions.Right);
 					break;
 				case 'Enter':
-					store.processHotKey(HotKey.Select);
+					store.processAction(Actions.Select);
 					break;
 			}
 		};
@@ -43,13 +42,21 @@ export const Layout = (props: { drawerOpen: boolean; children?: ReactNode | Reac
 		};
 	}, []);
 
+	useLayoutEffect(() => {
+		HostManager.setClientReady(true);
+	}, []);
+
+	useEffect(() => {
+		HostManager.setWindowState(state.windowState);
+	}, [ state.windowState ]);
+
 	return (
 		<Fragment>
 			<div className="layout-container">
 				<div className="icon-bar" style={{ width: `${HostManager.iconBarSize()}px !important` }}>
 					<IconBar />
 				</div>
-				{props.drawerOpen && <div className="layout-content">{props.children}</div>}
+				{(state.windowState==WindowState.OpenVisible || state.windowState==WindowState.OpenMinimized) && <div className="layout-content">{props.children}</div>}
 			</div>
 		</Fragment>
 	);

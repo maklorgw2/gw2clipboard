@@ -8,11 +8,10 @@ import { JSONConfig } from '@components/Config/JSONConfig';
 export const Config = () => {
 	const { store } = useStore();
 	const [ mode, setMode ] = useState('settings');
-	const [ tempSettings, setTempSettings ] = useState({ ...HostManager.config.settings });
+	const [ tempSettings, setTempSettings ] = useState({ ...HostManager.getConfig().settings });
 
 	useEffect(() => {
 		store.updateState({ area: Area.Config });
-		if (!HostManager.isDrawerOpen()) HostManager.openDrawer();
 	}, []);
 
 	return (

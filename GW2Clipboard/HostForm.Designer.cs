@@ -52,7 +52,6 @@
             this.browser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.browser.IsWebBrowserContextMenuEnabled = false;
             this.browser.Location = new System.Drawing.Point(2, 25);
             this.browser.MinimumSize = new System.Drawing.Size(20, 20);
             this.browser.Name = "browser";
@@ -227,6 +226,7 @@
             this.ShowInTaskbar = false;
             this.Text = "Form";
             this.TopMost = true;
+            this.Shown += new System.EventHandler(this.HostForm_Shown);
             this.Resize += new System.EventHandler(this.HostForm_Resize);
             this.ResumeLayout(false);
 

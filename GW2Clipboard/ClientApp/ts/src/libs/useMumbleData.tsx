@@ -6,7 +6,7 @@ import { GameModeType, GameModeName } from '@models/ITag';
 
 
 const getMapDetails = (mapId:number) => {
-	const maps = HostManager.loadMaps().filter((m) => m.id == mapId);
+	const maps = HostManager.getMaps(false).filter((m) => m.id == mapId);
 	if (maps[0]) return {
 		mapName: maps[0].t,
 		gameMode: maps[0].m,

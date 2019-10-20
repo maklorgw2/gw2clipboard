@@ -135,7 +135,7 @@ export const EditTags = (props: {
 							}}
 						>
 							<option>-- select --</option>
-							{HostManager.maps.map((m) => (
+							{HostManager.getMaps(true).map((m) => (
 								<option value={m.id} selected={m.id == mapTag.mapId}>
 									{m.t}
 								</option>
