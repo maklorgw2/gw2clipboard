@@ -7,9 +7,11 @@ export function getMockConfig(): IConfig {
 		settings: {
 			UISize: 1,
 			// these settings are not used in mock-mode
-			Opacity: 90,
+			OpenOpacity: 90,
+			ClosedOpacity: 75,
 			MinimizeOnStart: false,
 			MinimizeOnDrawerClosed: false,
+			ToggleMode: true,
 			DrawerOpenTop: 100,
 			DrawerOpenLeft: 100,
 			DrawerOpenHeight: 100,

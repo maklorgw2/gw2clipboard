@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Windows.Forms;
-using static GW2Clipboard.Settings;
 
 namespace GW2Clipboard
 {
@@ -26,6 +24,7 @@ namespace GW2Clipboard
             // Custom chrome start
             this.Activated += HostForm_Activated;
             this.Deactivate += HostForm_Deactivate;
+            this.ResizeEnd += HostForm_ResizeEnd;
 
             foreach (var control in new[] { MinimizeLabel, CloseLabel })
             {
@@ -58,7 +57,13 @@ namespace GW2Clipboard
             MinimizeLabel.Font = marlett;
             CloseLabel.Font = marlett;
 
-            MinimizeLabel.MouseClick += (s, e) => { if (e.Button == MouseButtons.Left) WindowState = FormWindowState.Minimized; };
+            MinimizeLabel.MouseClick += (s, e) => { 
+                if (e.Button == MouseButtons.Left) { 
+                    MinimizeToSystemTray(); 
+                    hostBridge.RefreshClient(); 
+                }
+            };
+
             previousWindowState = MinMaxState;
             SizeChanged += HostForm_SizeChanged;
             CloseLabel.MouseClick += (s, e) => Close(e);
@@ -72,16 +77,37 @@ namespace GW2Clipboard
             }
         }
 
-        public void ApplySettings()
+        private void HostForm_ResizeEnd(object sender, EventArgs e)
         {
-            var newOpacity = hostBridge.Settings.Opacity / 100.0;
-            if (newOpacity < 0) newOpacity = 0.1;
-            if (newOpacity > 1) newOpacity = 1;
-            Opacity = newOpacity;
-
-            hostBridge.Settings.Opacity = Convert.ToInt32(newOpacity * 100);
+            if (hostBridge.IsDrawerOpen)
+            {
+                hostBridge.Settings.DrawerOpenTop = this.Top;
+                hostBridge.Settings.DrawerOpenLeft = this.Left;
+                hostBridge.Settings.DrawerOpenHeight = this.Height < 240 ? 240 : this.Height;
+                hostBridge.Settings.DrawerOpenWidth = this.Width < 240 ? 240 : this.Width;
+            }
+            else
+            {
+                hostBridge.Settings.DrawerClosedTop = this.Top;
+                hostBridge.Settings.DrawerClosedLeft = this.Left;
+            }
         }
 
+        public void ApplySettings()
+        {
+            var openOpacity = hostBridge.Settings.OpenOpacity / 100.0;
+            if (openOpacity < 0) openOpacity = 0.5;
+            if (openOpacity > 1) openOpacity = 1;
+
+            var closedOpacity = hostBridge.Settings.ClosedOpacity / 100.0;
+            if (closedOpacity < 0) closedOpacity = 0.5;
+            if (closedOpacity > 1) closedOpacity = 1;
+
+            Opacity = hostBridge.IsDrawerOpen ? openOpacity : closedOpacity;
+
+            hostBridge.Settings.OpenOpacity = Convert.ToInt32(openOpacity * 100);
+            hostBridge.Settings.ClosedOpacity = Convert.ToInt32(closedOpacity * 100);
+        }
 
         private void HostForm_Load(object sender, EventArgs e)
         {
@@ -90,7 +116,6 @@ namespace GW2Clipboard
             this.notifyIcon.Visible = true;
 
             hostBridge = new HostBridge(this);
-            ApplySettings();
 
             // Configure launch page (app.html for a release and app-debug.html when debugger is attached)
             string currentDirectory = Directory.GetCurrentDirectory();
@@ -102,8 +127,11 @@ namespace GW2Clipboard
             }
             else appFileName = String.Format("file:///{0}/ClientApp/app.html#/CategoryType/0", currentDirectory.Replace("\\", "/"));
 
-            if (hostBridge.Settings.MinimizeOnStart || hostBridge.Settings.MinimizeOnDrawerClosed) hostBridge.OpenDrawer(false);
-            else hostBridge.CloseDrawer(false);
+            // If MinimizeOnDrawerClosed is true, we never go to close drawer so default to open
+            if (hostBridge.Settings.MinimizeOnStart || hostBridge.Settings.MinimizeOnDrawerClosed) hostBridge.OpenDrawConfig();
+            else hostBridge.CloseDrawerConfig();
+
+            ApplySettings();
 
             // Registry HotKeys
             var hotKeySettings = hostBridge.Settings.HotKeys;
@@ -269,6 +297,19 @@ namespace GW2Clipboard
             SetTextColor(ActiveTextColor);
         }
 
+        public void SetResizingMode(bool canResize)
+        {
+            var panels = new[] { TopLeftCornerPanel, TopRightCornerPanel, BottomLeftCornerPanel, BottomRightCornerPanel,
+                TopBorderPanel, LeftBorderPanel, RightBorderPanel, BottomBorderPanel };
+
+            foreach (var panel in panels)
+            {
+                panel.Enabled = canResize;
+            }
+
+            this.FormBorderStyle = canResize ? FormBorderStyle.Sizable : FormBorderStyle.FixedSingle;
+        }
+
         private void HostForm_SizeChanged(object sender, EventArgs e)
         {
             var maximized = MinMaxState == FormWindowState.Maximized;
@@ -333,34 +374,41 @@ namespace GW2Clipboard
 
         private void autoSaveTimer_Tick(object sender, EventArgs e)
         {
-            if (hostBridge.IsDrawerOpen)
-            {
-                hostBridge.Settings.DrawerOpenTop = this.Top;
-                hostBridge.Settings.DrawerOpenLeft = this.Left;
-                hostBridge.Settings.DrawerOpenHeight = this.Height;
-                hostBridge.Settings.DrawerOpenWidth = this.Width;
-            }
-            else
-            {
-                hostBridge.Settings.DrawerClosedTop = this.Top;
-                hostBridge.Settings.DrawerClosedLeft = this.Left;
-                //hostBridge.Settings.DrawerClosedHeight = this.Height;
-                //hostBridge.Settings.DrawerClosedWidth = this.Width;
-            }
+            //// Capture any form moves
+            //if (MinMaxState == FormWindowState.Normal)
+            //{
+            //    if (hostBridge.IsDrawerOpen)
+            //    {
+            //        hostBridge.Settings.DrawerOpenTop = this.Top;
+            //        hostBridge.Settings.DrawerOpenLeft = this.Left;
+            //        hostBridge.Settings.DrawerOpenHeight = this.Height;
+            //        hostBridge.Settings.DrawerOpenWidth = this.Width;
+            //    }
+            //    else
+            //    {
+            //        hostBridge.Settings.DrawerClosedTop = this.Top;
+            //        hostBridge.Settings.DrawerClosedLeft = this.Left;
+            //    }
+            //}
         }
 
         public void OpenFromSystemTray()
         {
+            autoSaveTimer.Enabled = false;
             hostBridge.IsInSystemTray = false;
-            Show();
+
+            Hide();
+            hostBridge.OpenDrawer(false);
             hostBridge.RefreshClient();
-            this.WindowState = FormWindowState.Normal;
+
+            //this.WindowState = FormWindowState.Normal;
+
+            autoSaveTimer.Enabled = true;
         }
 
         public void MinimizeToSystemTray()
         {
             Hide();
-            //hostBridge.RefreshClient();
             hostBridge.IsInSystemTray = true;
         }
 
@@ -380,7 +428,6 @@ namespace GW2Clipboard
             ToggleFromSystemTray();
         }
 
-
         private void HostForm_Resize(object sender, EventArgs e)
         {
             if (this.MinMaxState == FormWindowState.Minimized)
@@ -396,6 +443,14 @@ namespace GW2Clipboard
                 MinimizeToSystemTray();
             }
             firstRun = false;
+        }
+
+        private void HostForm_MouseEnter(object sender, EventArgs e)
+        {
+        }
+
+        private void HostForm_Move(object sender, EventArgs e)
+        {
         }
     }
 }

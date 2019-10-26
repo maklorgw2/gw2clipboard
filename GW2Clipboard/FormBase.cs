@@ -35,7 +35,7 @@ namespace GW2Clipboard
         {
             DecorationMouseUp(hit, MousePosition);
         }
-        
+
         protected override void OnHandleCreated(EventArgs e)
         {
             base.OnHandleCreated(e);
@@ -53,7 +53,7 @@ namespace GW2Clipboard
         {
             return (int)(((ushort)lowPart) | (uint)(highPart << 16));
         }
-        
+
         protected void ShowSystemMenu(MouseButtons buttons, Point pos)
         {
             NativeMethods.SendMessage(Handle, (int)WindowMessages.WM_SYSMENU, 0, MakeLong((short)pos.X, (short)pos.Y));
@@ -66,6 +66,7 @@ namespace GW2Clipboard
                 base.WndProc(ref m);
                 return;
             }
+            Debug.WriteLine($"MSG: {m.Msg.ToString("X").PadLeft(4, '0')} LParam:{m.LParam.ToString("X").PadLeft(8, '0')} WParam:{m.WParam.ToString("X").PadLeft(8, '0')}");
 
             switch (m.Msg)
             {
@@ -206,10 +207,10 @@ namespace GW2Clipboard
         {
             // http://msdn.microsoft.com/library/default.asp?url=/library/en-us/winui/winui/windowsuserinterface/windowing/windows/windowreference/windowmessages/wm_ncactivate.asp
 
-            bool active = (msg.WParam == NativeConstants.TRUE);
-
             if (MinMaxState == FormWindowState.Minimized)
+            {
                 DefWndProc(ref msg);
+            }
             else
             {
                 // repaint title bar

@@ -7,9 +7,9 @@ export const SettingConfig = (props: {
 	return (<div id="debug-table">
 		<table>
 			<tr>
-				<th>Opacity</th>
+				<th>Opacity<br/>(Open)</th>
 				<td>
-					<input type="text" maxLength={3} style={{ width: '4rem' }} value={props.tempSettings.Opacity == 0 ? 20 : props.tempSettings.Opacity} onChange={(e) => {
+					<input type="text" maxLength={3} style={{ width: '4rem' }} value={props.tempSettings.OpenOpacity} onChange={(e) => {
 						e.stopPropagation();
 						if (e.target.value != '') {
 							if (!/^\d{1,3}$/.test(e.target.value)) {
@@ -19,14 +19,33 @@ export const SettingConfig = (props: {
 						}
 						props.setTempSettings({
 							...props.tempSettings,
-							Opacity: Number(e.target.value)
+							OpenOpacity: e.target.value as any
 						});
 					}} />{' '}
-					% (20-100%)
+					% (50-100%)
 					</td>
 			</tr>
 			<tr>
-				<th rowSpan={2} />
+				<th>Opacity<br/>(Closed)</th>
+				<td>
+					<input type="text" maxLength={3} style={{ width: '4rem' }} value={props.tempSettings.ClosedOpacity} onChange={(e) => {
+						e.stopPropagation();
+						if (e.target.value != '') {
+							if (!/^\d{1,3}$/.test(e.target.value)) {
+								e.preventDefault();
+								return;
+							}
+						}
+						props.setTempSettings({
+							...props.tempSettings,
+							ClosedOpacity: e.target.value as any
+						});
+					}} />{' '}
+					% (50-100%)
+					</td>
+			</tr>
+			<tr>
+				<th rowSpan={3} />
 				<td>
 					<label>
 						<input type="checkbox" checked={props.tempSettings.MinimizeOnDrawerClosed} onChange={(e) => props.setTempSettings({
@@ -40,6 +59,13 @@ export const SettingConfig = (props: {
 				<td>
 					<label>
 						<input type="checkbox" checked={props.tempSettings.MinimizeOnStart} onChange={(e) => props.setTempSettings({ ...props.tempSettings, MinimizeOnStart: e.target.checked })} />Start minimized in system tray
+						</label>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label>
+						<input type="checkbox" checked={props.tempSettings.ToggleMode} onChange={(e) => props.setTempSettings({ ...props.tempSettings, ToggleMode: e.target.checked })} />Toggle drawer open/closed
 						</label>
 				</td>
 			</tr>

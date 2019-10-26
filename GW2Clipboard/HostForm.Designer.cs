@@ -227,6 +227,8 @@
             this.Text = "Form";
             this.TopMost = true;
             this.Shown += new System.EventHandler(this.HostForm_Shown);
+            this.MouseEnter += new System.EventHandler(this.HostForm_MouseEnter);
+            this.Move += new System.EventHandler(this.HostForm_Move);
             this.Resize += new System.EventHandler(this.HostForm_Resize);
             this.ResumeLayout(false);
 

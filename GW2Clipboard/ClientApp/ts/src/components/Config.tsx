@@ -29,7 +29,18 @@ export const Config = () => {
 					</option>
 				</select>
 				{mode == 'settings' && (
-					<button style={{ float: 'right' }} onClick={() => HostManager.saveSettings(tempSettings)}>
+					<button
+						style={{ float: 'right' }}
+						onClick={() => {
+							const newSettings = { ...tempSettings };
+							if (newSettings.OpenOpacity < 50) newSettings.OpenOpacity = 50;
+							if (newSettings.OpenOpacity > 100) newSettings.OpenOpacity = 100;
+							if (newSettings.ClosedOpacity < 50) newSettings.ClosedOpacity = 50;
+							if (newSettings.ClosedOpacity > 100) newSettings.ClosedOpacity = 100;
+							setTempSettings(newSettings);
+							HostManager.saveSettings(newSettings);
+						}}
+					>
 						Save
 					</button>
 				)}

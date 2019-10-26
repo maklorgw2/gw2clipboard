@@ -20,6 +20,8 @@ namespace GW2Clipboard
         HostForm hostForm;
         string categoriesJson;
         IntPtr Gw2WindowHandle = IntPtr.Zero;
+        bool categoriesDirty = false;
+        bool settingsDirty = false;
 
         public Settings Settings { get; set; }
         public MapManager MapManager { get; set; }
@@ -70,6 +72,7 @@ namespace GW2Clipboard
             return Settings;
         }
 
+
         public void SaveSettings(string newSettings = null)
         {
             if (!string.IsNullOrEmpty(newSettings))
@@ -96,7 +99,8 @@ namespace GW2Clipboard
 
         public void SaveCategories(string json = null)
         {
-            File.WriteAllText(CategoryFileName, String.IsNullOrEmpty(json) ? categoriesJson : json);
+            if (!String.IsNullOrEmpty(json)) categoriesJson = json;
+            File.WriteAllText(CategoryFileName, categoriesJson);
         }
         #endregion
 
@@ -130,50 +134,93 @@ namespace GW2Clipboard
             }
         }
 
+        private void FadeOut(int opacity)
+        {
+            var sourceOpacity = opacity / 100.0;
+            for (var i = sourceOpacity; i > 0; i -= 0.1)
+            {
+                hostForm.Opacity = i;
+                Application.DoEvents();
+                Thread.Sleep(10);
+            }
+            hostForm.Opacity = 0;
+            hostForm.Hide();
+        }
+
+        private void FadeIn(int opacity)
+        {
+            hostForm.Opacity = 0.0;
+            hostForm.Show();
+
+            var targetOpacity = opacity / 100.0;
+            for (var i = 0.0; i < targetOpacity; i += 0.1)
+            {
+                hostForm.Opacity = i;
+                Application.DoEvents();
+                Thread.Sleep(10);
+            }
+            hostForm.Opacity = targetOpacity;
+        }
+
+        public void SetWindowPos(int left, int top, int width, int height)
+        {
+            //https://stackoverflow.com/questions/22548225/setwindowpos-fails-to-set-window-always-on-top
+            const int GWL_EXSTYLE = -20;
+            const int WS_EX_TOPMOST = 8;
+
+            var extStyle = NativeMethods.GetWindowLongPtr(hostForm.Handle, GWL_EXSTYLE).ToInt64();
+            extStyle |= WS_EX_TOPMOST;
+            NativeMethods.SetWindowLongPtr(hostForm.Handle, GWL_EXSTYLE, new IntPtr(extStyle));
+
+            //https://stackoverflow.com/questions/683330/how-to-make-a-window-always-stay-on-top-in-net
+            if (!NativeMethods.SetWindowPos(hostForm.Handle, new IntPtr(-1), left, top, width, height, 0))
+            {
+                var error = Marshal.GetLastWin32Error();
+            }
+        }
+
+        public void OpenDrawConfig()
+        {
+            hostForm.Text = " GW2 Clipboard";
+            //hostForm.FormBorderStyle = FormBorderStyle.Sizable;
+            hostForm.SetResizingMode(true);
+
+            SetWindowPos(Settings.DrawerOpenLeft, Settings.DrawerOpenTop, Settings.DrawerOpenWidth, Settings.DrawerOpenHeight);
+            
+            IsDrawerOpen = true;
+        }
+
         public void OpenDrawer(bool fromClient)
         {
             hostForm.autoSaveTimer.Enabled = false;
+
             hostForm.Hide();
             Application.DoEvents();
-
-            hostForm.Text = " GW2 Clipboard";
-            hostForm.FormBorderStyle = FormBorderStyle.Sizable;
-
-            hostForm.Top = Settings.DrawerOpenTop;
-            hostForm.Left = Settings.DrawerOpenLeft;
-            hostForm.Height = Settings.DrawerOpenHeight;
-            hostForm.Width = Settings.DrawerOpenWidth;
-
-            // Must be set before timer is enabled
-            IsDrawerOpen = true;
-
-            hostForm.Show();
-            Application.DoEvents();
+            OpenDrawConfig();
+            FadeIn(Settings.OpenOpacity);
 
             hostForm.autoSaveTimer.Enabled = true;
+        }
+
+        public void CloseDrawerConfig()
+        {
+            hostForm.Text = "";
+            //hostForm.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            hostForm.SetResizingMode(false);
+
+            SetWindowPos(Settings.DrawerClosedLeft, Settings.DrawerClosedTop, Settings.DrawerClosedWidth, Settings.DrawerClosedHeight);
+            
+            IsDrawerOpen = false;
         }
 
         public void CloseDrawer(bool fromClient)
         {
             hostForm.autoSaveTimer.Enabled = false;
 
-            hostForm.Hide();
-            Application.DoEvents();
-
-            hostForm.Text = "";
-            hostForm.FormBorderStyle = FormBorderStyle.FixedToolWindow;
-
-            hostForm.Top = Settings.DrawerClosedTop;
-            hostForm.Left = Settings.DrawerClosedLeft;
-            hostForm.Height = Settings.DrawerClosedHeight;
-            hostForm.Width = Settings.DrawerClosedWidth;
-
-            // Must be set before timer is enabled
-            IsDrawerOpen = false;
-
-            hostForm.Show();
-            Application.DoEvents();
-
+            FadeOut(Settings.OpenOpacity);
+            CloseDrawerConfig();
+            FadeIn(Settings.ClosedOpacity);
+            
             hostForm.autoSaveTimer.Enabled = true;
 
             FocusToPreviousWindow();

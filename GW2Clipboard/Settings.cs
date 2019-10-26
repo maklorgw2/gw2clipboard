@@ -23,9 +23,11 @@ namespace GW2Clipboard
         }
 
         public UISizeEnum UISize { get; set; }
-        public int Opacity { get; set; } = 100;
+        public int OpenOpacity { get; set; } = 100;
+        public int ClosedOpacity { get; set; } = 100;
         public bool MinimizeOnStart { get; set; } = false;
         public bool MinimizeOnDrawerClosed { get; set; } = false;
+        public bool ToggleMode { get; set; } = true;
 
         public int DrawerOpenTop { get; set; }
         public int DrawerOpenLeft { get; set; }

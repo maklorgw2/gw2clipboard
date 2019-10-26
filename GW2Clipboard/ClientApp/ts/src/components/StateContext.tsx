@@ -70,6 +70,8 @@ const Store: IStore = {
 	processAction: (hotKey: Actions) => {
 		const state = Store.getState();
 		const history = Store.getHistory();
+		const toggleMode = HostManager.getConfig().settings.ToggleMode;
+		const windowState = Store.getState().windowState;
 
 		switch (hotKey) {
 			case Actions.RefreshClient:
@@ -78,34 +80,37 @@ const Store: IStore = {
 				break;
 
 			case Actions.OpenBuild:
-				if (Store.getState().windowState == WindowState.OpenVisible && state.area == Area.Build) {
+				if (!toggleMode && state.area == Area.Build && windowState == WindowState.OpenVisible) break;
+				if (windowState == WindowState.OpenVisible && state.area == Area.Build) {
 					Store.updateState({ windowState: HostManager.getCloseState() });
 					break;
 				}
-				Store.updateState({ area: Area.Build, windowState: WindowState.OpenVisible });
+				Store.updateState({ windowState: WindowState.OpenVisible });
 				history.replace(`/CategoryType/${CategoryType.Build}`);
 				break;
 
 			case Actions.OpenText:
-				if (Store.getState().windowState == WindowState.OpenVisible && state.area == Area.Text) {
+				if (!toggleMode && state.area == Area.Text && windowState == WindowState.OpenVisible) break;
+				if (windowState == WindowState.OpenVisible && state.area == Area.Text) {
 					Store.updateState({ windowState: HostManager.getCloseState() });
 					break;
 				}
-				Store.updateState({ area: Area.Text, windowState: WindowState.OpenVisible });
+				Store.updateState({ windowState: WindowState.OpenVisible });
 				history.replace(`/CategoryType/${CategoryType.Text}`);
 				break;
 
 			case Actions.OpenConfig:
-				if (Store.getState().windowState == WindowState.OpenVisible && state.area == Area.Config) {
+				if (!toggleMode && state.area == Area.Config && windowState == WindowState.OpenVisible) break;
+				if (windowState == WindowState.OpenVisible && state.area == Area.Config) {
 					Store.updateState({ windowState: HostManager.getCloseState() });
 					break;
 				}
-				Store.updateState({ area: Area.Config, windowState: WindowState.OpenVisible });
+				Store.updateState({ windowState: WindowState.OpenVisible });
 				history.replace(`/Config`);
 				break;
 
 			case Actions.CloseDrawer:
-				if (Store.getState().windowState == WindowState.OpenVisible) {
+				if (windowState == WindowState.OpenVisible) {
 					Store.updateState({ windowState: HostManager.getCloseState() });
 					break;
 				} else {
@@ -138,15 +143,18 @@ const Store: IStore = {
 	_history: null
 };
 
-// Note: The context does not maintain any state, all state is maintained in Store (see comment at top of file)
+// Note: The context does not maintain any state (and currently redundant), all state is maintained in Store (see comment at top of file)
 const StateContext = createContext<number>(null);
 
 export const StateProvider = (props: { children: ReactNode[] | ReactNode }) => {
+	const settings = HostManager.getConfig().settings;
+
+	//alert(`MinimizeOnStart:${settings.MinimizeOnStart} MinimizeOnDrawerClosed:${settings.MinimizeOnDrawerClosed}`)
 	const stateRef = useRef<IState>({
 		selectedCategory: {},
-		windowState: HostManager.getConfig().settings.MinimizeOnStart
+		windowState: settings.MinimizeOnStart
 			? WindowState.OpenMinimized
-			: WindowState.ClosedVisible
+			: settings.MinimizeOnDrawerClosed ? WindowState.OpenVisible : WindowState.ClosedVisible
 	} as IState);
 	const [ update, updater ] = useState(0);
 

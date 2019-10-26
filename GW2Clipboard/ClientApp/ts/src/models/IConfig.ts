@@ -30,9 +30,11 @@ export interface ICategory {
 
 export interface ISettings {
 	UISize: number;
-	Opacity:number;
+	OpenOpacity:number;
+	ClosedOpacity:number;
 	MinimizeOnStart:boolean;
 	MinimizeOnDrawerClosed:boolean;
+	ToggleMode:boolean;
 	DrawerOpenTop:number;
 	DrawerOpenLeft:number;
 	DrawerOpenHeight:number;

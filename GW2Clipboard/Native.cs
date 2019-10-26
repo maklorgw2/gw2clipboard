@@ -297,6 +297,10 @@ namespace GW2Clipboard
 
     public static class NativeMethods
     {
+        [DllImport("user32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
+
         [DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
 
@@ -355,7 +359,39 @@ namespace GW2Clipboard
         public static extern int GetRgnBox(IntPtr hrgn, out RECT lprc);
 
         [DllImport("user32.dll")]
-        public static extern Int32 GetWindowLong(IntPtr hWnd, Int32 Offset);
+        public static extern int GetWindowLong(IntPtr hWnd, Int32 Offset);
+
+        [DllImport("user32.dll", EntryPoint = "GetWindowLong")]
+        private static extern IntPtr GetWindowLongPtr32(IntPtr hWnd, int nIndex);
+
+        [DllImport("user32.dll", EntryPoint = "GetWindowLongPtr")]
+        private static extern IntPtr GetWindowLongPtr64(IntPtr hWnd, int nIndex);
+
+        // This static method is required because Win32 does not support
+        // GetWindowLongPtr directly
+        public static IntPtr GetWindowLongPtr(IntPtr hWnd, int nIndex)
+        {
+            if (IntPtr.Size == 8)
+                return GetWindowLongPtr64(hWnd, nIndex);
+            else
+                return GetWindowLongPtr32(hWnd, nIndex);
+        }
+
+        [DllImport("user32.dll", EntryPoint = "SetWindowLong")]
+        private static extern IntPtr SetWindowLongPtr32(IntPtr hWnd, int nIndex, IntPtr dwNewLon);
+
+        [DllImport("user32.dll", EntryPoint = "SetWindowLongPtr")]
+        private static extern IntPtr SetWindowLongPtr64(IntPtr hWnd, int nIndex, IntPtr dwNewLon);
+
+        // This static method is required because Win32 does not support
+        // SetWindowLongPtr directly
+        public static IntPtr SetWindowLongPtr(IntPtr hWnd, int nIndex, IntPtr dwNewLon)
+        {
+            if (IntPtr.Size == 8)
+                return SetWindowLongPtr64(hWnd, nIndex, dwNewLon);
+            else
+                return SetWindowLongPtr32(hWnd, nIndex, dwNewLon);
+        }
 
         [DllImport("user32.dll")]
         public static extern int GetSystemMetrics(int smIndex);
