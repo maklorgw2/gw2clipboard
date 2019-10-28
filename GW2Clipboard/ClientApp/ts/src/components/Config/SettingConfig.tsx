@@ -45,7 +45,7 @@ export const SettingConfig = (props: {
 					</td>
 			</tr>
 			<tr>
-				<th rowSpan={3} />
+				<th rowSpan={4} />
 				<td>
 					<label>
 						<input type="checkbox" checked={props.tempSettings.MinimizeOnDrawerClosed} onChange={(e) => props.setTempSettings({
@@ -65,7 +65,14 @@ export const SettingConfig = (props: {
 			<tr>
 				<td>
 					<label>
-						<input type="checkbox" checked={props.tempSettings.ToggleMode} onChange={(e) => props.setTempSettings({ ...props.tempSettings, ToggleMode: e.target.checked })} />Toggle drawer open/closed
+						<input type="checkbox" checked={props.tempSettings.ToggleMode} onChange={(e) => props.setTempSettings({ ...props.tempSettings, ToggleMode: e.target.checked })} />Toggle drawer mode
+						</label>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label>
+						<input type="checkbox" checked={props.tempSettings.CaptureMouseOnEnter} onChange={(e) => props.setTempSettings({ ...props.tempSettings, CaptureMouseOnEnter: e.target.checked })} />Capture mouse
 						</label>
 				</td>
 			</tr>

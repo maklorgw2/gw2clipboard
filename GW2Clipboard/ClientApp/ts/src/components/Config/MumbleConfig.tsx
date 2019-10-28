@@ -1,17 +1,17 @@
 import React, { Fragment } from 'react';
 import { HostManager } from '@libs/HostManager';
-import { useMumbleData } from '@libs/useMumbleData';
 import { ProfessionName } from '@models/ITag';
+import { useStore } from '@libs/StateContext';
 export const MumbleConfig = () => {
-	const mumbleData = useMumbleData(250);
+	const { state } = useStore();
 	return (<Fragment>
-		{mumbleData && (<table id="debug-table">
+		{state.mumbleData && (<table id="debug-table">
 			<tr>
 				<th>Position</th>
 				<td>
-					{JSON.stringify(mumbleData.fAvatarPosition)}
+					{JSON.stringify(state.mumbleData.fAvatarPosition)}
 					<br />
-					<button style={{ marginTop: '5px' }} onClick={() => HostManager.setClipBoardData(JSON.stringify(mumbleData.fAvatarPosition))}>
+					<button style={{ marginTop: '5px' }} onClick={() => HostManager.setClipBoardData(JSON.stringify(state.mumbleData.fAvatarPosition))}>
 						Copy to clipboard
 							</button>
 				</td>
@@ -19,33 +19,33 @@ export const MumbleConfig = () => {
 			<tr>
 				<th>Character</th>
 				<td>
-					Name: {mumbleData.identity.name}
+					Name: {state.mumbleData.identity.name}
 					<br />
-					Profession: {ProfessionName[mumbleData.identity.profession]} (#{mumbleData.identity.profession})
+					Profession: {ProfessionName[state.mumbleData.identity.profession]} (#{state.mumbleData.identity.profession})
 						</td>
 			</tr>
 			<tr>
 				<th>Map</th>
 				<td>
-					{mumbleData.mapIsActive && (<Fragment>
-						{mumbleData.mapName} (#{mumbleData.context.mapId})<br />
-						Game Mode: {mumbleData.gameModeName}
+					{state.mumbleData.mapIsActive && (<Fragment>
+						{state.mumbleData.mapName} (#{state.mumbleData.context.mapId})<br />
+						Game Mode: {state.mumbleData.gameModeName}
 					</Fragment>)}
-					{!mumbleData.mapIsActive && <span>No active map</span>}
+					{!state.mumbleData.mapIsActive && <span>No active map</span>}
 				</td>
 			</tr>
 			<tr>
 				<th>System</th>
 				<td>
-					uiTick:{mumbleData.uiTick}
+					uiTick:{state.mumbleData.uiTick}
 					<br />
-					GW2 Has Focus:{mumbleData.gw2HasFocus ? 'Yes' : 'No'}
+					GW2 Has Focus:{state.mumbleData.gw2HasFocus ? 'Yes' : 'No'}
 					<br />
-					Assume context is stale:{mumbleData.assumeContextIsStale ? 'Yes' : 'No'}
+					Assume context is stale:{state.mumbleData.assumeContextIsStale ? 'Yes' : 'No'}
 					<br />
-					Active window:{mumbleData.currentWindowTitle}
+					Active window:{state.mumbleData.currentWindowTitle}
 					<br />
-					OnlyPositionChanged:{mumbleData.onlyPositionChanged ? 'Yes' : 'No'}
+					OnlyPositionChanged:{state.mumbleData.onlyPositionChanged ? 'Yes' : 'No'}
 				</td>
 			</tr>
 		</table>)}

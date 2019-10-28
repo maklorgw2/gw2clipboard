@@ -22,12 +22,14 @@ namespace GW2Clipboard
             Larger = 3
         }
 
+        public int FILEVERSION { get; set; } = 1;
         public UISizeEnum UISize { get; set; }
         public int OpenOpacity { get; set; } = 100;
         public int ClosedOpacity { get; set; } = 100;
         public bool MinimizeOnStart { get; set; } = false;
         public bool MinimizeOnDrawerClosed { get; set; } = false;
-        public bool ToggleMode { get; set; } = true;
+        public bool ToggleMode { get; set; } = false;
+        public bool CaptureMouseOnEnter { get; set; } = false;
 
         public int DrawerOpenTop { get; set; }
         public int DrawerOpenLeft { get; set; }
@@ -45,15 +47,16 @@ namespace GW2Clipboard
         {
             UISize = UISizeEnum.Normal;
 
-            HotKeys.Add((int)ActionsEnum.OpenBuild, new int[] { (int)Keys.B, (int)KeyModifiers.Alt });
-            HotKeys.Add((int)ActionsEnum.OpenText, new int[] { (int)Keys.T, (int)KeyModifiers.Alt });
-            HotKeys.Add((int)ActionsEnum.CloseDrawer, new int[] { (int)Keys.Back, (int)KeyModifiers.Alt });
-            HotKeys.Add((int)ActionsEnum.Up, new int[] { (int)Keys.Up, (int)KeyModifiers.Alt });
-            HotKeys.Add((int)ActionsEnum.Down, new int[] { (int)Keys.Down, (int)KeyModifiers.Alt });
-            HotKeys.Add((int)ActionsEnum.Left, new int[] { (int)Keys.Left, (int)KeyModifiers.Alt });
-            HotKeys.Add((int)ActionsEnum.Right, new int[] { (int)Keys.Right, (int)KeyModifiers.Alt });
-            HotKeys.Add((int)ActionsEnum.Select, new int[] { (int)Keys.Enter, (int)KeyModifiers.Alt });
-            HotKeys.Add((int)ActionsEnum.Minimize, new int[] { (int)Keys.M, (int)KeyModifiers.Alt });
+            HotKeys.Add((int)HostAction.ToggleBuild, new int[] { (int)Keys.B, (int)KeyModifiers.Alt });
+            HotKeys.Add((int)HostAction.ToggleText, new int[] { (int)Keys.T, (int)KeyModifiers.Alt });
+            HotKeys.Add((int)HostAction.ToggleConfig, new int[] { (int)Keys.C, (int)KeyModifiers.Alt });
+            HotKeys.Add((int)HostAction.ToggleDrawer, new int[] { (int)Keys.Back, (int)KeyModifiers.Alt });
+            HotKeys.Add((int)HostAction.Up, new int[] { (int)Keys.Up, (int)KeyModifiers.Alt });
+            HotKeys.Add((int)HostAction.Down, new int[] { (int)Keys.Down, (int)KeyModifiers.Alt });
+            HotKeys.Add((int)HostAction.Left, new int[] { (int)Keys.Left, (int)KeyModifiers.Alt });
+            HotKeys.Add((int)HostAction.Right, new int[] { (int)Keys.Right, (int)KeyModifiers.Alt });
+            HotKeys.Add((int)HostAction.Select, new int[] { (int)Keys.Enter, (int)KeyModifiers.Alt });
+            HotKeys.Add((int)HostAction.Minimize, new int[] { (int)Keys.M, (int)KeyModifiers.Alt });
         }
 
         public void SetLocation(int screenHeight, int screenWidth)

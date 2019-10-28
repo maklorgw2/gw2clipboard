@@ -1,10 +1,10 @@
 import React, { ReactNode, useState, useEffect, Fragment } from 'react';
 import { useParams } from 'react-router-dom';
 import { HostManager } from '@libs/HostManager';
-import { IMumbleData } from '@models/IMumbleData';
-import { useStore, ISelectedCategory, IStore, SelectionMethod } from './StateContext';
-import { useMumbleData } from '@libs/useMumbleData';
-import { Category } from './Category';
+import { useStore } from '@libs/StateContext';
+import { ISelectedCategory, SelectionMethod } from "@models/ISelectedCategory";
+import { IState } from "@models/IState";
+import { Category } from '@components/Category';
 import {
 	TagType,
 	ITag,
@@ -15,18 +15,9 @@ import {
 	GameModeType,
 	IGameModeTag
 } from '@models/ITag';
-import { Actions, ICategory, CategoryType } from '@models/IConfig';
-import { EditCategory } from './EditCategory';
-
-export interface IRenderData extends IMumbleData {
-	mapName: string;
-	gameMode: GameModeType;
-	gameModeName: string;
-	gw2HasFocus: boolean; // GW2 is the active window
-	mapIsActive: boolean; // The UI Ticks are updating
-	assumeContextIsStale: boolean; // If GW2 is active and the UI Ticks are not updating, assume loading or character select
-	onlyPositionChanged: boolean; // Flag to short-circuit filtering
-}
+import { HostAction, ICategory, CategoryType } from '@models/IConfig';
+import { EditCategory } from '@components/EditCategory';
+import { IMumbleData } from '@models/IMumbleData';
 
 export const POLL_MS = 200;
 export const UNIT_MULTIPLIER = 20;
@@ -59,13 +50,16 @@ const generateNodes = (selected: ISelectedCategory, categoryLength: number) => {
 	};
 };
 
-export const moveSelected = (store: IStore, hotKey: Actions) => {
-	const state = store.getState();
+export const moveSelected = (
+	hotKey: HostAction,
+	state: IState,
+	updateState: (partialState: Partial<IState>) => void
+) => {
 	const selected = { ...state.selectedCategory };
 	const nodes = generateNodes(selected, state.filteredCategories.length);
 
 	switch (hotKey) {
-		case Actions.Up:
+		case HostAction.Up:
 			if (nodes.childSelected && nodes.previousChild != null) {
 				selected.childIndex = nodes.previousChild;
 				break;
@@ -92,7 +86,7 @@ export const moveSelected = (store: IStore, hotKey: Actions) => {
 			}
 			break;
 
-		case Actions.Down:
+		case HostAction.Down:
 			if (nodes.childSelected && nodes.nextChild != null) {
 				selected.childIndex = nodes.nextChild;
 				break;
@@ -110,7 +104,7 @@ export const moveSelected = (store: IStore, hotKey: Actions) => {
 			}
 			break;
 
-		case Actions.Left:
+		case HostAction.Left:
 			if (nodes.childSelected) {
 				selected.childIndex = null;
 				if (state.filteredCategories[selected.index].groups[selected.groupIndex].text.length == 1)
@@ -123,7 +117,7 @@ export const moveSelected = (store: IStore, hotKey: Actions) => {
 			}
 			break;
 
-		case Actions.Right:
+		case HostAction.Right:
 			if (nodes.childSelected) break;
 			if (nodes.groupSelected) {
 				selected.childIndex = 0;
@@ -148,7 +142,7 @@ export const moveSelected = (store: IStore, hotKey: Actions) => {
 		if (selected.groupIndex != null && selected.childIndex != null) {
 			HostManager.setClipBoardData(data.groups[selected.groupIndex].text[selected.childIndex]);
 		}
-		store.updateState({
+		updateState({
 			selectedCategory: {
 				index: selected.index,
 				groupIndex: selected.groupIndex,
@@ -160,7 +154,7 @@ export const moveSelected = (store: IStore, hotKey: Actions) => {
 	}
 };
 
-export const filterOnTag = (tags: ITag[], renderData: IRenderData) => {
+export const filterOnTag = (tags: ITag[], renderData: IMumbleData) => {
 	return (
 		tags.filter((tag) => {
 			let valid = true;
@@ -206,29 +200,28 @@ interface IFilterOptions {
 }
 
 export const CategoryTree = () => {
-	const { store, state } = useStore();
+	const { refresh, state, updateState } = useStore();
 	const { categoryType } = useParams();
-	const mumbleData = useMumbleData(POLL_MS);
 	const [ filterOptions, setFilterOptions ] = useState<IFilterOptions>({ filterMode: FilterMode.All });
 	const [ viewMode, setViewMode ] = useState<ViewMode>(ViewMode.View);
-	const typeCategories = HostManager.getConfig().categoryData.filter((cd) => cd.categoryType == Number(categoryType));
 
 	useEffect(
 		() => {
+			console.log(`Mount for category ${categoryType}`);
 			document.body.focus();
 			setViewMode(ViewMode.View);
 			// Profession filter mode not valid for Text category
 			if (filterOptions.filterMode == FilterMode.Profession && Number(categoryType) == CategoryType.Text) {
 				setFilterOptions({ filterMode: FilterMode.All });
 			}
-			store.updateState({
+			updateState({
 				area: Number(categoryType),
 				selectedCategory: {} as any,
 				filteredCategories: [],
-				hotKeyHandler: (hotKey) => moveSelected(store, hotKey)
+				hotKeyHandler: (hotKey, state, updateState) => moveSelected(hotKey, state, updateState)
 			});
 			return () => {
-				store.updateState({ hotKeyHandler: null });
+				updateState({ hotKeyHandler: null });
 			};
 		},
 		[ categoryType ]
@@ -236,9 +229,8 @@ export const CategoryTree = () => {
 
 	useEffect(
 		() => {
-			if (mumbleData == null) return;
-			// console.log('process mumble');
-			const state = store.getState();
+			console.log(`Create filters for category ${categoryType}`);
+			const typeCategories = HostManager.getConfig().categoryData.filter((cd) => cd.categoryType == Number(categoryType));
 
 			let selectedCategoryIndex = null;
 
@@ -246,10 +238,10 @@ export const CategoryTree = () => {
 			let filteredCategories: ICategory[] = typeCategories;
 
 			if (filterOptions.filterMode == FilterMode.All)
-				filteredCategories = typeCategories.filter((category) => filterOnTag(category.tags, mumbleData));
+				filteredCategories = typeCategories.filter((category) => filterOnTag(category.tags, state.mumbleData));
 
 			if (filterOptions.filterMode == FilterMode.Profession) {
-				const currentProfession = mumbleData.identity.profession || 99;
+				const currentProfession = state.mumbleData.identity.profession || 99;
 				filteredCategories = typeCategories.filter((category) => {
 					return (
 						category.tags.filter(
@@ -274,10 +266,7 @@ export const CategoryTree = () => {
 				if (filteredCategories.length > 0) {
 					selectedCategoryIndex = 0;
 					const data = filteredCategories[0];
-					store.updateState({
-						cachedGameMode: mumbleData.gameMode,
-						cachedProfession: mumbleData.identity.profession,
-						cachedMapId: mumbleData.context.mapId,
+					updateState({
 						filteredCategories: filteredCategories,
 						selectedCategory: {
 							data: data,
@@ -288,10 +277,7 @@ export const CategoryTree = () => {
 						}
 					});
 				} else {
-					store.updateState({
-						cachedGameMode: mumbleData.gameMode,
-						cachedProfession: mumbleData.identity.profession,
-						cachedMapId: mumbleData.context.mapId,
+					updateState({
 						filteredCategories: filteredCategories,
 						selectedCategory: {} as any
 					});
@@ -303,10 +289,7 @@ export const CategoryTree = () => {
 						data.groups[state.selectedCategory.groupIndex].text[state.selectedCategory.childIndex]
 					);
 				}
-				store.updateState({
-					cachedGameMode: mumbleData.gameMode,
-					cachedProfession: mumbleData.identity.profession,
-					cachedMapId: mumbleData.context.mapId,
+				updateState({
 					filteredCategories: filteredCategories,
 					selectedCategory: {
 						data: data,
@@ -319,7 +302,7 @@ export const CategoryTree = () => {
 			}
 			// console.log(`2:selectedCategoryIndex ${selectedCategoryIndex}`);
 		},
-		[ mumbleData ]
+		[ categoryType, state.mumbleData.uiTick, filterOptions.filterMode ]
 	);
 
 	// Handle selection by hotkey scrolling
@@ -337,21 +320,19 @@ export const CategoryTree = () => {
 		[ state.selectedCategory.index, state.selectedCategory.groupIndex, state.selectedCategory.childIndex ]
 	);
 
-	if (mumbleData == null) return null;
+
+	console.log(`Pre-render state:${state.area} prop:${categoryType}`);
 
 	let output: ReactNode;
-	if (!mumbleData.assumeContextIsStale) {
-		if (state.filteredCategories.length > 0) {
-			output = (
-				<Category
-					categories={state.filteredCategories}
-					selectedCategoryIndex={state.selectedCategory.index}
-					selectedGroupIndex={state.selectedCategory.groupIndex}
-					selectedChildIndex={state.selectedCategory.childIndex}
-				/>
-			);
-		} else output = <div className="info">No matching items</div>;
-	} else output = <div className="info">No active map</div>;
+	if (state.area == Number(categoryType)) {
+		if (!state.mumbleData.assumeContextIsStale) {
+			if (state.filteredCategories.length > 0) {
+				output = (
+					<Category />
+				);
+			} else output = <div className="info">No matching items</div>;
+		} else output = <div className="info">No active map</div>;
+	} else output = <div />;
 
 	return (
 		<Fragment>
@@ -398,6 +379,7 @@ export const CategoryTree = () => {
 					categoryType={Number(categoryType)}
 					category={state.selectedCategory.data}
 					onComplete={(saved) => {
+						if (saved) refresh();
 						setViewMode(ViewMode.View);
 						document.body.focus(); // refocus body for hotkeys
 					}}
@@ -407,6 +389,7 @@ export const CategoryTree = () => {
 				<EditCategory
 					categoryType={Number(categoryType)}
 					onComplete={(saved) => {
+						if (saved) refresh();
 						setViewMode(ViewMode.View);
 						document.body.focus(); // refocus body for hotkeys
 					}}

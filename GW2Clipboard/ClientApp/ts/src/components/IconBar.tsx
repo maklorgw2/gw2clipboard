@@ -1,12 +1,10 @@
 import React, { Fragment } from 'react';
-import { useHistory } from 'react-router-dom';
-import { Actions } from '@models/IConfig';
-import { useStore, Area } from './StateContext';
+import { HostAction } from '@models/IConfig';
+import { useStore, Area } from '@libs/StateContext';
 import { HostManager, WindowState } from '@libs/HostManager';
 
 export const IconBar = () => {
-	const { store, state } = useStore();
-	const history = useHistory();
+	const {  state, processAction } = useStore();
 
 	const getIconStyle = (area: Area, currentArea: Area) => {
 		const postfix = currentArea == area ? '-sel.png' : '.png';
@@ -26,26 +24,26 @@ export const IconBar = () => {
 	return (
 		<Fragment>
 			<button
-				title="Builds (Alt-B)"
+				title="Builds and Chat-codes (Alt-B)"
 				style={getIconStyle(Area.Build, state.area)}
-				onClick={() => store.processAction(Actions.OpenBuild)}
+				onClick={() => processAction(HostAction.ToggleBuild)}
 			/>
 			<button
-				title="Text (Alt-T)"
+				title="General Text (Alt-T)"
 				style={getIconStyle(Area.Text, state.area)}
-				onClick={() => store.processAction(Actions.OpenText)}
+				onClick={() => processAction(HostAction.ToggleText)}
 			/>
 			<button
-				title="Configure"
+				title="Configuration (Alt-C)"
 				style={getIconStyle(Area.Config, state.area)}
 				onClick={() => {
-					store.processAction(Actions.OpenConfig);
+					processAction(HostAction.ToggleConfig);
 				}}
 			/>
 			<button
-				title="Toggle drawer (Alt-Backspace)"
+				title={`${isDrawerOpen ? 'Close' : 'Open' } drawer (Alt-Backspace)`}
 				onClick={() => {
-					store.processAction(Actions.CloseDrawer);
+					processAction(HostAction.ToggleDrawer);
 				}}
 				style={{
 					marginTop: '-2px',

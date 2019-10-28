@@ -1,5 +1,6 @@
 import React from 'react';
 import { ICategory } from '@models/IConfig';
+
 export const EditBuildGroup = (props: {
 	categoryType: number;
 	groupIndex: number;

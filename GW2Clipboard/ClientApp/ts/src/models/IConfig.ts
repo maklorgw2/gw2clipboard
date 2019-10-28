@@ -1,4 +1,4 @@
-import { ITag, GameModeType } from './ITag';
+import { ITag, GameModeType } from '@models/ITag';
 
 export enum CategoryType {
 	Build = 0,
@@ -25,6 +25,7 @@ export interface ICategory {
 	name: string;
 	tags: ITag[];
 	groups: IGroup[];
+	closed?: boolean;
 	sortOrder?: number;
 }
 
@@ -34,6 +35,7 @@ export interface ISettings {
 	ClosedOpacity:number;
 	MinimizeOnStart:boolean;
 	MinimizeOnDrawerClosed:boolean;
+	CaptureMouseOnEnter:boolean;
 	ToggleMode:boolean;
 	DrawerOpenTop:number;
 	DrawerOpenLeft:number;
@@ -46,19 +48,25 @@ export interface ISettings {
 	HotKeys: { [key: number]: number[] };
 }
 
-export enum Actions {
+export enum HostAction {
+	None = 0,
+
 	// HotKeys
-	OpenBuild = 100,
-	OpenText = 101,
-	CloseDrawer = 102,
+	ToggleBuild = 100,
+	ToggleConfig = 150,
+	ToggleText = 101,
+	ToggleDrawer = 102,
+
 	Up = 103,
 	Down = 104,
 	Left = 105,
 	Right = 106,
+	
 	Select = 107,
+	
 	Minimize = 108,
-	// Other Actions
-	OpenConfig = 150,
+	Restore = 160,
+	
 	RefreshClient = 200
 }
 

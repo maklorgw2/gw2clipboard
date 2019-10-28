@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace GW2Clipboard
@@ -12,6 +15,8 @@ namespace GW2Clipboard
         public HostBridge hostBridge;
         string appFileName;
         bool firstRun = true;
+        bool isActivated = false;
+        IntPtr lastForiegnWindow = IntPtr.Zero;
 
         #region HostForm
         public HostForm()
@@ -57,10 +62,11 @@ namespace GW2Clipboard
             MinimizeLabel.Font = marlett;
             CloseLabel.Font = marlett;
 
-            MinimizeLabel.MouseClick += (s, e) => { 
-                if (e.Button == MouseButtons.Left) { 
-                    MinimizeToSystemTray(); 
-                    hostBridge.RefreshClient(); 
+            MinimizeLabel.MouseClick += (s, e) =>
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    hostBridge.HostActionQueue.Enqueue(HostAction.Minimize);
                 }
             };
 
@@ -95,18 +101,16 @@ namespace GW2Clipboard
 
         public void ApplySettings()
         {
-            var openOpacity = hostBridge.Settings.OpenOpacity / 100.0;
-            if (openOpacity < 0) openOpacity = 0.5;
-            if (openOpacity > 1) openOpacity = 1;
+            if (hostBridge.Settings.OpenOpacity < 50) hostBridge.Settings.OpenOpacity = 50;
+            if (hostBridge.Settings.OpenOpacity > 100) hostBridge.Settings.OpenOpacity = 100;
 
+            if (hostBridge.Settings.ClosedOpacity < 50) hostBridge.Settings.ClosedOpacity = 50;
+            if (hostBridge.Settings.ClosedOpacity > 100) hostBridge.Settings.ClosedOpacity = 100;
+
+            var openOpacity = hostBridge.Settings.OpenOpacity / 100.0;
             var closedOpacity = hostBridge.Settings.ClosedOpacity / 100.0;
-            if (closedOpacity < 0) closedOpacity = 0.5;
-            if (closedOpacity > 1) closedOpacity = 1;
 
             Opacity = hostBridge.IsDrawerOpen ? openOpacity : closedOpacity;
-
-            hostBridge.Settings.OpenOpacity = Convert.ToInt32(openOpacity * 100);
-            hostBridge.Settings.ClosedOpacity = Convert.ToInt32(closedOpacity * 100);
         }
 
         private void HostForm_Load(object sender, EventArgs e)
@@ -114,8 +118,12 @@ namespace GW2Clipboard
             this.Text = "GW2Clipboard";
             this.notifyIcon.Icon = this.Icon;
             this.notifyIcon.Visible = true;
+            this.Opacity = 0;
 
             hostBridge = new HostBridge(this);
+
+            // If GW2 is available, emulate it being the last active window
+            lastForiegnWindow = NativeMethods.FindWindow(IntPtr.Zero, "Guild Wars 2");
 
             // Configure launch page (app.html for a release and app-debug.html when debugger is attached)
             string currentDirectory = Directory.GetCurrentDirectory();
@@ -151,15 +159,13 @@ namespace GW2Clipboard
             this.browser.ObjectForScripting = new ScriptInterface(hostBridge);
             this.browser.DocumentCompleted += DocumentCompleted;
             this.browser.Navigate(appFileName);
-
-            autoSaveTimer.Enabled = true;
         }
 
         private void HostForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             hostBridge.SaveSettings();
 
-            autoSaveTimer.Enabled = false;
+            timer.Enabled = false;
         }
         #endregion
 
@@ -172,7 +178,7 @@ namespace GW2Clipboard
 
         public Color ActiveTextColor { get; set; } = Color.FromArgb(238, 230, 204);
         public Color InactiveTextColor { get; set; } = Color.FromArgb(238, 230, 204);
-        public Color ActiveBorderColor { get; set; } = Color.FromArgb(50, 50, 50);
+        public Color ActiveBorderColor { get; set; } = Color.FromArgb(150, 150, 150);
         public Color InactiveBorderColor { get; set; } = Color.FromArgb(20, 20, 20);
         public Color HoverTextColor { get; set; } = Color.FromArgb(120, 120, 120);
         public Color DownTextColor { get; set; } = Color.FromArgb(255, 248, 208);
@@ -287,14 +293,17 @@ namespace GW2Clipboard
 
         private void HostForm_Deactivate(object sender, EventArgs e)
         {
+            isActivated = false;
             SetBorderColor(InactiveBorderColor);
             SetTextColor(InactiveTextColor);
         }
 
         private void HostForm_Activated(object sender, EventArgs e)
         {
+            isActivated = true;
             SetBorderColor(ActiveBorderColor);
             SetTextColor(ActiveTextColor);
+
         }
 
         public void SetResizingMode(bool canResize)
@@ -357,53 +366,28 @@ namespace GW2Clipboard
             this.browser.Refresh(WebBrowserRefreshOption.Completely);
         }
 
-        private void HotKeyDetected(object sender, HotKeyEventArgs e)
-        {
-            this.browser.Document.InvokeScript("eval", new object[] { $"window.store.processAction({e.id})" });
-        }
-
-        public void ClientAction(int action)
-        {
-            if (this.browser.Document != null) this.browser.Document.InvokeScript("eval", new object[] { $"window.store.processAction({action})" });
-        }
 
         void DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
         }
         #endregion
 
-        private void autoSaveTimer_Tick(object sender, EventArgs e)
+        private void HotKeyDetected(object sender, HotKeyEventArgs e)
         {
-            //// Capture any form moves
-            //if (MinMaxState == FormWindowState.Normal)
-            //{
-            //    if (hostBridge.IsDrawerOpen)
-            //    {
-            //        hostBridge.Settings.DrawerOpenTop = this.Top;
-            //        hostBridge.Settings.DrawerOpenLeft = this.Left;
-            //        hostBridge.Settings.DrawerOpenHeight = this.Height;
-            //        hostBridge.Settings.DrawerOpenWidth = this.Width;
-            //    }
-            //    else
-            //    {
-            //        hostBridge.Settings.DrawerClosedTop = this.Top;
-            //        hostBridge.Settings.DrawerClosedLeft = this.Left;
-            //    }
-            //}
+            hostBridge.HostActionQueue.Enqueue((HostAction)e.id);
+        }
+
+        public void FocusToPreviousWindow()
+        {
+            if (lastForiegnWindow != Handle && lastForiegnWindow != IntPtr.Zero) NativeMethods.SetForegroundWindow(lastForiegnWindow);
         }
 
         public void OpenFromSystemTray()
         {
-            autoSaveTimer.Enabled = false;
             hostBridge.IsInSystemTray = false;
 
-            Hide();
-            hostBridge.OpenDrawer(false);
-            hostBridge.RefreshClient();
-
-            //this.WindowState = FormWindowState.Normal;
-
-            autoSaveTimer.Enabled = true;
+            //Hide();
+            hostBridge.OpenDrawer();
         }
 
         public void MinimizeToSystemTray()
@@ -412,45 +396,58 @@ namespace GW2Clipboard
             hostBridge.IsInSystemTray = true;
         }
 
-        private void ToggleFromSystemTray()
-        {
-            if (hostBridge.IsInSystemTray) OpenFromSystemTray();
-            else MinimizeToSystemTray();
-        }
-
-        private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            ToggleFromSystemTray();
-        }
-
         private void notifyIcon_MouseClick(object sender, MouseEventArgs e)
         {
-            ToggleFromSystemTray();
-        }
-
-        private void HostForm_Resize(object sender, EventArgs e)
-        {
-            if (this.MinMaxState == FormWindowState.Minimized)
-            {
-                MinimizeToSystemTray();
-            }
+            hostBridge.HostActionQueue.Enqueue(hostBridge.IsInSystemTray ? HostAction.Restore : HostAction.Minimize);
         }
 
         private void HostForm_Shown(object sender, EventArgs e)
         {
             if (hostBridge.Settings.MinimizeOnStart && firstRun)
             {
-                MinimizeToSystemTray();
+                hostBridge.HostActionQueue.Enqueue(HostAction.Minimize);
+                Hide();
             }
             firstRun = false;
         }
 
         private void HostForm_MouseEnter(object sender, EventArgs e)
         {
+            // NativeMethods.SetActiveWindow(Handle);
         }
 
-        private void HostForm_Move(object sender, EventArgs e)
+        private void timer_Tick(object sender, EventArgs e)
         {
+            var currentForgegroundWindow = NativeMethods.GetForegroundWindow();
+            if (currentForgegroundWindow != Handle) lastForiegnWindow = currentForgegroundWindow;
+
+            Point mp = Cursor.Position;
+            var inX = (mp.X >= Left && mp.X <= Left + Width);
+            var inY = (mp.Y >= Top && mp.Y <= Top + Height);
+
+            //Debug.WriteLine($"{Handle} {currentForgegroundWindow}");
+            if (isActivated)
+            {
+                if (!inX || !inY)
+                {
+                    Debug.WriteLine($"DEACTIVATE {Handle} {currentForgegroundWindow}");
+                    
+                    HostForm_Deactivate(null, null);
+                    FocusToPreviousWindow();
+                }
+            }
+            else
+            {
+                if (hostBridge.Settings.CaptureMouseOnEnter)
+                {
+                    if (inX && inY)
+                    {
+                        Debug.WriteLine($"ACTIVATE {Handle} {currentForgegroundWindow}");
+                        Activate();
+                    }
+                }
+            }
         }
+
     }
 }

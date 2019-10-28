@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Text;
+using System.Windows.Forms;
 
 namespace GW2Clipboard
 {
@@ -240,6 +242,65 @@ namespace GW2Clipboard
         public short Y;
     }
 
+    public struct INPUT
+    {
+        public INPUTType type;
+        public INPUTUnion Event;
+    }
+
+    [StructLayout(LayoutKind.Explicit)]
+    public struct INPUTUnion
+    {
+        [FieldOffset(0)]
+        internal MOUSEINPUT mi;
+        [FieldOffset(0)]
+        internal KEYBDINPUT ki;
+        [FieldOffset(0)]
+        internal HARDWAREINPUT hi;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    struct MOUSEINPUT
+    {
+        public int dx;
+        public int dy;
+        public int mouseData;
+        public int dwFlags;
+        public uint time;
+        public IntPtr dwExtraInfo;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    struct KEYBDINPUT
+    {
+        public ushort wVk;
+        public ushort wScan;
+        public KEYEVENTF dwFlags;
+        public int time;
+        public IntPtr dwExtraInfo;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    struct HARDWAREINPUT
+    {
+        public int uMsg;
+        public short wParamL;
+        public short wParamH;
+    }
+
+    public enum INPUTType : uint
+    {
+        INPUT_KEYBOARD = 1
+    }
+
+    [Flags]
+    enum KEYEVENTF : uint
+    {
+        EXTENDEDKEY = 0x0001,
+        KEYUP = 0x0002,
+        SCANCODE = 0x0008,
+        UNICODE = 0x0004
+    }
     [Flags]
     public enum WindowStyle
     {
@@ -295,10 +356,12 @@ namespace GW2Clipboard
         public int lParam;
     }
 
+#pragma warning disable CA1401 // P/Invokes should not be visible
     public static class NativeMethods
     {
         [DllImport("user32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
+
         public static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
 
         [DllImport("user32.dll")]
@@ -309,6 +372,9 @@ namespace GW2Clipboard
 
         [DllImport("user32.dll")]
         public static extern IntPtr GetCapture();
+
+        [DllImport("user32.dll")]
+        public static extern IntPtr GetForegroundWindow();
 
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
@@ -358,6 +424,12 @@ namespace GW2Clipboard
         [DllImport("gdi32.dll")]
         public static extern int GetRgnBox(IntPtr hrgn, out RECT lprc);
 
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        public static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        public static extern int GetWindowTextLength(IntPtr hWnd);
+
         [DllImport("user32.dll")]
         public static extern int GetWindowLong(IntPtr hWnd, Int32 Offset);
 
@@ -397,13 +469,27 @@ namespace GW2Clipboard
         public static extern int GetSystemMetrics(int smIndex);
 
         [DllImport("user32.dll", SetLastError = true)]
+        public static extern IntPtr FindWindow(IntPtr parentHandleZero, string windowTitle);
+
+        [DllImport("user32.dll", SetLastError = true)]
         public static extern IntPtr FindWindowEx(IntPtr parentHandle, IntPtr childAfter, string className, string windowTitle);
+
+        [DllImport("user32.dll")]
+        public static extern uint MapVirtualKey(uint uCode, uint uMapType);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern IntPtr SendInput(uint nInputs, [MarshalAs(UnmanagedType.LPArray), In] INPUT[] pInputs, int cbSize);
 
         [DllImport("shell32.dll")]
         public static extern int SHAppBarMessage(uint dwMessage, [In] ref APPBARDATA pData);
 
         [DllImport("gdi32.dll")]
         public static extern bool DeleteObject(IntPtr hObj);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern bool RegisterHotKey(IntPtr hWnd, int id, KeyModifiers fsModifiers, Keys vk);
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern bool UnregisterHotKey(IntPtr hWnd, int id);
     }
 
     public static class NativeConstants
@@ -411,7 +497,7 @@ namespace GW2Clipboard
         public const int SM_CXSIZEFRAME = 32;
         public const int SM_CYSIZEFRAME = 33;
         public const int SM_CXPADDEDBORDER = 92;
-        
+
         public const int GWL_ID = (-12);
         public const int GWL_STYLE = (-16);
         public const int GWL_EXSTYLE = (-20);
@@ -430,3 +516,4 @@ namespace GW2Clipboard
         public const int ABS_AUTOHIDE = 0x1;
     }
 }
+#pragma warning restore CA1401 // P/Invokes should not be visible

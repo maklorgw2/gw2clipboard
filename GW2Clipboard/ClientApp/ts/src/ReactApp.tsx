@@ -2,10 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter as Router } from 'react-router-dom';
 import { BaseRouter } from '@components/BaseRouter';
-import { StateProvider } from '@components/StateContext';
-import { HostManager } from '@libs/HostManager';
-
-HostManager.setClientReady(false);
+import { StateProvider } from '@libs/StateContext';
 
 ReactDOM.render(
 	<StateProvider>

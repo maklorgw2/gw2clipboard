@@ -21,23 +21,12 @@ export enum WindowState {
 // Global HostManager provides any conversions between Host and Client and stores configuration
 // HostManager's storing of setting state is questionable and it could (should?) be migrated to Store
 export const HostManager = {
-	_maps: null as IMap[],
-	_selectableMaps: null as IMap[],
-	_config: null as IConfig,
 	initialize: () => {
 		HostManager._loadConfig();
 		HostManager._loadMaps();
 	},
 	getConfig: () => HostManager._config,
-	_loadConfig: () => {
-		HostManager._config = {
-			categoryData: JSON.parse(Host.loadCategories()) as ICategory[],
-			settings: JSON.parse(Host.loadSettings()) as ISettings
-		};
-	},
-	_loadMaps: () => {
-		HostManager._maps = JSON.parse(Host.loadMaps()).sort((a: IMap, b: IMap) => ('' + a.t).localeCompare(b.t));
-	},
+	getHostAction: () => Host.getHostAction(),
 	getCloseState: () => {
 		const minimizeOnDrawerClosed = HostManager.getConfig().settings.MinimizeOnDrawerClosed;
 		if (minimizeOnDrawerClosed) return WindowState.OpenMinimized;
@@ -52,7 +41,7 @@ export const HostManager = {
 			else return WindowState.ClosedVisible;
 		}
 	},
-	setWindowState: (newState: WindowState) => {
+	applyWindowState: (newState: WindowState) => {
 		switch (newState) {
 			case WindowState.OpenMinimized:
 				if (!Host.isDrawerOpen()) Host.openDrawer();
@@ -73,30 +62,40 @@ export const HostManager = {
 		}
 	},
 	getMaps: (selectableOnly: boolean) => (selectableOnly ? HostManager._selectableMaps : HostManager._maps),
-	addCategory: (category: ICategory, autoSave = true) => {
-		HostManager._config.categoryData = [ ...HostManager._config.categoryData, category ];
-		if (autoSave) HostManager.saveCategories();
+	autoSaveCategories: () => {
+		if (HostManager._autoSaveCategoriesDue != 0) {
+			if (Date.now() > HostManager._autoSaveCategoriesDue) {
+				HostManager.saveCategories();
+			}
+		}
 	},
-	updateCategory: (category: ICategory, autoSave = true) => {
+	addCategory: (category: ICategory, save = true) => {
+		HostManager._config.categoryData = [ ...HostManager._config.categoryData, category ];
+		if (save) HostManager.saveCategories();
+		else HostManager._scheduleAutoSave();
+	},
+	updateCategory: (category: ICategory, save = true) => {
 		HostManager._config.categoryData = [
 			...HostManager._config.categoryData.filter((c) => c.id != category.id),
 			category
 		];
-		if (autoSave) HostManager.saveCategories();
+		if (save) HostManager.saveCategories();
+		else HostManager._scheduleAutoSave();
 	},
-	deleteCategory: (category: ICategory, autoSave = true) => {
+	deleteCategory: (category: ICategory, save = true) => {
 		HostManager._config.categoryData = [ ...HostManager._config.categoryData.filter((c) => c.id != category.id) ];
-		if (autoSave) HostManager.saveCategories();
+		if (save) HostManager.saveCategories();
+		else HostManager._scheduleAutoSave();
 	},
 	saveCategories: () => {
 		Host.saveCategories(JSON.stringify(HostManager._config.categoryData, null, 2));
+		HostManager._autoSaveCategoriesDue = 0;
 	},
 	saveSettings: (settings: ISettings) => {
 		HostManager._config.settings = settings;
 		Host.saveSettings(JSON.stringify(HostManager._config.settings, null, 2));
 	},
 	getMumbleData: () => Host.getMumbleData(),
-	setClientReady: (ready: boolean) => Host.setClientReady(ready),
 	setClipBoardData: (text: string) => Host.setClipBoardData(text),
 	iconBarSize: () => Host.iconBarSize,
 	isEmbedded: () => Host.isEmbedded(),
@@ -106,7 +105,25 @@ export const HostManager = {
 	refresh: () => {
 		Host.refresh();
 	},
-	exit: () => Host.exit()
+	exit: () => Host.exit(),
+
+	// internals
+	_maps: null as IMap[],
+	_selectableMaps: null as IMap[],
+	_config: null as IConfig,
+	_autoSaveCategoriesDue: 0,
+
+	_scheduleAutoSave: () => HostManager._autoSaveCategoriesDue = Date.now() + 10000, // set to auto-save in 10 seconds from last update
+	_loadConfig: () => {
+		HostManager._config = {
+			categoryData: JSON.parse(Host.loadCategories()) as ICategory[],
+			settings: JSON.parse(Host.loadSettings()) as ISettings
+		};
+	},
+	_loadMaps: () => {
+		HostManager._maps = JSON.parse(Host.loadMaps()).sort((a: IMap, b: IMap) => ('' + a.t).localeCompare(b.t));
+		HostManager._selectableMaps = HostManager._maps.filter(m => !m.e).sort((a: IMap, b: IMap) => ('' + a.t).localeCompare(b.t));
+	}
 };
 
 HostManager.initialize();

@@ -32,7 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HostForm));
             this.browser = new System.Windows.Forms.WebBrowser();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.autoSaveTimer = new System.Windows.Forms.Timer(this.components);
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.TitleLabel = new System.Windows.Forms.Label();
             this.RightBorderPanel = new System.Windows.Forms.Panel();
             this.LeftBorderPanel = new System.Windows.Forms.Panel();
@@ -64,12 +64,11 @@
             // 
             this.notifyIcon.Text = "GW2Clipboard";
             this.notifyIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseClick);
-            this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
             // 
-            // autoSaveTimer
+            // timer
             // 
-            this.autoSaveTimer.Interval = 2000;
-            this.autoSaveTimer.Tick += new System.EventHandler(this.autoSaveTimer_Tick);
+            this.timer.Enabled = true;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
             // TitleLabel
             // 
@@ -228,8 +227,6 @@
             this.TopMost = true;
             this.Shown += new System.EventHandler(this.HostForm_Shown);
             this.MouseEnter += new System.EventHandler(this.HostForm_MouseEnter);
-            this.Move += new System.EventHandler(this.HostForm_Move);
-            this.Resize += new System.EventHandler(this.HostForm_Resize);
             this.ResumeLayout(false);
 
         }
@@ -238,7 +235,6 @@
 
         private System.Windows.Forms.WebBrowser browser;
         private System.Windows.Forms.NotifyIcon notifyIcon;
-        public System.Windows.Forms.Timer autoSaveTimer;
         private System.Windows.Forms.Label TitleLabel;
         private System.Windows.Forms.Panel RightBorderPanel;
         private System.Windows.Forms.Panel LeftBorderPanel;
@@ -251,6 +247,7 @@
         private System.Windows.Forms.ToolTip DecorationToolTip;
         private System.Windows.Forms.Label MinimizeLabel;
         private System.Windows.Forms.Label CloseLabel;
+        private System.Windows.Forms.Timer timer;
     }
 }
 

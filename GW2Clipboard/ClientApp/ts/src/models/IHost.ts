@@ -1,10 +1,11 @@
+import { HostAction } from "@models/IConfig";
+
 export interface IHost {
 	iconBarSize: number;
 	isEmbedded: () => boolean;
 	isDrawerOpen: () => boolean;
 	isDebugMode: () => boolean;
 	IsInSystemTray: () => boolean;
-	setClientReady: (ready:boolean) => void;
 	openDrawer: () => void;
 	closeDrawer: () => void;
 	minimizeWindow: () => void;
@@ -12,6 +13,7 @@ export interface IHost {
 	exit: () => void;
 	refresh: () => void;
 	setClipBoardData: (text: string) => void;
+	getHostAction: () => HostAction;
 	getMumbleData: () => string;
 	loadMaps: () => string;
 	loadSettings: () => string;

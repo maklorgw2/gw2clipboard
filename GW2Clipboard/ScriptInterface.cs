@@ -16,26 +16,12 @@ namespace GW2Clipboard
         public bool isEmbedded => true;
         HostBridge hostBridge;
 
-        #region Win32 Interop
-        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        static extern IntPtr GetForegroundWindow();
-
-        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        static extern bool SetForegroundWindow(IntPtr hWnd);
-
-        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
-
-        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        static extern int GetWindowTextLength(IntPtr hWnd);
-        #endregion
-
         public ScriptInterface(HostBridge hostBridge)
         {
             this.hostBridge = hostBridge;
         }
 
-        public void OpenDrawer() => hostBridge.OpenDrawer(true);
+        public void OpenDrawer() => hostBridge.OpenDrawer();
 
         public bool IsDrawerOpen() => hostBridge.IsDrawerOpen;
 
@@ -43,7 +29,7 @@ namespace GW2Clipboard
 
         public bool IsDebugMode => hostBridge.IsDebugMode;
 
-        public void CloseDrawer() => hostBridge.CloseDrawer(true);
+        public void CloseDrawer() => hostBridge.CloseDrawer();
 
         public void Exit() => hostBridge.Exit();
 
@@ -52,6 +38,8 @@ namespace GW2Clipboard
         public void RestoreWindow() => hostBridge.RestoreWindow();
 
         public void Refresh() => hostBridge.Refresh();
+
+        public HostAction GetHostAction() => hostBridge.HostActionQueue.Count > 0 ? hostBridge.HostActionQueue.Dequeue() : HostAction.None;
 
         public string LoadMaps() => hostBridge.MapManager.ToJson();
 
@@ -115,11 +103,11 @@ namespace GW2Clipboard
         private string GetCaptionOfActiveWindow()
         {
             var strTitle = string.Empty;
-            var handle = GetForegroundWindow();
+            var handle = NativeMethods.GetForegroundWindow();
             // Obtain the length of the text   
-            var intLength = GetWindowTextLength(handle) + 1;
+            var intLength = NativeMethods.GetWindowTextLength(handle) + 1;
             var stringBuilder = new StringBuilder(intLength);
-            if (GetWindowText(handle, stringBuilder, intLength) > 0)
+            if (NativeMethods.GetWindowText(handle, stringBuilder, intLength) > 0)
             {
                 strTitle = stringBuilder.ToString();
             }

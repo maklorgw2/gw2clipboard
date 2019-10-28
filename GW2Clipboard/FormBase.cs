@@ -66,7 +66,7 @@ namespace GW2Clipboard
                 base.WndProc(ref m);
                 return;
             }
-            Debug.WriteLine($"MSG: {m.Msg.ToString("X").PadLeft(4, '0')} LParam:{m.LParam.ToString("X").PadLeft(8, '0')} WParam:{m.WParam.ToString("X").PadLeft(8, '0')}");
+            //Debug.WriteLine($"MSG: {m.Msg.ToString("X").PadLeft(4, '0')} LParam:{m.LParam.ToString("X").PadLeft(8, '0')} WParam:{m.WParam.ToString("X").PadLeft(8, '0')}");
 
             switch (m.Msg)
             {

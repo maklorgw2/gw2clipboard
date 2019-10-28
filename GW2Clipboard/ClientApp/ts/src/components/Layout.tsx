@@ -1,38 +1,54 @@
 import React, { ReactNode, Fragment, useEffect, useLayoutEffect } from 'react';
-import { IconBar } from './IconBar';
-import { useStore } from './StateContext';
-import { Actions } from '@models/IConfig';
+import { IconBar } from '@components/IconBar';
+import { useStore } from '@libs/StateContext';
+import { HostAction } from '@models/IConfig';
 import { HostManager, WindowState } from '@libs/HostManager';
+import { useInterval } from '@libs/useInterval';
+import { processMumbleData } from '@libs/mumble';
 
 export const Layout = (props: { children?: ReactNode | ReactNode[] }) => {
-	const { store, state } = useStore();
+	const { state, updateState, processAction } = useStore();
+
+	useInterval(() => {
+		processMumbleData(state, updateState);
+		
+		while (true) {
+			const hostAction = HostManager.getHostAction();
+			if (hostAction == HostAction.None) break;
+			//hostActions.push(hostAction);
+			processAction(hostAction);
+		}
+
+		// Auto-save if needed
+		HostManager.autoSaveCategories();
+	}, 100);
 
 	useEffect(() => {
 		const handleKey = (event: any) => {
-			// console.log('Local key: ', event.key);
+			console.log('Local key: ', event.key);
 			switch (event.key) {
 				case 'Esc':
 				case 'Escape':
-					store.processAction(Actions.CloseDrawer);
+					if (HostManager.isDrawerOpen()) processAction(HostAction.ToggleDrawer);
 					break;
 				case 'Up':
 				case 'ArrowUp':
-					store.processAction(Actions.Up);
+					processAction(HostAction.Up);
 					break;
 				case 'Down':
 				case 'ArrowDown':
-					store.processAction(Actions.Down);
+					processAction(HostAction.Down);
 					break;
 				case 'Left':
 				case 'ArrowLeft':
-					store.processAction(Actions.Left);
+					processAction(HostAction.Left);
 					break;
 				case 'Right':
 				case 'ArrowRight':
-					store.processAction(Actions.Right);
+					processAction(HostAction.Right);
 					break;
 				case 'Enter':
-					store.processAction(Actions.Select);
+					processAction(HostAction.Select);
 					break;
 			}
 		};
@@ -40,15 +56,14 @@ export const Layout = (props: { children?: ReactNode | ReactNode[] }) => {
 		return () => {
 			document.body.removeEventListener('keydown', handleKey);
 		};
-	}, []);
+	});
 
-	useLayoutEffect(() => {
-		HostManager.setClientReady(true);
-	}, []);
+	// useLayoutEffect(() => {
+	// 	HostManager.setClientReady(true);
+	// }, []);
 
-	useEffect(() => {
-		HostManager.setWindowState(state.windowState);
-	}, [ state.windowState ]);
+	// Apply any new window state to host
+	useEffect(() => HostManager.applyWindowState(state.windowState), [ state.windowState ]);
 
 	return (
 		<Fragment>
@@ -56,7 +71,9 @@ export const Layout = (props: { children?: ReactNode | ReactNode[] }) => {
 				<div className="icon-bar" style={{ width: `${HostManager.iconBarSize()}px !important` }}>
 					<IconBar />
 				</div>
-				{(state.windowState==WindowState.OpenVisible || state.windowState==WindowState.OpenMinimized) && <div className="layout-content">{props.children}</div>}
+				{(state.windowState == WindowState.OpenVisible || state.windowState == WindowState.OpenMinimized) && (
+					<div className="layout-content">{props.children}</div>
+				)}
 			</div>
 		</Fragment>
 	);

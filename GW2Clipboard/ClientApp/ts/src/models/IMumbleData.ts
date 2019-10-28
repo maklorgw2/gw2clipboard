@@ -1,4 +1,6 @@
-export interface IMumbleData {
+import { GameModeType } from "@models/ITag";
+
+export interface IMumbleDataRaw {
 	fAvatarFront: number[];
 	fAvatarPosition: number[];
 	fCameraFront: number[];
@@ -36,4 +38,14 @@ export interface IMumbleData {
 		mapCenterY: number; // continentCoords
 		mapScale: number;
 	};
+}
+
+export interface IMumbleData extends IMumbleDataRaw {
+	mapName: string;
+	gameMode: GameModeType;
+	gameModeName: string;
+	gw2HasFocus: boolean; // GW2 is the active window
+	mapIsActive: boolean; // The UI Ticks are updating
+	assumeContextIsStale: boolean; // If GW2 is active and the UI Ticks are not updating, assume loading or character select
+	onlyPositionChanged: boolean; // Flag to short-circuit filtering
 }

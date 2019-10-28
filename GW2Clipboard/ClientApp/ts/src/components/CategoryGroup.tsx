@@ -1,20 +1,19 @@
 import React from 'react';
 import { ICategory, CategoryType } from '@models/IConfig';
-import { useStore, SelectionMethod } from './StateContext';
+import { useStore } from '@libs/StateContext';
 import { HostManager } from '@libs/HostManager';
+import { SelectionMethod } from '@models/ISelectedCategory';
 
 export const CategoryGroup = (props: {
 	category: ICategory;
 	categoryIndex: number;
-	selectedGroupIndex: number | null;
-	selectedChildIndex: number | null;
 }) => {
-	const { store } = useStore();
+	const { state, updateState } = useStore();
 	const isBuild = props.category.categoryType == CategoryType.Build;
 	return (
 		<div className="category-container">
 			{props.category.groups.map((group, groupIndex) => {
-				const isGroupSelected = props.selectedGroupIndex == groupIndex;
+				const isGroupSelected = state.selectedCategory.index == props.categoryIndex && state.selectedCategory.groupIndex == groupIndex;
 				return (
 					<div
 						className={
@@ -24,12 +23,12 @@ export const CategoryGroup = (props: {
 						{group.text.map((child, childIndex) => (
 							<div
 								className={`category-groupitem${isGroupSelected &&
-								props.selectedChildIndex == childIndex
+									state.selectedCategory.childIndex == childIndex
 									? ' selected'
 									: ''}`}
 								onClick={(event) => {
 									HostManager.setClipBoardData(group.text[0]);
-									store.updateState({
+									updateState({
 										selectedCategory: {
 											index: props.categoryIndex,
 											groupIndex: groupIndex,
@@ -41,7 +40,7 @@ export const CategoryGroup = (props: {
 									event.stopPropagation();
 								}}
 							>
-								{isBuild ? group.name : child}
+								{isBuild ? <span title={child}>{group.name}</span> : child}
 							</div>
 						))}
 					</div>

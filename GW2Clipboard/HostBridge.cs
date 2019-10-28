@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -23,18 +24,13 @@ namespace GW2Clipboard
         bool categoriesDirty = false;
         bool settingsDirty = false;
 
+        public Queue<HostAction> HostActionQueue = new Queue<HostAction>();
         public Settings Settings { get; set; }
         public MapManager MapManager { get; set; }
         public bool IsDrawerOpen { get; set; }
         public bool IsInSystemTray { get; set; }
         public bool IsClientReady { get; set; } = false;
         public MumbleLinkFile MumbleLinkFile { get; private set; }
-
-        #region Interop
-        [DllImport("user32.dll")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool SetForegroundWindow(IntPtr hWnd);
-        #endregion
 
         public HostBridge(HostForm hostForm)
         {
@@ -51,7 +47,6 @@ namespace GW2Clipboard
         {
             MumbleLinkFile.Dispose();
         }
-
 
         #region Settings and Categories
         public Settings LoadSettings()
@@ -71,7 +66,6 @@ namespace GW2Clipboard
 
             return Settings;
         }
-
 
         public void SaveSettings(string newSettings = null)
         {
@@ -108,69 +102,63 @@ namespace GW2Clipboard
 
         public bool IsDebugMode => Debugger.IsAttached;
 
-        public void RefreshClient()
-        {
-            hostForm.ClientAction((int)Settings.ActionsEnum.RefreshClient);
-        }
-
-        public void FocusToPreviousWindow()
+        public IntPtr GetGw2WindowHandle()
         {
             // Restore focus
-            if (Gw2WindowHandle != IntPtr.Zero)
+            if (Gw2WindowHandle == IntPtr.Zero)
             {
-                if (SetForegroundWindow(Gw2WindowHandle)) return;
-            }
-
-            // Missing or Invalid handle, look for it
-            var processes = Process.GetProcesses();
-            foreach (var process in processes)
-            {
-                if (process.MainWindowTitle.IndexOf("Guild Wars 2", StringComparison.InvariantCulture) > -1)
+                // Missing or Invalid handle, look for it
+                var processes = Process.GetProcesses();
+                foreach (var process in processes)
                 {
-                    Gw2WindowHandle = process.MainWindowHandle;
-                    SetForegroundWindow(Gw2WindowHandle);
-                    break;
+                    if (process.MainWindowTitle.IndexOf("Guild Wars 2", StringComparison.InvariantCulture) > -1)
+                    {
+                        Gw2WindowHandle = process.MainWindowHandle;
+                        break;
+                    }
                 }
             }
+            return Gw2WindowHandle;
         }
 
         private void FadeOut(int opacity)
         {
-            var sourceOpacity = opacity / 100.0;
-            for (var i = sourceOpacity; i > 0; i -= 0.1)
-            {
-                hostForm.Opacity = i;
-                Application.DoEvents();
-                Thread.Sleep(10);
-            }
-            hostForm.Opacity = 0;
+            //var sourceOpacity = opacity / 100.0;
+            //for (var i = sourceOpacity; i > 0; i -= 0.1)
+            //{
+            //    hostForm.Opacity = i;
+            //    Application.DoEvents();
+            //    Thread.Sleep(10);
+            //}
+            //hostForm.Opacity = 0;
             hostForm.Hide();
         }
 
         private void FadeIn(int opacity)
         {
-            hostForm.Opacity = 0.0;
-            hostForm.Show();
+            //hostForm.Opacity = 0.0;
+            //hostForm.Show();
 
             var targetOpacity = opacity / 100.0;
-            for (var i = 0.0; i < targetOpacity; i += 0.1)
-            {
-                hostForm.Opacity = i;
-                Application.DoEvents();
-                Thread.Sleep(10);
-            }
+            //for (var i = 0.0; i < targetOpacity; i += 0.1)
+            //{
+            //    hostForm.Opacity = i;
+            //    Application.DoEvents();
+            //    Thread.Sleep(10);
+            //}
             hostForm.Opacity = targetOpacity;
+            hostForm.Show();
         }
 
         public void SetWindowPos(int left, int top, int width, int height)
         {
-            //https://stackoverflow.com/questions/22548225/setwindowpos-fails-to-set-window-always-on-top
-            const int GWL_EXSTYLE = -20;
-            const int WS_EX_TOPMOST = 8;
+            ////https://stackoverflow.com/questions/22548225/setwindowpos-fails-to-set-window-always-on-top
+            //const int GWL_EXSTYLE = -20;
+            //const int WS_EX_TOPMOST = 8;
 
-            var extStyle = NativeMethods.GetWindowLongPtr(hostForm.Handle, GWL_EXSTYLE).ToInt64();
-            extStyle |= WS_EX_TOPMOST;
-            NativeMethods.SetWindowLongPtr(hostForm.Handle, GWL_EXSTYLE, new IntPtr(extStyle));
+            //var extStyle = NativeMethods.GetWindowLongPtr(hostForm.Handle, GWL_EXSTYLE).ToInt64();
+            //extStyle |= WS_EX_TOPMOST;
+            //NativeMethods.SetWindowLongPtr(hostForm.Handle, GWL_EXSTYLE, new IntPtr(extStyle));
 
             //https://stackoverflow.com/questions/683330/how-to-make-a-window-always-stay-on-top-in-net
             if (!NativeMethods.SetWindowPos(hostForm.Handle, new IntPtr(-1), left, top, width, height, 0))
@@ -182,48 +170,48 @@ namespace GW2Clipboard
         public void OpenDrawConfig()
         {
             hostForm.Text = " GW2 Clipboard";
-            //hostForm.FormBorderStyle = FormBorderStyle.Sizable;
             hostForm.SetResizingMode(true);
 
             SetWindowPos(Settings.DrawerOpenLeft, Settings.DrawerOpenTop, Settings.DrawerOpenWidth, Settings.DrawerOpenHeight);
-            
+
             IsDrawerOpen = true;
         }
 
-        public void OpenDrawer(bool fromClient)
+        public void OpenDrawer()
         {
-            hostForm.autoSaveTimer.Enabled = false;
-
-            hostForm.Hide();
+            hostForm.Opacity = 0.1;
+            if (!hostForm.Visible) hostForm.Show();
             Application.DoEvents();
-            OpenDrawConfig();
-            FadeIn(Settings.OpenOpacity);
 
-            hostForm.autoSaveTimer.Enabled = true;
+            OpenDrawConfig();
+            hostForm.Opacity = Settings.OpenOpacity / 100.0;
+            Application.DoEvents();
+            //FadeIn(Settings.OpenOpacity);
         }
 
         public void CloseDrawerConfig()
         {
-            hostForm.Text = "";
-            //hostForm.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            hostForm.Text = " ";
             hostForm.SetResizingMode(false);
 
             SetWindowPos(Settings.DrawerClosedLeft, Settings.DrawerClosedTop, Settings.DrawerClosedWidth, Settings.DrawerClosedHeight);
-            
+
             IsDrawerOpen = false;
         }
 
-        public void CloseDrawer(bool fromClient)
+        public void CloseDrawer()
         {
-            hostForm.autoSaveTimer.Enabled = false;
+            //FadeOut(Settings.OpenOpacity);
+            hostForm.Opacity = 0.1;
+            if (!hostForm.Visible) hostForm.Show();
+            Application.DoEvents();
 
-            FadeOut(Settings.OpenOpacity);
             CloseDrawerConfig();
-            FadeIn(Settings.ClosedOpacity);
-            
-            hostForm.autoSaveTimer.Enabled = true;
+            hostForm.Opacity = Settings.ClosedOpacity / 100.0;
+            Application.DoEvents();
+            //FadeIn(Settings.ClosedOpacity);
 
-            FocusToPreviousWindow();
+            hostForm.FocusToPreviousWindow();
         }
 
         public void MinimizeWindow()
@@ -244,6 +232,48 @@ namespace GW2Clipboard
         public void Refresh()
         {
             hostForm.RefreshBrowser();
+        }
+
+        public void AutoPaste(bool chatWindowMode)
+        {
+            INPUT KeyEvent(Keys key, bool isKeyUp = false)
+            {
+                var vk = (ushort)NativeMethods.MapVirtualKey((uint)key, (uint)0x0);
+                return new INPUT()
+                {
+                    type = INPUTType.INPUT_KEYBOARD,
+                    Event = new INPUTUnion
+                    {
+                        ki = new KEYBDINPUT { wScan = vk, dwFlags = isKeyUp ? KEYEVENTF.SCANCODE | KEYEVENTF.KEYUP : KEYEVENTF.SCANCODE }
+                    }
+                };
+            }
+
+            var enterPress = new[]
+            {
+                KeyEvent(Keys.Enter),
+                KeyEvent(Keys.Enter, true)
+            };
+
+            var pasteKeyDown = new[]
+            {
+                KeyEvent(Keys.ControlKey),
+                KeyEvent(Keys.V)
+            };
+
+            var pasteKeyUp = new[]
+            {
+                KeyEvent(Keys.V, true),
+                KeyEvent(Keys.ControlKey, true)
+            };
+
+            if (chatWindowMode) NativeMethods.SendInput((uint)enterPress.Length, enterPress, Marshal.SizeOf(typeof(INPUT)));
+            Thread.Sleep(10);
+            NativeMethods.SendInput((uint)pasteKeyDown.Length, pasteKeyDown, Marshal.SizeOf(typeof(INPUT)));
+            Thread.Sleep(60);
+            NativeMethods.SendInput((uint)pasteKeyUp.Length, pasteKeyUp, Marshal.SizeOf(typeof(INPUT)));
+            Thread.Sleep(10);
+            if (chatWindowMode) NativeMethods.SendInput((uint)enterPress.Length, enterPress, Marshal.SizeOf(typeof(INPUT)));
         }
     }
 }

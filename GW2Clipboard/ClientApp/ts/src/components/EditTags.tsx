@@ -11,7 +11,7 @@ import {
 	ITag
 } from '@models/ITag';
 import { HostManager } from '@libs/HostManager';
-import { useStore } from './StateContext';
+import { useStore } from '@libs/StateContext';
 
 // get the first of the tag type (there *should* only be one)
 export const getTag = <T extends ITag>(category: ICategory, tagType: TagType) =>
@@ -56,7 +56,7 @@ export const EditTags = (props: {
 						checked={gameModeTag != null}
 						onChange={(event) =>
 							onTagChecked(
-								{ tagType: TagType.GameMode, gameMode: state.cachedGameMode } as IGameModeTag,
+								{ tagType: TagType.GameMode, gameMode: state.mumbleData.gameMode } as IGameModeTag,
 								event.target.checked
 							)}
 					/>{' '}
@@ -88,7 +88,7 @@ export const EditTags = (props: {
 						checked={professionTag != null}
 						onChange={(event) =>
 							onTagChecked(
-								{ tagType: TagType.Profession, profession: state.cachedProfession } as IProfessionTag,
+								{ tagType: TagType.Profession, profession: state.mumbleData.identity.profession } as IProfessionTag,
 								event.target.checked
 							)}
 					/>{' '}
@@ -120,7 +120,7 @@ export const EditTags = (props: {
 						checked={mapTag != null}
 						onChange={(event) =>
 							onTagChecked(
-								{ tagType: TagType.Map, mapId: state.cachedMapId } as IMapTag,
+								{ tagType: TagType.Map, mapId: state.mumbleData.context.mapId } as IMapTag,
 								event.target.checked
 							)}
 					/>{' '}

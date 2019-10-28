@@ -1,9 +1,9 @@
 import React, { Fragment, useState } from 'react';
 import { ICategory, CategoryType } from '@models/IConfig';
-import { createGuid } from './StateContext';
-import { EditTags } from './EditTags';
-import { EditTextGroup } from './EditTextGroup';
-import { EditBuildGroup } from './EditBuildGroup';
+import { createGuid } from '@libs/StateContext';
+import { EditTags } from '@components/EditTags';
+import { EditTextGroup } from '@components/EditTextGroup';
+import { EditBuildGroup } from '@components/EditBuildGroup';
 import { HostManager } from '@libs/HostManager';
 
 export const EditCategory = (props: {

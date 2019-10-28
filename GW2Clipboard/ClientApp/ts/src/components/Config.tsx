@@ -1,17 +1,17 @@
 import React, { useEffect, Fragment, useState } from 'react';
 import { HostManager } from '@libs/HostManager';
-import { useStore, Area } from '@components/StateContext';
+import { useStore, Area } from '@libs/StateContext';
 import { SettingConfig } from '@components/Config/SettingConfig';
 import { MumbleConfig } from '@components/Config/MumbleConfig';
 import { JSONConfig } from '@components/Config/JSONConfig';
 
 export const Config = () => {
-	const { store } = useStore();
+	const { updateState } = useStore();
 	const [ mode, setMode ] = useState('settings');
 	const [ tempSettings, setTempSettings ] = useState({ ...HostManager.getConfig().settings });
 
 	useEffect(() => {
-		store.updateState({ area: Area.Config });
+		updateState({ area: Area.Config });
 	}, []);
 
 	return (
@@ -41,7 +41,7 @@ export const Config = () => {
 							HostManager.saveSettings(newSettings);
 						}}
 					>
-						Save
+						Apply
 					</button>
 				)}
 			</div>

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace GW2Clipboard
@@ -30,13 +28,6 @@ namespace GW2Clipboard
 
     class HotKey : IMessageFilter
     {
-        #region Interop
-        [DllImport("user32.dll", SetLastError = true)]
-        private static extern bool RegisterHotKey(IntPtr hWnd, int id, KeyModifiers fsModifiers, Keys vk);
-        [DllImport("user32.dll", SetLastError = true)]
-        private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
-        #endregion
-
         private const int WM_HOTKEY = 0x0312;
 
         private List<HotKeyDefinition> hotKeyDefinitions;
@@ -60,7 +51,7 @@ namespace GW2Clipboard
         ~HotKey()
         {
             Application.RemoveMessageFilter(this);
-            hotKeyDefinitions.ForEach(def => UnregisterHotKey(Handle, def.id));
+            hotKeyDefinitions.ForEach(def => NativeMethods.UnregisterHotKey(Handle, def.id));
         }
 
         private void RegisterHotKey(int id, Keys key, KeyModifiers modifier)
@@ -68,7 +59,7 @@ namespace GW2Clipboard
             if (key == Keys.None)
                 return;
 
-            bool isKeyRegisterd = RegisterHotKey(Handle, id, modifier, key);
+            bool isKeyRegisterd = NativeMethods.RegisterHotKey(Handle, id, modifier, key);
             if (!isKeyRegisterd)
                 throw new ApplicationException("Hotkey already in use");
         }

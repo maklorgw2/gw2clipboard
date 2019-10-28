@@ -1,6 +1,8 @@
-import { IConfig, CategoryType, IMap } from '@models/IConfig';
+import { IConfig, CategoryType, IMap, HostAction } from '@models/IConfig';
 import { CreateTag, IProfessionTag, TagType, IMapTag, ICommanderTag, GameModeType } from '@models/ITag';
 import { IHost } from '@models/IHost';
+import { IMumbleData } from '@models/IMumbleData';
+import { any } from 'prop-types';
 
 export function getMockConfig(): IConfig {
 	return {
@@ -11,6 +13,7 @@ export function getMockConfig(): IConfig {
 			ClosedOpacity: 75,
 			MinimizeOnStart: false,
 			MinimizeOnDrawerClosed: false,
+			CaptureMouseOnEnter: false,
 			ToggleMode: true,
 			DrawerOpenTop: 100,
 			DrawerOpenLeft: 100,
@@ -76,15 +79,18 @@ export function getMockConfig(): IConfig {
 			{
 				id: '4',
 				categoryType: CategoryType.Build,
-				name: 'Necro DPS',
+				name: 'Necro',
 				groups: [
 					{
+						name: 'Heal scourge',
 						text: [ 'Build Chatlink' ]
 					},
 					{
+						name: 'Condi scourge',
 						text: [ 'Build Chatlink' ]
 					},
 					{
+						name: 'Power reaper',
 						text: [ 'Build Chatlink' ]
 					}
 				],
@@ -98,213 +104,18 @@ export function getMockConfig(): IConfig {
 			{
 				id: '5',
 				categoryType: CategoryType.Build,
-				name: 'Necro DPS',
+				name: 'Ranger',
 				groups: [
 					{
+						name: 'Druid',
 						text: [ 'Build Chatlink' ]
 					},
 					{
+						name: 'Power Soulbeast',
 						text: [ 'Build Chatlink' ]
 					},
 					{
-						text: [ 'Build Chatlink' ]
-					}
-				],
-				tags: [
-					CreateTag<IProfessionTag>({
-						tagType: TagType.Profession,
-						profession: 8
-					})
-				]
-			},
-			{
-				id: '6',
-				categoryType: CategoryType.Build,
-				name: 'Necro DPS',
-				groups: [
-					{
-						text: [ 'Build Chatlink' ]
-					},
-					{
-						text: [ 'Build Chatlink' ]
-					},
-					{
-						text: [ 'Build Chatlink' ]
-					}
-				],
-				tags: [
-					CreateTag<IProfessionTag>({
-						tagType: TagType.Profession,
-						profession: 8
-					})
-				]
-			},
-			{
-				id: '7',
-				categoryType: CategoryType.Build,
-				name: 'Necro DPS',
-				groups: [
-					{
-						text: [ 'Build Chatlink' ]
-					},
-					{
-						text: [ 'Build Chatlink' ]
-					},
-					{
-						text: [ 'Build Chatlink' ]
-					}
-				],
-				tags: [
-					CreateTag<IProfessionTag>({
-						tagType: TagType.Profession,
-						profession: 8
-					})
-				]
-			},
-			{
-				id: '8',
-				categoryType: CategoryType.Build,
-				name: 'Necro DPS',
-				groups: [
-					{
-						text: [ 'Build Chatlink' ]
-					},
-					{
-						text: [ 'Build Chatlink' ]
-					},
-					{
-						text: [ 'Build Chatlink' ]
-					}
-				],
-				tags: [
-					CreateTag<IProfessionTag>({
-						tagType: TagType.Profession,
-						profession: 8
-					})
-				]
-			},
-			{
-				id: '9',
-				categoryType: CategoryType.Build,
-				name: 'Necro DPS',
-				groups: [
-					{
-						text: [ 'Build Chatlink' ]
-					},
-					{
-						text: [ 'Build Chatlink' ]
-					},
-					{
-						text: [ 'Build Chatlink' ]
-					}
-				],
-				tags: [
-					CreateTag<IProfessionTag>({
-						tagType: TagType.Profession,
-						profession: 8
-					})
-				]
-			},
-			{
-				id: '10',
-				categoryType: CategoryType.Build,
-				name: 'Necro DPS',
-				groups: [
-					{
-						text: [ 'Build Chatlink' ]
-					},
-					{
-						text: [ 'Build Chatlink' ]
-					},
-					{
-						text: [ 'Build Chatlink' ]
-					}
-				],
-				tags: [
-					CreateTag<IProfessionTag>({
-						tagType: TagType.Profession,
-						profession: 8
-					})
-				]
-			},
-			{
-				id: '11',
-				categoryType: CategoryType.Build,
-				name: 'Necro DPS',
-				groups: [
-					{
-						text: [ 'Build Chatlink' ]
-					},
-					{
-						text: [ 'Build Chatlink' ]
-					},
-					{
-						text: [ 'Build Chatlink' ]
-					}
-				],
-				tags: [
-					CreateTag<IProfessionTag>({
-						tagType: TagType.Profession,
-						profession: 8
-					})
-				]
-			},
-			{
-				id: '12',
-				categoryType: CategoryType.Build,
-				name: 'Necro DPS',
-				groups: [
-					{
-						text: [ 'Build Chatlink' ]
-					},
-					{
-						text: [ 'Build Chatlink' ]
-					},
-					{
-						text: [ 'Build Chatlink' ]
-					}
-				],
-				tags: [
-					CreateTag<IProfessionTag>({
-						tagType: TagType.Profession,
-						profession: 8
-					})
-				]
-			},
-			{
-				id: '13',
-				categoryType: CategoryType.Build,
-				name: 'Necro DPS',
-				groups: [
-					{
-						text: [ 'Build Chatlink' ]
-					},
-					{
-						text: [ 'Build Chatlink' ]
-					},
-					{
-						text: [ 'Build Chatlink' ]
-					}
-				],
-				tags: [
-					CreateTag<IProfessionTag>({
-						tagType: TagType.Profession,
-						profession: 8
-					})
-				]
-			},
-			{
-				id: '14',
-				categoryType: CategoryType.Build,
-				name: 'Necro DPS',
-				groups: [
-					{
-						text: [ 'Build Chatlink' ]
-					},
-					{
-						text: [ 'Build Chatlink' ]
-					},
-					{
+						name: 'Condi Soulbeast',
 						text: [ 'Build Chatlink' ]
 					}
 				],
@@ -378,13 +189,28 @@ let mockMaps: IMap[] = [
 	}
 ];
 
-export const MockHost: IHost = {
+interface IMockHost extends IHost {
+	_mumbleData: IMumbleData;
+}
+
+export const MockHost: IMockHost = {
+	_mumbleData: {
+		uiTick: Date.now(),
+		fAvatarPosition: [ 1, 2, 3 ],
+		currentWindowTitle: 'Guild Wars 2',
+		identity: {
+			profession: 8
+		},
+		context: {
+			mapId: 1045 // 1209
+		}
+	} as IMumbleData,
+
 	iconBarSize: 10,
 	isEmbedded: () => false,
 	isDebugMode: () => false,
 	isDrawerOpen: () => true,
 	IsInSystemTray: () => false,
-	setClientReady: (ready:boolean)=> void 0,
 	openDrawer: () => void 0,
 	closeDrawer: () => void 0,
 	minimizeWindow: () => void 0,
@@ -392,18 +218,10 @@ export const MockHost: IHost = {
 	exit: () => void 0,
 	refresh: () => void 0,
 	setClipBoardData: (text: string) => void 0,
+	getHostAction: () => HostAction.None,
 	getMumbleData: () => {
-		return JSON.stringify({
-			uiTick: Date.now(),
-			fAvatarPosition: [ 1, 2, 3 ],
-			currentWindowTitle: 'Guild Wars 2',
-			identity: {
-				profession: 8
-			},
-			context: {
-				mapId: 1045 // 1209
-			}
-		});
+		MockHost._mumbleData.uiTick = Date.now();
+		return JSON.stringify(MockHost._mumbleData);
 	},
 	loadSettings: () => JSON.stringify(mockConfig.settings, null, 2),
 	saveSettings: (settingJSON: string) => void 0,
@@ -414,3 +232,6 @@ export const MockHost: IHost = {
 	},
 	loadMaps: () => JSON.stringify(mockMaps)
 };
+
+declare const window: any;
+window.MockHost = MockHost;
