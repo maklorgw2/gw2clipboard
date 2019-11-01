@@ -12,6 +12,19 @@ html, body {
 
 body {
     background-color: #000;
+    scrollbar-base-color: #000;
+    scrollbar-face-color: #333;
+    scrollbar-3dlight-color: #000;
+    scrollbar-highlight-color: #000;
+    scrollbar-track-color: #000;
+    scrollbar-arrow-color: black;
+    scrollbar-shadow-color: #000;
+    scrollbar-darkshadow-color: #000;
+    
+    scrollbar-track-color: #000;
+    scrollbar-3dlight-color: #AAA;
+    scrollbar-darkshadow-color: #AAA;
+    scrollbar-arrow-color: #AAA;
 }
 
 #appmount {
@@ -267,3 +280,21 @@ button {
         vertical-align: top;
         background-color: #666;
     }
+
+.checkbox-table {
+    margin: 0 !important;
+    padding: 0 !important;
+    border-collapse: collapse;
+}
+    .checkbox-table td, .checkbox-table th {
+        padding: 0 !important;
+        margin: 0 !important;
+        vertical-align: top;
+    }
+
+.category-icon {
+    height:20px;
+    width:20px;
+    margin-right:4px;
+    vertical-align:middle;
+}

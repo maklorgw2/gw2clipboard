@@ -20,6 +20,7 @@ export const EditTextGroup = (props: {
 									<input
 										type="text"
 										value={group.text[index]}
+										maxLength={199}
 										onChange={(event) => {
 											group.text[index] = event.target.value;
 											props.setTempCategory({...props.tempCategory});
@@ -46,6 +47,7 @@ export const EditTextGroup = (props: {
 						<input
 							type="text"
 							value={newText}
+							maxLength={199}
 							onChange={(event) => setNewText(event.target.value)}
 							style={{ flexGrow: 1 }}
 						/>

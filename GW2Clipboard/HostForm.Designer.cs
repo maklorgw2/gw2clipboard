@@ -58,7 +58,7 @@
             this.browser.ScrollBarsEnabled = false;
             this.browser.Size = new System.Drawing.Size(540, 392);
             this.browser.TabIndex = 23;
-            this.browser.Url = new System.Uri("http://www.google.com", System.UriKind.Absolute);
+            this.browser.Url = new System.Uri("", System.UriKind.Relative);
             // 
             // notifyIcon
             // 

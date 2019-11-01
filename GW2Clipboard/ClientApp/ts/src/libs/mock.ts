@@ -14,7 +14,9 @@ export function getMockConfig(): IConfig {
 			MinimizeOnStart: false,
 			MinimizeOnDrawerClosed: false,
 			CaptureMouseOnEnter: false,
+			CheckForUpdateOnStart: true,
 			ToggleMode: true,
+			ShowCategoryIcons: true,
 			DrawerOpenTop: 100,
 			DrawerOpenLeft: 100,
 			DrawerOpenHeight: 100,
@@ -230,7 +232,8 @@ export const MockHost: IMockHost = {
 		console.log(categoryJSON);
 		mockConfig.categoryData = JSON.parse(categoryJSON);
 	},
-	loadMaps: () => JSON.stringify(mockMaps)
+	loadMaps: () => JSON.stringify(mockMaps),
+	downloadUpdate: (updateUrl:string)=>void 0
 };
 
 declare const window: any;

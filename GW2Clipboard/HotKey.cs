@@ -40,11 +40,29 @@ namespace GW2Clipboard
 
         public event EventHandler<HotKeyEventArgs> HotKeyPressed;
 
-        public HotKey (List<HotKeyDefinition> hotKeyDefinitions, EventHandler<HotKeyEventArgs> hotKeyPressed)
+        public HotKey(List<HotKeyDefinition> hotKeyDefinitions, EventHandler<HotKeyEventArgs> hotKeyPressed)
         {
             this.hotKeyDefinitions = hotKeyDefinitions;
             HotKeyPressed = hotKeyPressed;
-            hotKeyDefinitions.ForEach(def => RegisterHotKey(def.id, def.key, def.modifier));
+
+            int id = 0;
+            Keys key = 0;
+            KeyModifiers modifier = 0;
+
+            try
+            {
+                hotKeyDefinitions.ForEach(def =>
+                {
+                    id = def.id;
+                    key = def.key;
+                    modifier = def.modifier;
+                    RegisterHotKey(id, key, modifier);
+                });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error registering hot key for HostAction {id} - [{key},{modifier}] - Hotkey is in use");
+            }
             Application.AddMessageFilter(this);
         }
 
@@ -69,7 +87,7 @@ namespace GW2Clipboard
             switch (m.Msg)
             {
                 case WM_HOTKEY:
-                    HotKeyPressed(this, new HotKeyEventArgs { id=m.WParam.ToInt32() });
+                    HotKeyPressed(this, new HotKeyEventArgs { id = m.WParam.ToInt32() });
                     return true;
             }
             return false;

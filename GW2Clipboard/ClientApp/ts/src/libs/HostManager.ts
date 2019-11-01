@@ -1,6 +1,6 @@
-import { IConfig, ISettings, ICategory, IMap } from '../models/IConfig';
+import { IConfig, ISettings, ICategory, IMap, CURRENT_VERSION } from '@models/IConfig';
 import { MockHost } from '@libs/mock';
-import { IHost } from '../models/IHost';
+import { IHost } from '@models/IHost';
 
 // This is the interface to the Windows Host
 let Host: IHost = window.external as any;
@@ -96,7 +96,13 @@ export const HostManager = {
 		Host.saveSettings(JSON.stringify(HostManager._config.settings, null, 2));
 	},
 	getMumbleData: () => Host.getMumbleData(),
-	setClipBoardData: (text: string) => Host.setClipBoardData(text),
+	setClipBoardData: (text: string, onlySetIfChanged: boolean = false) => {
+		// alert(`onlySetIfChanged:${onlySetIfChanged} _lastClipboardData=${HostManager._lastClipboardData} changed=${HostManager._lastClipboardData != text}`)
+		if (onlySetIfChanged) {
+			if (HostManager._lastClipboardData != text) Host.setClipBoardData(text);
+		} else Host.setClipBoardData(text);
+		HostManager._lastClipboardData = text;
+	},
 	iconBarSize: () => Host.iconBarSize,
 	isEmbedded: () => Host.isEmbedded(),
 	isDebugMode: () => Host.isDebugMode(),
@@ -111,9 +117,10 @@ export const HostManager = {
 	_maps: null as IMap[],
 	_selectableMaps: null as IMap[],
 	_config: null as IConfig,
+	_lastClipboardData: null as string,
 	_autoSaveCategoriesDue: 0,
 
-	_scheduleAutoSave: () => HostManager._autoSaveCategoriesDue = Date.now() + 10000, // set to auto-save in 10 seconds from last update
+	_scheduleAutoSave: () => (HostManager._autoSaveCategoriesDue = Date.now() + 10000), // set to auto-save in 10 seconds from last update
 	_loadConfig: () => {
 		HostManager._config = {
 			categoryData: JSON.parse(Host.loadCategories()) as ICategory[],
@@ -122,8 +129,11 @@ export const HostManager = {
 	},
 	_loadMaps: () => {
 		HostManager._maps = JSON.parse(Host.loadMaps()).sort((a: IMap, b: IMap) => ('' + a.t).localeCompare(b.t));
-		HostManager._selectableMaps = HostManager._maps.filter(m => !m.e).sort((a: IMap, b: IMap) => ('' + a.t).localeCompare(b.t));
-	}
+		HostManager._selectableMaps = HostManager._maps
+			.filter((m) => !m.e)
+			.sort((a: IMap, b: IMap) => ('' + a.t).localeCompare(b.t));
+	},
+	downloadUpdate: (updateUrl: string) => Host.downloadUpdate(updateUrl)
 };
 
 HostManager.initialize();

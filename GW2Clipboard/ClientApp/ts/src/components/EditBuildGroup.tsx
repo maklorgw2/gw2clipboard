@@ -17,6 +17,7 @@ export const EditBuildGroup = (props: {
 							<span style={{ width: '60px', paddingTop: '5px' }}>Name</span>
 							<input
 								type="text"
+								maxLength={100}
 								value={group.name}
 								onChange={(event) => {
 									group.name = event.target.value;
@@ -39,6 +40,7 @@ export const EditBuildGroup = (props: {
 							<span style={{ width: '60px', paddingTop: '5px' }}>Chat-code</span>
 							<input
 								type="text"
+								maxLength={199}
 								value={group.text[0]}
 								onChange={(event) => {
 									group.text[0] = event.target.value;

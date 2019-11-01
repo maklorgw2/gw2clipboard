@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -112,6 +113,12 @@ namespace GW2Clipboard
                 strTitle = stringBuilder.ToString();
             }
             return strTitle;
+        }
+
+        public void DownloadUpdate(string updateUrl)
+        {
+            var url = $"https://github.com/maklorgw2/gw2clipboard/releases/download/{updateUrl}";
+            Process.Start(url);
         }
 
         public string GetMumbleData()

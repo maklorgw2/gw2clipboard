@@ -154,8 +154,15 @@ namespace GW2Clipboard
                     modifier = (KeyModifiers)hotkey[1]
                 });
             }
-            hotKeys = new HotKey(hotKeyDefs, HotKeyDetected);
-
+            try
+            {
+                hotKeys = new HotKey(hotKeyDefs, HotKeyDetected);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Hotkey configuration error");
+                Application.Exit();
+            }
             this.browser.ObjectForScripting = new ScriptInterface(hostBridge);
             this.browser.DocumentCompleted += DocumentCompleted;
             this.browser.Navigate(appFileName);
@@ -431,7 +438,7 @@ namespace GW2Clipboard
                 if (!inX || !inY)
                 {
                     Debug.WriteLine($"DEACTIVATE {Handle} {currentForgegroundWindow}");
-                    
+
                     HostForm_Deactivate(null, null);
                     FocusToPreviousWindow();
                 }

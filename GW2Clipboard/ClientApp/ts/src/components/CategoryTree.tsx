@@ -287,7 +287,7 @@ export const CategoryTree = () => {
 				if (state.selectedCategory.groupIndex != null && state.selectedCategory.childIndex != null) {
 					HostManager.setClipBoardData(
 						data.groups[state.selectedCategory.groupIndex].text[state.selectedCategory.childIndex]
-					);
+					,true);
 				}
 				updateState({
 					filteredCategories: filteredCategories,
@@ -309,12 +309,10 @@ export const CategoryTree = () => {
 	useEffect(
 		() => {
 			if (state.selectedCategory.method == SelectionMethod.Key) {
-				var selectedGroups = document.getElementsByClassName('selected-group');
-				for (var i = 0; i < selectedGroups.length; i++) selectedGroups[i].scrollIntoView(false);
-
-				var selectedItems = document.getElementsByClassName('selected');
-				for (var i = 0, len = selectedItems.length | 0; i < len; i = (i + 1) | 0)
-					selectedItems[i].scrollIntoView(false);
+				const selectedGroup = document.getElementsByClassName('category-groupitem selected-group')[0];
+				const selectedItem = document.getElementsByClassName('category-groupitem selected')[0];
+				if (selectedItem) selectedItem.scrollIntoView(false);
+				else if (selectedGroup) selectedGroup.scrollIntoView(false);
 			}
 		},
 		[ state.selectedCategory.index, state.selectedCategory.groupIndex, state.selectedCategory.childIndex ]

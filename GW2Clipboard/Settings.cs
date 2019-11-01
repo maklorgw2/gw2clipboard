@@ -30,6 +30,8 @@ namespace GW2Clipboard
         public bool MinimizeOnDrawerClosed { get; set; } = false;
         public bool ToggleMode { get; set; } = false;
         public bool CaptureMouseOnEnter { get; set; } = false;
+        public bool CheckForUpdateOnStart { get; set; } = true;
+        public bool ShowCategoryIcons { get; set; } = true;
 
         public int DrawerOpenTop { get; set; }
         public int DrawerOpenLeft { get; set; }

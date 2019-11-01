@@ -48,7 +48,133 @@ export const EditTags = (props: {
 	//console.log(professionTag, mapTag, commanderTag, gameModeTag);
 	return (
 		<div className="category-group">
-			<div className="tag-container">
+			<table className="tag-checkbox-table">
+				<tr>
+					<td>
+						<label>
+							<input
+								type="checkbox"
+								value={TagType.Profession}
+								checked={professionTag != null}
+								onChange={(event) =>
+									onTagChecked(
+										{
+											tagType: TagType.Profession,
+											profession: state.mumbleData.identity.profession
+										} as IProfessionTag,
+										event.target.checked
+									)}
+							/>{' '}
+							Profession
+						</label>
+					</td>
+					<td>
+						{professionTag != null && (
+							<select
+								onChange={(event) => {
+									professionTag.profession = Number(event.target.value);
+									props.setTempCategory({ ...props.tempCategory });
+								}}
+							>
+								<option>-- select --</option>
+								{professions.map((o) => (
+									<option value={o.index} selected={o.index == professionTag.profession}>
+										{o.name}
+									</option>
+								))}
+							</select>
+						)}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label>
+							<input
+								type="checkbox"
+								value={TagType.GameMode}
+								checked={gameModeTag != null}
+								onChange={(event) =>
+									onTagChecked(
+										{
+											tagType: TagType.GameMode,
+											gameMode: state.mumbleData.gameMode
+										} as IGameModeTag,
+										event.target.checked
+									)}
+							/>{' '}
+							Gamemode
+						</label>
+					</td>
+					<td>
+						{gameModeTag != null && (
+							<select
+								onChange={(event) => {
+									gameModeTag.gameMode = Number(event.target.value);
+									props.setTempCategory({ ...props.tempCategory });
+								}}
+							>
+								<option>-- select --</option>
+								{gameModes.map((o) => (
+									<option value={o.index} selected={o.index == gameModeTag.gameMode}>
+										{o.name}
+									</option>
+								))}
+							</select>
+						)}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label>
+							<input
+								type="checkbox"
+								value={TagType.Map}
+								checked={mapTag != null}
+								onChange={(event) =>
+									onTagChecked(
+										{ tagType: TagType.Map, mapId: state.mumbleData.context.mapId } as IMapTag,
+										event.target.checked
+									)}
+							/>{' '}
+							Map
+						</label>
+					</td>
+					<td>
+						{mapTag != null && (
+							<select
+								onChange={(event) => {
+									mapTag.mapId = Number(event.target.value);
+									props.setTempCategory({ ...props.tempCategory });
+								}}
+							>
+								<option>-- select --</option>
+								{HostManager.getMaps(true).map((m) => (
+									<option value={m.id} selected={m.id == mapTag.mapId}>
+										{m.t}
+									</option>
+								))}
+							</select>
+						)}
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						<label>
+							<input
+								type="checkbox"
+								value={TagType.Map}
+								checked={commanderTag != null}
+								onChange={(event) => onTagChecked({ tagType: TagType.Commander }, event.target.checked)}
+							/>{' '}
+							Commander{' '}
+						</label>
+					</td>
+					<td />
+				</tr>
+			</table>
+
+			{/* <div className="tag-container">
 				<label>
 					<input
 						type="checkbox"
@@ -79,8 +205,8 @@ export const EditTags = (props: {
 						</select>
 					</div>
 				)}
-			</div>
-			<div className="tag-container">
+			</div> */}
+			{/* <div className="tag-container">
 				<label>
 					<input
 						type="checkbox"
@@ -88,7 +214,10 @@ export const EditTags = (props: {
 						checked={professionTag != null}
 						onChange={(event) =>
 							onTagChecked(
-								{ tagType: TagType.Profession, profession: state.mumbleData.identity.profession } as IProfessionTag,
+								{
+									tagType: TagType.Profession,
+									profession: state.mumbleData.identity.profession
+								} as IProfessionTag,
 								event.target.checked
 							)}
 					/>{' '}
@@ -111,8 +240,8 @@ export const EditTags = (props: {
 						</select>
 					</div>
 				)}
-			</div>
-			<div className="tag-container">
+			</div> */}
+			{/* <div className="tag-container">
 				<label>
 					<input
 						type="checkbox"
@@ -143,8 +272,8 @@ export const EditTags = (props: {
 						</select>
 					</div>
 				)}
-			</div>
-			<div className="tag-container">
+			</div> */}
+			{/* <div className="tag-container">
 				<label>
 					<input
 						type="checkbox"
@@ -154,7 +283,7 @@ export const EditTags = (props: {
 					/>{' '}
 					Commander
 				</label>
-			</div>
+			</div> */}
 		</div>
 	);
 };

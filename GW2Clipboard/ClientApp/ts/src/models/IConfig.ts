@@ -1,5 +1,7 @@
 import { ITag, GameModeType } from '@models/ITag';
 
+export const CURRENT_VERSION = '1.0.1';
+
 export enum CategoryType {
 	Build = 0,
 	Text = 1,
@@ -37,6 +39,8 @@ export interface ISettings {
 	MinimizeOnDrawerClosed:boolean;
 	CaptureMouseOnEnter:boolean;
 	ToggleMode:boolean;
+	CheckForUpdateOnStart:boolean;
+	ShowCategoryIcons:boolean;
 	DrawerOpenTop:number;
 	DrawerOpenLeft:number;
 	DrawerOpenHeight:number;

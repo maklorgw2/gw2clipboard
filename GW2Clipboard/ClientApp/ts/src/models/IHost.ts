@@ -20,4 +20,5 @@ export interface IHost {
 	saveSettings: (settingJSON: string) => void;
 	loadCategories: () => string;
 	saveCategories: (categoryJSON: string) => void;
+	downloadUpdate: (updateUrl:string) => void;
 }
