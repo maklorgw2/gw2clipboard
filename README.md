@@ -1,19 +1,32 @@
 # GW2Clipboard
 
-**A Windows application that allows you to store text to be pasted into Guild Wars 2 via the clipboard.** 
+**A Windows application that allows you to store text to be pasted into Guild Wars 2 via the clipboard. There is an optional ArcDPS plug-in that can be used to automatically open and close this application when Guild Wars 2 opens and closes.** 
 
-The application can exist in either an Open Drawer state (where the UI is fully visible) or a Closed Drawer state where only the Icon bar is visible - both states store their own size and positional information.
+The application can exist in an Open Drawer state (where the UI is fully visible), a Closed Drawer state where only the Icon bar is visible or minimized to the system tray - both Drawer states store their own size and positional information.
 
-This can be used to store Build templates and general text you may wish to use during game-play, including content-specific strategies you regularly paste into the game.
+This application can be used to store Build templates and general text you may wish to use during game-play, including content-specific strategies you regularly paste into the game.
  
 **Please note:** Integration with Guild Wars 2 is limited to the MumbleLink: https://wiki.guildwars2.com/wiki/API:MumbleLink
 ****
 
 ## Releases
-**The application is currently in beta, please help find any issues!**
-
-For current releases please follow the following link:
+For current releases please click the following link:
 https://github.com/maklorgw2/gw2clipboard/releases
+
+For ArcDPS integration, please click the following link: 
+https://github.com/maklorgw2/arcdps_gw2clipboard/releases
+
+****
+
+## Installation guide
+
+1. Download the zip file
+1. Extract the files to an appropriate folder
+    - if you wish to integrate with ArcDPS, the preferred folder is: ***<guild wars 2 folder>*/addons/gw2clipboard**
+1. Run **gw2clipboard.exe**
+
+For ArcDPS integration, you will need to download an additional dll. Please please read [this](https://github.com/maklorgw2/arcdps_gw2clipboard/blob/master/README.md).
+
 ****
 ## Overview
 The application uses sets of information (called categories) that are filtered by the MumbleLink information.
@@ -38,6 +51,7 @@ System-wide Hotkeys (can be used when GW2 has focus)
 Alt-Up, Alt-Down, Alt-Left and Alt-Right: Navigate through and inside the categories
 Alt-B: Toggle drawer (open and closed) and go to the Build categories
 Alt-T: Toggle drawer (open and closed) and go to the Text categories
+Alt-C: Toggle drawer (open and closed) and go to configuration
 Alt-BackSpace: Close drawer 
 ````
 
@@ -56,7 +70,7 @@ Each map has been allocated one of the following game-modes:
 * PVE: Raids
 * PVE: Other
 
-Any unknown new maps are allocated as PvE.
+Any unknown new maps are allocated as PvE: Other.
 
 ### Configuration
 There are three main configuration files:
@@ -73,7 +87,7 @@ There are three main configuration files:
 ## Building the code
 ### Requirements for building application
 * Visual Studio 2019
-* Optional: Bundling and Minifier plug-in 
+* Optional: Bundling and Minifier plug-in (for release css)
 * Optional: Visual Studio Code
 * NodeJS 10.x or higher
 

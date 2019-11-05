@@ -57,7 +57,7 @@ export const HostManager = {
 				break;
 			case WindowState.ClosedVisible:
 				if (Host.isDrawerOpen()) Host.closeDrawer();
-				if (Host.IsInSystemTray()) Host.restoreWindow();
+				if (Host.IsInSystemTray()) Host.restoreWindow(true);
 				break;
 		}
 	},
@@ -91,6 +91,12 @@ export const HostManager = {
 		Host.saveCategories(JSON.stringify(HostManager._config.categoryData, null, 2));
 		HostManager._autoSaveCategoriesDue = 0;
 	},
+	importCategories: () => {
+		const importData = Host.importCategories();
+		if ((importData || '') > '' && importData[0] == '[') return JSON.parse(importData);
+		return null;
+	},
+	exportCategories: (categories: ICategory[]) => Host.exportCategories(JSON.stringify(categories)),
 	saveSettings: (settings: ISettings) => {
 		HostManager._config.settings = settings;
 		Host.saveSettings(JSON.stringify(HostManager._config.settings, null, 2));

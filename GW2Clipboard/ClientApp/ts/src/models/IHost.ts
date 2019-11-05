@@ -9,7 +9,7 @@ export interface IHost {
 	openDrawer: () => void;
 	closeDrawer: () => void;
 	minimizeWindow: () => void;
-	restoreWindow: () => void;
+	restoreWindow: (closed?:boolean) => void;
 	exit: () => void;
 	refresh: () => void;
 	setClipBoardData: (text: string) => void;
@@ -20,5 +20,7 @@ export interface IHost {
 	saveSettings: (settingJSON: string) => void;
 	loadCategories: () => string;
 	saveCategories: (categoryJSON: string) => void;
+	importCategories: () => string;
+	exportCategories: (categoryJSON: string) => boolean;
 	downloadUpdate: (updateUrl:string) => void;
 }

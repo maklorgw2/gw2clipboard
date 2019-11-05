@@ -59,7 +59,9 @@ namespace GW2Clipboard
                     RegisterHotKey(id, key, modifier);
                 });
             }
+#pragma warning disable CS0168 // Variable is declared but never used
             catch (Exception ex)
+#pragma warning restore CS0168 // Variable is declared but never used
             {
                 throw new Exception($"Error registering hot key for HostAction {id} - [{key},{modifier}] - Hotkey is in use");
             }

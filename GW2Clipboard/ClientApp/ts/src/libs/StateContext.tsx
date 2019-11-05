@@ -47,6 +47,10 @@ const processAction = (
 			updateState({ windowState: WindowState.OpenVisible });
 			break;
 
+		case HostAction.RestoreClosed:
+			updateState({ windowState: WindowState.ClosedVisible });
+			break;
+
 		case HostAction.ToggleBuild:
 			if (!toggleMode && state.area == Area.Build && windowState == WindowState.OpenVisible) break;
 			if (windowState == WindowState.OpenVisible && state.area == Area.Build) {
