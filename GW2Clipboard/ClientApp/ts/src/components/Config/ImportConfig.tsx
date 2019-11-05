@@ -96,7 +96,7 @@ export const useImporter = () => {
 
 export const ImportConfig = (props: { selectElement: JSX.Element }) => {
 	const importer = useImporter();
-	const [ url, setUrl ] = useState('https://pastebin.com/raw/zNnTNckK');
+	const [ url, setUrl ] = useState('');
 	const [ importCategories, setImportCategories ] = useState<IImportCategory[]>([]);
 
 	useEffect(
