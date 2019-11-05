@@ -1,14 +1,42 @@
 import React, { useEffect, Fragment, useState } from 'react';
-import { HostManager } from '@libs/HostManager';
 import { useStore, Area } from '@libs/StateContext';
 import { SettingConfig } from '@components/Config/SettingConfig';
-import { MumbleConfig } from '@components/Config/MumbleConfig';
-import { JSONConfig } from '@components/Config/JSONConfig';
+import { MumbleConfig } from './Config/MumbleConfig';
+import { JSONConfig } from './Config/JSONConfig';
+import { ImportConfig } from './Config/ImportConfig';
+import { ExportConfig } from './Config/ExportConfig';
+
+export const useConfigSelect = () => {
+	const [ mode, setMode ] = useState('settings');
+	return {
+		selectElement: (
+			<select onChange={(event) => setMode(event.target.value)}>
+				<option selected={mode == 'settings'} value="settings">
+					Settings
+				</option>
+				<option selected={mode == 'mumble'} value="mumble">
+					Mumble data
+				</option>
+				<option selected={mode == 'import'} value="import">
+					Import categories
+				</option>
+				<option selected={mode == 'export'} value="export">
+					Export categories
+				</option>
+				<option selected={mode == 'catJson'} value="catJson">
+					View category JSON
+				</option>
+
+			</select>
+			
+		),
+		mode: mode
+	};
+};
 
 export const Config = () => {
 	const { updateState } = useStore();
-	const [ mode, setMode ] = useState('settings');
-	const [ tempSettings, setTempSettings ] = useState({ ...HostManager.getConfig().settings });
+	const { selectElement, mode } = useConfigSelect();
 
 	useEffect(() => {
 		updateState({ area: Area.Config });
@@ -16,40 +44,11 @@ export const Config = () => {
 
 	return (
 		<Fragment>
-			<div className="layout-header">
-				<select onChange={(event) => setMode(event.target.value)}>
-					<option selected={mode == 'settings'} value="settings">
-						Settings
-					</option>
-					<option selected={mode == 'mumble'} value="mumble">
-						Mumble data
-					</option>
-					<option selected={mode == 'catJson'} value="catJson">
-						Category JSON
-					</option>
-				</select>
-				{mode == 'settings' && (
-					<button
-						style={{ float: 'right' }}
-						onClick={() => {
-							const newSettings = { ...tempSettings };
-							if (newSettings.OpenOpacity < 50) newSettings.OpenOpacity = 50;
-							if (newSettings.OpenOpacity > 100) newSettings.OpenOpacity = 100;
-							if (newSettings.ClosedOpacity < 50) newSettings.ClosedOpacity = 50;
-							if (newSettings.ClosedOpacity > 100) newSettings.ClosedOpacity = 100;
-							setTempSettings(newSettings);
-							HostManager.saveSettings(newSettings);
-						}}
-					>
-						Apply
-					</button>
-				)}
-			</div>
-			<div className="layout-detail">
-				{mode == 'mumble' && <MumbleConfig />}
-				{mode == 'catJson' && <JSONConfig />}
-				{mode == 'settings' && <SettingConfig tempSettings={tempSettings} setTempSettings={setTempSettings} />}
-			</div>
+			{mode == 'mumble' && <MumbleConfig selectElement={selectElement} />}
+			{mode == 'catJson' && <JSONConfig selectElement={selectElement} />}
+			{mode == 'import' && <ImportConfig selectElement={selectElement} />}
+			{mode == 'export' && <ExportConfig selectElement={selectElement} />}
+			{mode == 'settings' && <SettingConfig selectElement={selectElement} />}
 		</Fragment>
 	);
 };

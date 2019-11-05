@@ -36,7 +36,7 @@ namespace GW2Clipboard
 
         public void MinimizeWindow() => hostBridge.MinimizeWindow();
 
-        public void RestoreWindow() => hostBridge.RestoreWindow();
+        public void RestoreWindow(bool closed = false) => hostBridge.RestoreWindow(closed);
 
         public void Refresh() => hostBridge.Refresh();
 
@@ -51,7 +51,11 @@ namespace GW2Clipboard
         public string LoadCategories() => hostBridge.LoadCategories();
 
         public void SaveCategories(string json) => hostBridge.SaveCategories(json);
-        
+
+        public string ImportCategories() => hostBridge.ImportCategories();
+
+        public bool ExportCategories(string json) => hostBridge.ExportCategories(json);
+
         public void SetClientReady(bool ready) => hostBridge.IsClientReady = ready;
         
         public string SetClipBoardData(string data)

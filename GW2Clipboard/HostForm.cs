@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Runtime.InteropServices;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace GW2Clipboard
@@ -389,12 +387,12 @@ namespace GW2Clipboard
             if (lastForiegnWindow != Handle && lastForiegnWindow != IntPtr.Zero) NativeMethods.SetForegroundWindow(lastForiegnWindow);
         }
 
-        public void OpenFromSystemTray()
+        public void OpenFromSystemTray(bool closed = false)
         {
             hostBridge.IsInSystemTray = false;
 
-            //Hide();
-            hostBridge.OpenDrawer();
+            if (closed) hostBridge.CloseDrawer();
+            else hostBridge.OpenDrawer();
         }
 
         public void MinimizeToSystemTray()

@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.IO.Pipes;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GW2Clipboard
@@ -21,8 +23,6 @@ namespace GW2Clipboard
         HostForm hostForm;
         string categoriesJson;
         IntPtr Gw2WindowHandle = IntPtr.Zero;
-        bool categoriesDirty = false;
-        bool settingsDirty = false;
 
         public Queue<HostAction> HostActionQueue = new Queue<HostAction>();
         public Settings Settings { get; set; }
@@ -41,12 +41,85 @@ namespace GW2Clipboard
             MapManager = new MapManager();
             LoadSettings();
             LoadCategories();
+
+            StartIPCTask();
         }
 
         ~HostBridge()
         {
             MumbleLinkFile.Dispose();
         }
+
+        #region ArcDPS Plug-in IPC
+
+        /// <summary>
+        /// CheckForRunningApp - act a sa mutex to ensure a single instance 
+        /// </summary>
+        public static bool IsOnlyInstance()
+        {
+            using (var pipeClient = new NamedPipeClientStream(".", "pipe_gw2cp", PipeDirection.Out))
+            {
+                try
+                {
+                    pipeClient.Connect(250);
+                    if (pipeClient.IsConnected)
+                    {
+                        using (var writer = new StreamWriter(pipeClient))
+                        {
+                            writer.WriteLine("mod_init");
+                            writer.Flush();
+                            Application.Exit();
+                            return false;
+                        }
+                    }
+                }
+                catch { }
+                pipeClient.Close();
+                return true;
+            }
+        }
+
+        public void StartIPCTask()
+        {
+            Task.Run(() =>
+            {
+                RecursivePipe();
+            });
+        }
+
+        public void RecursivePipe()
+        {
+            using (var server = new NamedPipeServerStream("pipe_gw2cp", PipeDirection.In, 1, PipeTransmissionMode.Message))
+            {
+                server.WaitForConnection();
+                using (var reader = new StreamReader(server))
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        var command = reader.ReadLine();
+                        switch (command)
+                        {
+                            case "mod_init":
+                                if (IsInSystemTray)
+                                {
+                                    if (!Settings.MinimizeOnStart) HostActionQueue.Enqueue(HostAction.RestoreClosed);
+                                }
+                                break;
+                            case "mod_release":
+                                if (!IsInSystemTray) HostActionQueue.Enqueue(HostAction.Minimize);
+                                break;
+                            case "mod_release:exit":
+                                Application.Exit();
+                                break;
+                        }
+                        Debug.WriteLine(command);
+                    }
+                }
+                server.Close();
+            }
+            RecursivePipe();
+        }
+        #endregion
 
         #region Settings and Categories
         public Settings LoadSettings()
@@ -95,6 +168,39 @@ namespace GW2Clipboard
         {
             if (!String.IsNullOrEmpty(json)) categoriesJson = json;
             File.WriteAllText(CategoryFileName, categoriesJson);
+        }
+
+        public string ImportCategories()
+        {
+            var openDialog = new OpenFileDialog();
+            openDialog.Filter = "JSON file|*.json";
+            openDialog.InitialDirectory = Application.ExecutablePath;
+            if (openDialog.ShowDialog() != DialogResult.Cancel)
+            {
+                if (!string.IsNullOrEmpty(openDialog.FileName))
+                {
+                    return File.ReadAllText(openDialog.FileName);
+                }
+            }
+            return null;
+        }
+
+        public bool ExportCategories(string json)
+        {
+            var saveDialog = new SaveFileDialog();
+            saveDialog.Filter = "JSON file|*.json";
+            saveDialog.InitialDirectory = Application.ExecutablePath;
+
+            saveDialog.FileName = $"export-{DateTime.Now.ToString("yyyyMMddHHmmss")}.json";
+            if (saveDialog.ShowDialog() != DialogResult.Cancel)
+            {
+                if (!string.IsNullOrEmpty(saveDialog.FileName))
+                {
+                    File.WriteAllText(saveDialog.FileName, json);
+                    return true;
+                }
+            }
+            return false;
         }
         #endregion
 
@@ -219,9 +325,9 @@ namespace GW2Clipboard
             hostForm.MinimizeToSystemTray();
         }
 
-        public void RestoreWindow()
+        public void RestoreWindow(bool closed)
         {
-            hostForm.OpenFromSystemTray();
+            hostForm.OpenFromSystemTray(closed);
         }
 
         public void Exit()

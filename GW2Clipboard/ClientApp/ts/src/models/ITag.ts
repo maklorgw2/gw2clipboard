@@ -7,14 +7,7 @@ export enum TagType {
 	Commander = 5
 }
 
-export const TagTypeName: string[] = [
-	'Profession',
-	'Map',
-	'Map Location',
-	'Character',
-	'Game-mode',
-	'Commander tag'
-];
+export const TagTypeName: string[] = [ 'Profession', 'Map', 'Map Location', 'Character', 'Game-mode', 'Commander tag' ];
 
 export enum ProfessionType {
 	None = 0,
@@ -51,14 +44,7 @@ export enum GameModeType {
 	Raids = 5
 }
 
-export const GameModeName: string[] = [
-	'WvW',
-	'PvP',
-	'PvE: Other',
-	'PVE: Dungeons',
-	'PVE: Fractals',
-	'PVE: Raids',
-];
+export const GameModeName: string[] = [ 'WvW', 'PvP', 'PvE: Other', 'PVE: Dungeons', 'PVE: Fractals', 'PVE: Raids' ];
 
 export interface ITag {
 	tagType: TagType;
@@ -94,6 +80,14 @@ export interface IMapLocationTag extends ITag {
 	ySize: number;
 	zSize: number;
 }
+
+export interface IExtendedTag
+	extends Partial<ICharacterTag>,
+		Partial<IProfessionTag>,
+		Partial<IGameModeTag>,
+		Partial<IMapTag>,
+		Partial<ICommanderTag>,
+		Partial<IMapLocationTag> {}
 
 export const YOrdinal = 0;
 export const ZOrdinal = 1;

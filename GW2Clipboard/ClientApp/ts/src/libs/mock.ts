@@ -232,6 +232,8 @@ export const MockHost: IMockHost = {
 		console.log(categoryJSON);
 		mockConfig.categoryData = JSON.parse(categoryJSON);
 	},
+	importCategories: () => null,
+	exportCategories: (categoryJSON: string) => true,
 	loadMaps: () => JSON.stringify(mockMaps),
 	downloadUpdate: (updateUrl:string)=>void 0
 };

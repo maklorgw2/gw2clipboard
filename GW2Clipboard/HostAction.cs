@@ -19,6 +19,7 @@
         
         Minimize = 108,
         Restore = 160,
+        RestoreClosed = 161,
 
         RefreshClient = 200
     }

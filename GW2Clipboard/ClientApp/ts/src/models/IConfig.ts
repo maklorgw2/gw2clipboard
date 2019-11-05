@@ -1,12 +1,14 @@
 import { ITag, GameModeType } from '@models/ITag';
 
-export const CURRENT_VERSION = '1.0.1';
+export const CURRENT_VERSION = '1.1.0';
 
 export enum CategoryType {
 	Build = 0,
 	Text = 1,
 	Other = 99
 }
+
+export const CategoryTypeName = [ 'Build', 'Text', 'Other' ];
 
 export interface IGroup {
 	name?: string;
@@ -31,24 +33,35 @@ export interface ICategory {
 	sortOrder?: number;
 }
 
+export interface IImportCategory {
+	category: ICategory;
+	selected: boolean;
+	existing: boolean;
+}
+
+export interface IExportCategory {
+	category: ICategory;
+	selected: boolean;
+}
+
 export interface ISettings {
 	UISize: number;
-	OpenOpacity:number;
-	ClosedOpacity:number;
-	MinimizeOnStart:boolean;
-	MinimizeOnDrawerClosed:boolean;
-	CaptureMouseOnEnter:boolean;
-	ToggleMode:boolean;
-	CheckForUpdateOnStart:boolean;
-	ShowCategoryIcons:boolean;
-	DrawerOpenTop:number;
-	DrawerOpenLeft:number;
-	DrawerOpenHeight:number;
-	DrawerOpenWidth:number;
-	DrawerClosedTop:number;
-	DrawerClosedLeft:number;
-	DrawerClosedHeight:number;
-	DrawerClosedWidth:number;
+	OpenOpacity: number;
+	ClosedOpacity: number;
+	MinimizeOnStart: boolean;
+	MinimizeOnDrawerClosed: boolean;
+	CaptureMouseOnEnter: boolean;
+	ToggleMode: boolean;
+	CheckForUpdateOnStart: boolean;
+	ShowCategoryIcons: boolean;
+	DrawerOpenTop: number;
+	DrawerOpenLeft: number;
+	DrawerOpenHeight: number;
+	DrawerOpenWidth: number;
+	DrawerClosedTop: number;
+	DrawerClosedLeft: number;
+	DrawerClosedHeight: number;
+	DrawerClosedWidth: number;
 	HotKeys: { [key: number]: number[] };
 }
 
@@ -65,12 +78,13 @@ export enum HostAction {
 	Down = 104,
 	Left = 105,
 	Right = 106,
-	
+
 	Select = 107,
-	
+
 	Minimize = 108,
 	Restore = 160,
-	
+	RestoreClosed = 161,
+
 	RefreshClient = 200
 }
 

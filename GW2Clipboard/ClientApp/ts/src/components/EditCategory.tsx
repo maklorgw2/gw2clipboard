@@ -135,7 +135,7 @@ export const EditCategory = (props: {
 							)}
 						</Fragment>
 					))}
-					<div style={{ marginTop: '5px', marginBottom: '5px' }}>
+					<div style={{ marginTop: '10px', marginBottom: '5px' }}>
 						<button
 							onClick={(event) => {
 								if (isAddMode) tempCategory.groups.push({ name: '', text: [ '' ] });
