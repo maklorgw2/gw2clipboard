@@ -53,7 +53,7 @@ namespace GW2Clipboard
         #region ArcDPS Plug-in IPC
 
         /// <summary>
-        /// CheckForRunningApp - act a sa mutex to ensure a single instance 
+        /// IsOnlyInstance - act a sa mutex to ensure a single instance 
         /// </summary>
         public static bool IsOnlyInstance()
         {
@@ -68,6 +68,7 @@ namespace GW2Clipboard
                         {
                             writer.WriteLine("mod_init");
                             writer.Flush();
+                            writer.Close();
                             Application.Exit();
                             return false;
                         }
@@ -102,7 +103,7 @@ namespace GW2Clipboard
                             case "mod_init":
                                 if (IsInSystemTray)
                                 {
-                                    if (!Settings.MinimizeOnStart) HostActionQueue.Enqueue(HostAction.RestoreClosed);
+                                     if (!Settings.MinimizeOnStart) HostActionQueue.Enqueue(HostAction.RestoreClosed);
                                 }
                                 break;
                             case "mod_release":
