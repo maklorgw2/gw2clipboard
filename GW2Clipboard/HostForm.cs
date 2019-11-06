@@ -164,6 +164,8 @@ namespace GW2Clipboard
             this.browser.ObjectForScripting = new ScriptInterface(hostBridge);
             this.browser.DocumentCompleted += DocumentCompleted;
             this.browser.Navigate(appFileName);
+
+            timer.Enabled = true;
         }
 
         private void HostForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -423,6 +425,8 @@ namespace GW2Clipboard
 
         private void timer_Tick(object sender, EventArgs e)
         {
+            if (hostBridge.IsDialogOpen) return;
+
             var currentForgegroundWindow = NativeMethods.GetForegroundWindow();
             if (currentForgegroundWindow != Handle) lastForiegnWindow = currentForgegroundWindow;
 
