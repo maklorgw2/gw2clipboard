@@ -23,6 +23,9 @@ namespace GW2Clipboard
         HostForm hostForm;
         string categoriesJson;
         IntPtr Gw2WindowHandle = IntPtr.Zero;
+        
+        // Used to keep auto-capture in check
+        public bool IsDialogOpen { get; set; } = false;
 
         public Queue<HostAction> HostActionQueue = new Queue<HostAction>();
         public Settings Settings { get; set; }
@@ -175,14 +178,18 @@ namespace GW2Clipboard
         {
             var openDialog = new OpenFileDialog();
             openDialog.Filter = "JSON file|*.json";
-            openDialog.InitialDirectory = Application.ExecutablePath;
+            openDialog.InitialDirectory = Application.StartupPath;
+            openDialog.RestoreDirectory = true;
+            IsDialogOpen = true;
             if (openDialog.ShowDialog() != DialogResult.Cancel)
             {
+                IsDialogOpen = false;
                 if (!string.IsNullOrEmpty(openDialog.FileName))
                 {
                     return File.ReadAllText(openDialog.FileName);
                 }
             }
+            IsDialogOpen = false;
             return null;
         }
 
@@ -190,17 +197,22 @@ namespace GW2Clipboard
         {
             var saveDialog = new SaveFileDialog();
             saveDialog.Filter = "JSON file|*.json";
-            saveDialog.InitialDirectory = Application.ExecutablePath;
+            saveDialog.RestoreDirectory = true;
+            saveDialog.InitialDirectory = Application.StartupPath;
 
+            
             saveDialog.FileName = $"export-{DateTime.Now.ToString("yyyyMMddHHmmss")}.json";
+            IsDialogOpen = true;
             if (saveDialog.ShowDialog() != DialogResult.Cancel)
             {
+                IsDialogOpen = false;
                 if (!string.IsNullOrEmpty(saveDialog.FileName))
                 {
                     File.WriteAllText(saveDialog.FileName, json);
                     return true;
                 }
             }
+            IsDialogOpen = false;
             return false;
         }
         #endregion
